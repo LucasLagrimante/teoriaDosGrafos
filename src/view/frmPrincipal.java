@@ -63,7 +63,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnAbrir.setText("Abrir Grafo em xml");
         btnAbrir.setName("btnAbrir"); // NOI18N
 
-        btnAbout.setText("About");
+        btnAbout.setText("Sobre");
         btnAbout.setName("btnAbout"); // NOI18N
         btnAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
