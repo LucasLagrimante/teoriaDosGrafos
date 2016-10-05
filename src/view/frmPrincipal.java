@@ -5,6 +5,8 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lukin
@@ -90,11 +92,11 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addContainerGap(80, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblVertices)
                         .addGap(18, 18, 18)
-                        .addComponent(txtVertices))
+                        .addComponent(txtVertices, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblArestas)
                         .addGap(18, 18, 18)
@@ -123,17 +125,22 @@ public class frmPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarActionPerformed
-        frmGrafo fg = new frmGrafo();
-        fg.setVisible(true);
-        int x =10;
+
+        if (txtArestas.getText().isEmpty() || txtVertices.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Há campos vazios!");
+        } else {
+            frmGrafo fg = new frmGrafo();
+            fg.setVisible(true);
+        }
     }//GEN-LAST:event_btnGerarActionPerformed
 
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
-       frmAbout fa = new frmAbout();
-       fa.setVisible(true);
+        frmAbout fa = new frmAbout();
+        fa.setVisible(true);
     }//GEN-LAST:event_btnAboutActionPerformed
 
     /**
