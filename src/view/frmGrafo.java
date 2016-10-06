@@ -5,17 +5,18 @@
  */
 package view;
 
-/**
- *
- * @author lukin
- */
+import model.Grafo;
+import model.Storage;
+
+
 public class frmGrafo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmGrafo
-     */
+    
+    private Grafo grafo;
+    
     public frmGrafo() {
         initComponents();
+        grafo = Storage.getInstance().getGrafo();
     }
 
     /**
@@ -39,6 +40,11 @@ public class frmGrafo extends javax.swing.JFrame {
 
         btnSalvar.setText("Salvar em xml");
         btnSalvar.setName("btnSalvar"); // NOI18N
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -81,6 +87,10 @@ public class frmGrafo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+                // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments

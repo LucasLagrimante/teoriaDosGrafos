@@ -34,25 +34,22 @@
                       <Component id="btnAbrir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="btnGerar" min="-2" pref="70" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="btnAbout" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="80" max="32767" attributes="0"/>
+              <EmptySpace pref="86" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="lblVertices" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtVertices" min="-2" pref="50" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="lblArestas" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtArestas" min="-2" pref="51" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="lblVertices" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblArestas" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="txtVertices" max="32767" attributes="0"/>
+                  <Component id="txtArestas" pref="51" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
           </Group>
@@ -63,23 +60,23 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblArestas" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtArestas" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblVertices" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtVertices" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblArestas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtArestas" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnGerar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="btnAbrir" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="btnAbout" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -96,13 +93,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblArestas">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Arestas:"/>
+        <Property name="text" type="java.lang.String" value="Arestas (edges):"/>
         <Property name="name" type="java.lang.String" value="lblArestas" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblVertices">
       <Properties>
-        <Property name="text" type="java.lang.String" value="V&#xe9;rtices:"/>
+        <Property name="text" type="java.lang.String" value="V&#xe9;rtices (nodes):"/>
         <Property name="name" type="java.lang.String" value="lblVertices" noResource="true"/>
       </Properties>
     </Component>

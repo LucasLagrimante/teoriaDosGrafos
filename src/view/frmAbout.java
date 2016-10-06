@@ -48,7 +48,7 @@ public class frmAbout extends javax.swing.JFrame {
 
         lblDev2.setText("Ramon Souza");
 
-        lblDev3.setText("Kaio Lima");
+        lblDev3.setText("Kaio Costa");
 
         lblDev4.setText("Victor Duque");
 

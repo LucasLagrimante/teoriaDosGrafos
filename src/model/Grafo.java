@@ -20,7 +20,7 @@ public class Grafo {
         this.vertice = vertice;
     }
 
-    public int getAresta() {
+    public int getAresta(int parseInt) {
         return aresta;
     }
 
@@ -28,7 +28,7 @@ public class Grafo {
         this.aresta = aresta;
     }
 
-    public int getVertice() {
+    public int getVertice(int parseInt) {
         return vertice;
     }
 

@@ -70,6 +70,9 @@
         <Property name="text" type="java.lang.String" value="Salvar em xml"/>
         <Property name="name" type="java.lang.String" value="btnSalvar" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
 
