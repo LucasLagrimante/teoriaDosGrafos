@@ -4,7 +4,14 @@
  * and open the template in the editor.
  */
 package view;
-
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import model.Grafo;
+import model.Storage;
 import model.Grafo;
 import model.Storage;
 
@@ -90,7 +97,22 @@ public class frmGrafo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-                // TODO add your handling code here:
+        XStream xstream = new XStream(new DomDriver());
+        
+        xstream.alias("grafo", Grafo.class);
+        
+        String xml = xstream.toXML(grafo);
+        
+        try{
+            File xmlFile = new File("grafo.xml");
+            
+            xstream.toXML(grafo, new FileWriter(xmlFile));
+            JOptionPane.showMessageDialog(null, "Arquivo gravado com sucesso");
+            
+        } catch (IOException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao gravar Arquivo");
+        
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
