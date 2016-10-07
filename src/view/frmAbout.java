@@ -34,7 +34,7 @@ public class frmAbout extends javax.swing.JFrame {
         lblDev3 = new javax.swing.JLabel();
         lblDev4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblAbout.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblAbout.setText("Sobre");
@@ -91,6 +91,7 @@ public class frmAbout extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

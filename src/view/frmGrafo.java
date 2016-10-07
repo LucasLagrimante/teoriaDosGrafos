@@ -32,7 +32,7 @@ public class frmGrafo extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTitulo2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitulo2.setText("Grafo");
@@ -86,6 +86,7 @@ public class frmGrafo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
