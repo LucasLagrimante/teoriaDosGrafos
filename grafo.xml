@@ -1,4 +1,8 @@
-<grafo>
-  <aresta>55</aresta>
-  <vertice>75</vertice>
-</grafo>
+<graph id="JOAO" edgedefault="directed">
+  <node id="1"/>
+  <node id="2"/>
+  <node id="3"/>
+  <edge id="A" source="1" target="1"/>
+  <edge id="B" source="2" target="2"/>
+  <edge id="C" source="3" target="3"/>
+</graph>
