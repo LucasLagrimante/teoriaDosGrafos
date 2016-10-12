@@ -12,6 +12,7 @@ package model;
 public class Vertice {
     
     private String id;
+    
 
     public Vertice() {
     }
