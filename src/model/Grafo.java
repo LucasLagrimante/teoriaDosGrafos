@@ -5,34 +5,69 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author lukin
+ * @author Kaio
  */
 public class Grafo {
-    private int aresta, vertice;
+    
+    private String id;
+    private TipoGrafo tipo;
+    private ArrayList <Vertice> vertices;
+    private ArrayList <Aresta> arestas = new ArrayList<>();
 
     public Grafo() {
+        this("", TipoGrafo.unidirected);
     }
 
-    public Grafo(int aresta, int vertice) {
-        this.aresta = aresta;
-        this.vertice = vertice;
+    public Grafo(String id, TipoGrafo tipo) {
+        this.id = id;
+        this.tipo = tipo;
+        arestas = new ArrayList<>();
+        vertices = new ArrayList<>();
     }
 
-    public int getAresta(int parseInt) {
-        return aresta;
+    public String getId() {
+        return id;
     }
 
-    public void setAresta(int aresta) {
-        this.aresta = aresta;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public int getVertice(int parseInt) {
-        return vertice;
+    public TipoGrafo getTipo() {
+        return tipo;
     }
 
-    public void setVertice(int vertice) {
-        this.vertice = vertice;
+    public void setTipo(TipoGrafo tipo) {
+        this.tipo = tipo;
     }
+
+    public ArrayList getArestas() {
+        return arestas;
+    }
+
+    public void setArestas(Aresta arestas) {
+        this.arestas.add(arestas);
+    }
+
+    public ArrayList getVertices() {
+        return vertices;
+    }
+
+    public void setVertices(Vertice v) {
+        vertices.add(v);
+    }
+
+    public Object getVertices(int selectedIndex) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setVertice(Vertice vertice) {
+        this.vertices.add(vertice);
+    }
+
+   
 }
