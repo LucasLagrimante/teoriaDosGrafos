@@ -7,10 +7,7 @@ package model;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Kaio
- */
+
 public class Grafo {
     
     private String id;
@@ -25,7 +22,6 @@ public class Grafo {
     public Grafo(String id, TipoGrafo tipo) {
         this.id = id;
         this.tipo = tipo;
-        arestas = new ArrayList<>();
         vertices = new ArrayList<>();
     }
 

@@ -5,10 +5,7 @@
  */
 package model;
 
-/**
- *
- * @author Kaio
- */
+
 public class Aresta {
     
     private String id, source, target;

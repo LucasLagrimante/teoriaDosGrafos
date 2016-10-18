@@ -5,10 +5,7 @@
  */
 package model;
 
-/**
- *
- * @author Kaio
- */
+
 public enum TipoGrafo {
     unidirected,directed;
 }

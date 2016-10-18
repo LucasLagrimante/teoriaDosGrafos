@@ -5,10 +5,7 @@
  */
 package model;
 
-/**
- *
- * @author Kaio
- */
+
 public class Vertice {
     
     private String id;
