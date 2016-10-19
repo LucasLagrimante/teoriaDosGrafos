@@ -1,5 +1,7 @@
-<graph id="" edgedefault="directed">
-  <node id="a"/>
-  <node id="b"/>
-  <edge id="ab" source="a" target="b"/>
+<graph id="MACACO" edgedefault="directed">
+  <node id="1"/>
+  <node id="2"/>
+  <edge id="343" source="2" target="2"/>
+  <edge id="ASD" source="1" target="2"/>
+  <edge id="564" source="1" target="2"/>
 </graph>

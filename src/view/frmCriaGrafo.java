@@ -28,7 +28,7 @@ public class frmCriaGrafo extends javax.swing.JDialog {
     private ArrayList<Vertice> vertices;
     private Vertice vertice;
     private Aresta aresta;
-    private Grafo grafo;
+    public Grafo grafo;
     private DefaultTableModel modeloGrafo = new DefaultTableModel();
     XStream xstream;
     
@@ -40,6 +40,7 @@ public class frmCriaGrafo extends javax.swing.JDialog {
         vertices = new ArrayList();
        
         grafo = new Grafo();
+        grafo.setId(frmPrincipal.idGrafo);
         
         modeloGrafo.addColumn("Aresta");
         modeloGrafo.addColumn("1º Vertice");
@@ -58,8 +59,7 @@ public class frmCriaGrafo extends javax.swing.JDialog {
         xstream.useAttributeFor("id", String.class);
         xstream.useAttributeFor("tipo", TipoGrafo.class);
         xstream.aliasAttribute("edgedefault","tipo");
-    
-        
+
         
     }
 
@@ -89,9 +89,6 @@ public class frmCriaGrafo extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         cbOrietacao = new javax.swing.JCheckBox();
-        jLabel8 = new javax.swing.JLabel();
-        nomeGrafo = new javax.swing.JTextField();
-        salvarGrafo = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         exportarXml = new javax.swing.JButton();
@@ -112,7 +109,7 @@ public class frmCriaGrafo extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jLabel1.setText("Vertice");
 
@@ -165,7 +162,7 @@ public class frmCriaGrafo extends javax.swing.JDialog {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jLabel4.setText("Aresta");
 
@@ -252,17 +249,7 @@ public class frmCriaGrafo extends javax.swing.JDialog {
             }
         });
 
-        jLabel8.setText("Digite o nome do Grafo: ");
-
-        salvarGrafo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        salvarGrafo.setText("Criar Grafo");
-        salvarGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salvarGrafoActionPerformed(evt);
-            }
-        });
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jLabel9.setText("XML");
 
@@ -285,12 +272,13 @@ public class frmCriaGrafo extends javax.swing.JDialog {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addComponent(exportarXml)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(importarXml)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(118, 118, 118)
                 .addComponent(jLabel9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -299,11 +287,11 @@ public class frmCriaGrafo extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exportarXml)
                     .addComponent(importarXml))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         tabelaAresta.setModel(new javax.swing.table.DefaultTableModel(
@@ -340,20 +328,15 @@ public class frmCriaGrafo extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbOrietacao, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(salvarGrafo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -361,29 +344,23 @@ public class frmCriaGrafo extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(nomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
                                 .addComponent(cbOrietacao)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(2, 2, 2)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(salvarGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -431,11 +408,15 @@ public class frmCriaGrafo extends javax.swing.JDialog {
         aresta.setFonte(vertices.get(listaVertices.getSelectedIndex()));
         aresta.setAlvo(vertices.get(listaVertices2.getSelectedIndex()));
         grafo.setArestas(aresta);
-        JOptionPane.showMessageDialog(null, "Dados Salvos");
+        //JOptionPane.showMessageDialog(null, "Dados Salvos");
         tabelaAresta.setModel(modeloGrafo);
         modeloGrafo.addRow(new Object[]{nomeAresta.getText(),aresta.getFonte().getId(), aresta.getAlvo().getId()});
         nomeAresta.setText(null);
         }
+        // SALVANDO GRAFO
+        grafo.setId(grafo.getId());
+        JOptionPane.showMessageDialog(null, "Grafo Criado com sucesso");
+        //nomeGrafo.setText(null);
     }//GEN-LAST:event_salvarArestaActionPerformed
 
     private void cbOrietacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOrietacaoActionPerformed
@@ -443,14 +424,6 @@ public class frmCriaGrafo extends javax.swing.JDialog {
         grafo.setTipo(TipoGrafo.directed);
         
     }//GEN-LAST:event_cbOrietacaoActionPerformed
-
-    private void salvarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarGrafoActionPerformed
-        
-        grafo.setId(nomeGrafo.getText());
-        JOptionPane.showMessageDialog(null, "Grafo Criado com sucesso");
-        nomeGrafo.setText(null);
-        
-    }//GEN-LAST:event_salvarGrafoActionPerformed
 
     private void exportarXmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportarXmlActionPerformed
         
@@ -473,11 +446,18 @@ public class frmCriaGrafo extends javax.swing.JDialog {
     }//GEN-LAST:event_exportarXmlActionPerformed
 
     private void importarXmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importarXmlActionPerformed
-        
+       
+        ArrayList arrayArestas = grafo.getArestas();
+        int quantidadeArestas = arrayArestas.size();
+        for(int i=0;i<=quantidadeArestas;i++){
+			modeloGrafo.removeRow(i);
+		}
+
         File lerXml = new File("grafo.xml");
         Grafo grafoLer = (Grafo) xstream.fromXML(lerXml);
         String xmlLer = xstream.toXML(grafoLer);
         System.out.println(xmlLer);
+        //grafo = (Grafo) xstream.fromXML(lerXml);
         
     }//GEN-LAST:event_importarXmlActionPerformed
 
@@ -539,7 +519,6 @@ public class frmCriaGrafo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -549,10 +528,8 @@ public class frmCriaGrafo extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> listaVertices;
     private javax.swing.JComboBox<String> listaVertices2;
     private javax.swing.JTextField nomeAresta;
-    private javax.swing.JTextField nomeGrafo;
     private javax.swing.JTextField nomeVertice;
     private javax.swing.JButton salvarAresta;
-    private javax.swing.JButton salvarGrafo;
     private javax.swing.JButton salvarVertice;
     private javax.swing.JTable tabelaAresta;
     // End of variables declaration//GEN-END:variables
