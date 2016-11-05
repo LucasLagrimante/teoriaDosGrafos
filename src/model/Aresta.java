@@ -9,16 +9,16 @@ package model;
 public class Aresta {
     
     private String id, source, target;
-    private Vertice fonte;
-    private Vertice alvo;
+    private Vertice v1;
+    private Vertice v2;
 
     public Aresta() {
     }
     
-    public Aresta(String id, Vertice fonte, Vertice alvo) {
+    public Aresta(String id, Vertice v1, Vertice v2) {
         this.id = id;
-        this.setFonte(fonte);
-        this.setAlvo(alvo);
+        this.setV1(v1);
+        this.setV2(v2);
     }
 
     public String getSource() {
@@ -37,22 +37,22 @@ public class Aresta {
         this.target = target;
     }
 
-    public Vertice getFonte() {
-        return fonte;
+    public Vertice getV1() {
+        return v1;
     }
 
-    public void setFonte(Vertice fonte) {
-        this.fonte = fonte;
-        source = fonte.getId();
+    public void setV1(Vertice v1) {
+        this.v1 = v1;
+        source = v1.getId();
     }
 
-    public Vertice getAlvo() {
-        return alvo;
+    public Vertice getV2() {
+        return v2;
     }
 
-    public void setAlvo(Vertice alvo) {
-        this.alvo = alvo;
-        target = alvo.getId();
+    public void setV2(Vertice v2) {
+        this.v2 = v2;
+        target = v2.getId();
     }
 
     public String getId() {

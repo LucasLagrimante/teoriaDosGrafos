@@ -13,7 +13,7 @@ public class Grafo {
     private String id;
     private TipoGrafo tipo;
     private ArrayList <Vertice> vertices;
-    private ArrayList <Aresta> arestas = new ArrayList<>();
+    private ArrayList <Aresta> arestas;
 
     public Grafo() {
         this("", TipoGrafo.unidirected);
@@ -23,6 +23,7 @@ public class Grafo {
         this.id = id;
         this.tipo = tipo;
         vertices = new ArrayList<>();
+        arestas = new ArrayList<>();
     }
 
     public String getId() {
