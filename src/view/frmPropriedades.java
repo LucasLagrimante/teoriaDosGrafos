@@ -57,6 +57,12 @@ public class frmPropriedades extends javax.swing.JFrame {
         lblTitulo2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitulo2.setText("Propriedades Grafo");
 
+        txtOrdem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOrdemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,6 +109,10 @@ public class frmPropriedades extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtOrdemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrdemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOrdemActionPerformed
 
     /**
      * @param args the command line arguments

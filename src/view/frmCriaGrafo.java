@@ -33,12 +33,10 @@ public class frmCriaGrafo extends javax.swing.JFrame {
     private DefaultListModel model = new DefaultListModel();
     XStream xstream;
 
-    public frmCriaGrafo(java.awt.Frame parent, boolean modal) {
+    public frmCriaGrafo() {
 //        super(parent, modal);
         initComponents();
-        
-        
-        
+
         vertices = new ArrayList();
 
         grafo = new Grafo();
@@ -469,36 +467,41 @@ public class frmCriaGrafo extends javax.swing.JFrame {
     }//GEN-LAST:event_cbOrietacaoActionPerformed
 
     private void exportarXmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportarXmlActionPerformed
+        Grafo oldGrafo;
+        oldGrafo = grafo;
 
+//        int quantidadeArestas = modeloGrafo.getRowCount();
+//        for (int i = 0; i <= quantidadeArestas; i++) {
+//            modeloGrafo.removeRow(i);
+//        }
         String xml = xstream.toXML(grafo);
         System.out.println(xml);
-
         grafo = null;
         grafo = (Grafo) xstream.fromXML(xml);
 
-        System.out.println("==>" + grafo.getId());
-
+        //System.out.println("==>" + grafo.getId());
         try {
             File xmlFile = new File("grafo.xml");
             xstream.toXML(grafo, new FileWriter(xmlFile));
+
             JOptionPane.showMessageDialog(null, "Exportado com sucesso. O arquivo foi gerado na pasta do projeto!");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao exportar arquivo");
         }
+        grafo = oldGrafo;
     }//GEN-LAST:event_exportarXmlActionPerformed
 
     private void importarXmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importarXmlActionPerformed
 
-//        ArrayList arrayArestas = grafo.getArestas();
-//        int quantidadeArestas = arrayArestas.size();
-//        for (int i = 0; i <= quantidadeArestas; i++) {
-//            modeloGrafo.removeRow(i);
-//        }
         File lerXml = new File("grafo.xml");
         Grafo grafoLer = (Grafo) xstream.fromXML(lerXml);
+        
+        grafo = (Grafo) xstream.fromXML(lerXml);
+        
         String xmlLer = xstream.toXML(grafoLer);
         System.out.println(xmlLer);
-        grafo = (Grafo) xstream.fromXML(lerXml);
+        
+        //new frmCriaGrafo();
 
     }//GEN-LAST:event_importarXmlActionPerformed
 
@@ -539,17 +542,10 @@ public class frmCriaGrafo extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the dialog */
+//        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                frmCriaGrafo dialog = new frmCriaGrafo(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new frmPrincipal().setVisible(true);
             }
         });
     }

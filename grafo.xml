@@ -1,1 +1,6 @@
-<graph id="asdfasd" edgedefault="unidirected"/>
+<graph id="asdfasdf" edgedefault="unidirected">
+  <node id="1"/>
+  <node id="2"/>
+  <edge id="3" source="1" target="1"/>
+  <edge id="5" source="1" target="1"/>
+</graph>

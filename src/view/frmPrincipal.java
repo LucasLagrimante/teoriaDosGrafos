@@ -155,7 +155,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         } else {
             idGrafo = edtNomeGrafo.getText();
-            frmCriaGrafo fcg = new frmCriaGrafo(this, true);
+            frmCriaGrafo fcg = new frmCriaGrafo();
             fcg.setVisible(true);
         }
     }//GEN-LAST:event_btnIniciarActionPerformed

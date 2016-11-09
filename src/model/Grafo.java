@@ -69,4 +69,8 @@ public class Grafo {
         return vertices.size();
     }
 
+    public int getQuantidadeAretas() {
+        return arestas.size();
+    }
+
 }
