@@ -7,13 +7,12 @@ package model;
 
 import java.util.ArrayList;
 
-
 public class Grafo {
-    
+
     private String id;
     private TipoGrafo tipo;
-    private ArrayList <Vertice> vertices;
-    private ArrayList <Aresta> arestas;
+    private ArrayList<Vertice> vertices;
+    private ArrayList<Aresta> arestas;
 
     public Grafo() {
         this("", TipoGrafo.unidirected);
@@ -66,5 +65,8 @@ public class Grafo {
         this.vertices.add(vertice);
     }
 
-   
+    public int getOrdem() {
+        return vertices.size();
+    }
+
 }
