@@ -5,7 +5,10 @@
  */
 package view;
 
+import java.util.ArrayList;
+import model.Aresta;
 import model.Grafo;
+import model.Vertice;
 
 /**
  *
@@ -35,6 +38,8 @@ public class frmRepresentacoes extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jBMatrizIncidencia = new javax.swing.JButton();
         jBMatrizAdjacencia = new javax.swing.JButton();
+        jBListaAdjacencia = new javax.swing.JButton();
+        jBConjunto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,6 +79,20 @@ public class frmRepresentacoes extends javax.swing.JDialog {
             }
         });
 
+        jBListaAdjacencia.setText("Lista Adjacencia");
+        jBListaAdjacencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBListaAdjacenciaActionPerformed(evt);
+            }
+        });
+
+        jBConjunto.setText("Conjunto");
+        jBConjunto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBConjuntoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,13 +100,20 @@ public class frmRepresentacoes extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBMatrizAdjacencia)
-                            .addComponent(jBMatrizIncidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBMatrizAdjacencia)
+                                .addGap(90, 90, 90)
+                                .addComponent(jBConjunto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(74, 74, 74)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jBMatrizIncidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBListaAdjacencia)
+                        .addGap(74, 74, 74))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,9 +121,13 @@ public class frmRepresentacoes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addComponent(jBMatrizIncidencia)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBMatrizIncidencia)
+                    .addComponent(jBListaAdjacencia))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBMatrizAdjacencia)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBMatrizAdjacencia)
+                    .addComponent(jBConjunto))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
 
@@ -153,6 +183,31 @@ public class frmRepresentacoes extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jBMatrizAdjacenciaActionPerformed
 
+    private void jBListaAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBListaAdjacenciaActionPerformed
+        ArrayList<ArrayList> listaAdjacencia = grafo.listaAdjacencia(grafo);
+        for (int i = 0; i < listaAdjacencia.size(); i++) {
+            ArrayList<String> lista = listaAdjacencia.get(i);
+            System.out.print("\n");
+            for (int j = 0; j < lista.size(); j++) {
+                System.out.print(lista.get(j) + "--->");
+                if (j == (lista.size() - 1)) {
+                    System.out.print("null");
+                }
+            }
+    }//GEN-LAST:event_jBListaAdjacenciaActionPerformed
+    }
+    
+    private void jBConjuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConjuntoActionPerformed
+        for (Vertice v : grafo.getVertices()) {
+            System.out.print("\nVertices: " + v.getId());
+        }
+        
+        for (Aresta a : grafo.getArestas()) {
+            System.out.print("\nAresta: ->" + a.getId());
+            System.out.print(" Vertices: " + a.getSource() + "  " + a.getTarget());
+        }
+    }//GEN-LAST:event_jBConjuntoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -191,6 +246,8 @@ public class frmRepresentacoes extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBConjunto;
+    private javax.swing.JButton jBListaAdjacencia;
     private javax.swing.JButton jBMatrizAdjacencia;
     private javax.swing.JButton jBMatrizIncidencia;
     private javax.swing.JLabel jLabel1;
