@@ -25,5 +25,5 @@ public class Vertice {
     public void setId(String id) {
         this.id = id;
     }
-    
+
 }

@@ -15,11 +15,11 @@ public class Aresta {
     public Aresta() {
     }
     
-    public Aresta(String id, Vertice v1, Vertice v2) {
+    /*public Aresta(String id, Vertice v1, Vertice v2) {
         this.id = id;
         this.setV1(v1);
         this.setV2(v2);
-    }
+    }*/
 
     public String getSource() {
         return source;
@@ -36,7 +36,15 @@ public class Aresta {
     public void setTarget(String target) {
         this.target = target;
     }
+    
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+    
     public Vertice getV1() {
         return v1;
     }
@@ -53,14 +61,6 @@ public class Aresta {
     public void setV2(Vertice v2) {
         this.v2 = v2;
         target = v2.getId();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
     
     

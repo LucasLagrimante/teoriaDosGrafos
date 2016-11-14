@@ -98,6 +98,7 @@ public class frmCriaGrafo extends javax.swing.JFrame {
         jListVertices = new javax.swing.JList<>();
         jLabel8 = new javax.swing.JLabel();
         btnPropriedades = new javax.swing.JButton();
+        jBRepresentacoes = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -344,6 +345,13 @@ public class frmCriaGrafo extends javax.swing.JFrame {
             }
         });
 
+        jBRepresentacoes.setText("Representações");
+        jBRepresentacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRepresentacoesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -366,8 +374,11 @@ public class frmCriaGrafo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPropriedades, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBRepresentacoes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPropriedades))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
@@ -396,7 +407,9 @@ public class frmCriaGrafo extends javax.swing.JFrame {
                         .addGap(0, 8, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPropriedades)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnPropriedades)
+                            .addComponent(jBRepresentacoes))))
                 .addContainerGap())
         );
 
@@ -514,6 +527,11 @@ public class frmCriaGrafo extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_btnPropriedadesActionPerformed
 
+    private void jBRepresentacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRepresentacoesActionPerformed
+        frmRepresentacoes frr = new frmRepresentacoes(grafo);
+        frr.setVisible(true);
+    }//GEN-LAST:event_jBRepresentacoesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -557,6 +575,7 @@ public class frmCriaGrafo extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbOrietacao;
     private javax.swing.JButton exportarXml;
     private javax.swing.JButton importarXml;
+    private javax.swing.JButton jBRepresentacoes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
