@@ -559,6 +559,7 @@ public class frmCriaGrafo extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"\n vertice: " + grafo.getVertices().get(i).getId() + " Grau de Emissão " + grau
                                               + "\n vertice: " + grafo.getVertices().get(i).getId() + " Grau de Recepção " + grau2);
                 grau = 0;
+                
                 grau2 = 0;
             }
 
