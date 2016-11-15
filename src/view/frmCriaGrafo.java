@@ -533,7 +533,6 @@ public class frmCriaGrafo extends javax.swing.JFrame {
     }//GEN-LAST:event_listaVertices2ActionPerformed
 
     private void btnPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropriedadesActionPerformed
-        
         JOptionPane.showMessageDialog(null,"A ordem do grafo é: " + grafo.getVertices().size());
         
         int grau = 0, grau2 = 0, i = 0;
@@ -575,9 +574,6 @@ public class frmCriaGrafo extends javax.swing.JFrame {
 
         }
 
-
-                              
-        
     }//GEN-LAST:event_btnPropriedadesActionPerformed
 
     private void jBRepresentacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRepresentacoesActionPerformed
@@ -604,11 +600,11 @@ public class frmCriaGrafo extends javax.swing.JFrame {
                     for (Aresta aresta : grafo.getArestas()) {
                         
                         if (aresta.getV1().equals(vertices.get(index))) {
-                        aresta.setId(nome + aresta.getV1().getId());
+                        aresta.setId(nome + aresta.getV2().getId());
                         }
                         
                         if (aresta.getV2().equals(vertices.get(index))) {
-                        aresta.setId(aresta.getV2().getId() + nome);
+                        aresta.setId(aresta.getV1().getId() + nome);
                         }
                     }
                     

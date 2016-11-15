@@ -155,10 +155,6 @@ public class frmRepresentacoes extends javax.swing.JDialog {
             }
         }
         
-        System.out.println(grafo.matrizAdjacencia(grafo));
-        JOptionPane.showMessageDialog(null, grafo.matrizAdjacencia(grafo));
-    
-        
     }//GEN-LAST:event_btnMatrizIncidenciaActionPerformed
 
     private void btnMatrizAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizAdjacenciaActionPerformed
