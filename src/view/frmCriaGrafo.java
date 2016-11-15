@@ -523,8 +523,47 @@ public class frmCriaGrafo extends javax.swing.JFrame {
     }//GEN-LAST:event_listaVertices2ActionPerformed
 
     private void btnPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropriedadesActionPerformed
-        frmPropriedades frm = new frmPropriedades(grafo);
-        frm.setVisible(true);
+        JOptionPane.showMessageDialog(null,"A ordem do grafo é: " + grafo.getVertices().size());
+        
+        int grau = 0, grau2 = 0, i = 0;
+        
+        
+        if (grafo.getTipo() == TipoGrafo.unidirected) {
+            
+            for (i = 0; i <= grafo.getVertices().size() - 1; i++) {
+                String vertice1 = grafo.getVertices().get(i).getId();
+                for (int j = 0; j <= grafo.getArestas().size() - 1; j++) {
+                    if (vertice1.equals(grafo.getArestas().get(j).getSource()) || vertice1.equals(grafo.getArestas().get(j).getTarget())) {
+                        grau++;
+                    }
+                }
+                
+                JOptionPane.showMessageDialog(null, "vertice: "
+                                              + grafo.getVertices().get(i).getId()
+                                              + " " + grau, "Grau do Vertice", 0);
+                grau = 0;
+            }
+            
+        }
+        if (grafo.getTipo() == TipoGrafo.directed) {
+            for (i = 0; i <= grafo.getVertices().size() - 1; i++) {
+                String vertice1 = grafo.getVertices().get(i).getId();
+                for (int j = 0; j <= grafo.getArestas().size() - 1; j++) {
+                    if (vertice1.equals(grafo.getArestas().get(j).getSource())) {
+                        grau++;
+                    }
+                    if (vertice1.equals(grafo.getArestas().get(j).getTarget())) {
+                        grau2++;
+                    }
+                }
+                JOptionPane.showMessageDialog(null,"\n vertice: " + grafo.getVertices().get(i).getId() + " Grau de Emissão " + grau
+                                              + "\n vertice: " + grafo.getVertices().get(i).getId() + " Grau de Recepção " + grau2);
+                grau = 0;
+                grau2 = 0;
+            }
+
+        }
+
     }//GEN-LAST:event_btnPropriedadesActionPerformed
 
     private void jBRepresentacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRepresentacoesActionPerformed
