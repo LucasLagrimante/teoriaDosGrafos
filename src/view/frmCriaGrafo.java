@@ -36,7 +36,8 @@ public class frmCriaGrafo extends javax.swing.JFrame {
     public frmCriaGrafo() {
 //        super(parent, modal);
         initComponents();
-
+        setLocationRelativeTo(null);
+        
         vertices = new ArrayList();
 
         grafo = new Grafo();
@@ -156,19 +157,15 @@ public class frmCriaGrafo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nomeVertice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdicionarVertice)
-                .addGap(15, 15, 15))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -187,6 +184,12 @@ public class frmCriaGrafo extends javax.swing.JFrame {
         btnAdicionarAresta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdicionarArestaActionPerformed(evt);
+            }
+        });
+
+        listaVertices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaVerticesActionPerformed(evt);
             }
         });
 
@@ -251,7 +254,7 @@ public class frmCriaGrafo extends javax.swing.JFrame {
                     .addComponent(listaVertices2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdicionarAresta)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         cbOrietacao.setText("Orientado (Dígrafo)");
@@ -334,6 +337,11 @@ public class frmCriaGrafo extends javax.swing.JFrame {
         tblAresta.setFocusable(false);
         jScrollPane1.setViewportView(tblAresta);
 
+        jListVertices.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListVerticesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jListVertices);
 
         jLabel8.setText("Vértices");
@@ -429,7 +437,9 @@ public class frmCriaGrafo extends javax.swing.JFrame {
 
         jListVertices.setModel(model);
         model.removeAllElements();
-
+        
+        btnAdicionarVertice.setToolTipText("Para editar um Vertice, selecione o mesmo na lista ao lado");
+        
         if (nomeVertice.getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(rootPane, "Por favor, digite um nome");
@@ -523,14 +533,111 @@ public class frmCriaGrafo extends javax.swing.JFrame {
     }//GEN-LAST:event_listaVertices2ActionPerformed
 
     private void btnPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropriedadesActionPerformed
-        frmPropriedades frm = new frmPropriedades(grafo);
-        frm.setVisible(true);
+        
+        JOptionPane.showMessageDialog(null,"A ordem do grafo é: " + grafo.getVertices().size());
+        
+        int grau = 0, grau2 = 0, i = 0;
+        
+        
+        if (grafo.getTipo() == TipoGrafo.unidirected) {
+            
+            for (i = 0; i <= grafo.getVertices().size() - 1; i++) {
+                String vertice1 = grafo.getVertices().get(i).getId();
+                for (int j = 0; j <= grafo.getArestas().size() - 1; j++) {
+                    if (vertice1.equals(grafo.getArestas().get(j).getSource()) || vertice1.equals(grafo.getArestas().get(j).getTarget())) {
+                        grau++;
+                    }
+                }
+                
+                JOptionPane.showMessageDialog(null, "vertice: "
+                                              + grafo.getVertices().get(i).getId()
+                                              + " " + grau, "Grau do Vertice", 0);
+                grau = 0;
+            }
+            
+        }
+        if (grafo.getTipo() == TipoGrafo.directed) {
+            for (i = 0; i <= grafo.getVertices().size() - 1; i++) {
+                String vertice1 = grafo.getVertices().get(i).getId();
+                for (int j = 0; j <= grafo.getArestas().size() - 1; j++) {
+                    if (vertice1.equals(grafo.getArestas().get(j).getSource())) {
+                        grau++;
+                    }
+                    if (vertice1.equals(grafo.getArestas().get(j).getTarget())) {
+                        grau2++;
+                    }
+                }
+                JOptionPane.showMessageDialog(null,"\n vertice: " + grafo.getVertices().get(i).getId() + " Grau de Emissão " + grau
+                                              + "\n vertice: " + grafo.getVertices().get(i).getId() + " Grau de Recepção " + grau2);
+                grau = 0;
+                grau2 = 0;
+            }
+
+        }
+
+
+                              
+        
     }//GEN-LAST:event_btnPropriedadesActionPerformed
 
     private void jBRepresentacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRepresentacoesActionPerformed
         frmRepresentacoes frr = new frmRepresentacoes(grafo);
         frr.setVisible(true);
     }//GEN-LAST:event_jBRepresentacoesActionPerformed
+
+    private void jListVerticesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListVerticesMouseClicked
+        
+        int opcao = JOptionPane.showConfirmDialog(this, "Deseja Editar o Vértice selecionado?");
+        
+        if(opcao == JOptionPane.YES_OPTION){
+                
+                int index = listaVertices.getSelectedIndex();
+                
+                if ((vertices.size() > 0) && (index >= 0)) {
+                
+                String nome = JOptionPane.showInputDialog("Digite o novo nome: ");
+                int confirma = JOptionPane.showConfirmDialog(this, "Confirma?");
+                
+                    if(confirma == JOptionPane.YES_OPTION){
+                        vertices.get(index).setId(nome);
+                        
+                    for (Aresta aresta : grafo.getArestas()) {
+                        
+                        if (aresta.getV1().equals(vertices.get(index))) {
+                        aresta.setId(nome + aresta.getV1().getId());
+                        }
+                        
+                        if (aresta.getV2().equals(vertices.get(index))) {
+                        aresta.setId(aresta.getV2().getId() + nome);
+                        }
+                    }
+                    
+                    nomeVertice.setText("");
+                    //se der algum pau em relação ao pau, tem que resolver aqui!!
+
+                    JOptionPane.showMessageDialog(null, "Vertice editado com sucesso");
+                    model.removeAllElements();
+
+                    for (Vertice vertice : vertices) {
+                    model.addElement(vertice.getId());
+                }
+                    
+                    } 
+                    else{
+                        JOptionPane.showMessageDialog(null, "Edição Cancelada");
+                        } 
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Selecione um Vertice");
+            }
+        
+            
+    }//GEN-LAST:event_jListVerticesMouseClicked
+
+    private void listaVerticesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaVerticesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaVerticesActionPerformed
 
     /**
      * @param args the command line arguments

@@ -6,6 +6,7 @@
 package view;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Aresta;
 import model.Grafo;
 import model.Vertice;
@@ -153,6 +154,9 @@ public class frmRepresentacoes extends javax.swing.JDialog {
                 System.out.print("  " + v[j][i]);
             }
         }
+        
+        System.out.println(grafo.matrizAdjacencia(grafo));
+        JOptionPane.showMessageDialog(null, grafo.matrizAdjacencia(grafo));
     
         
     }//GEN-LAST:event_btnMatrizIncidenciaActionPerformed
