@@ -504,7 +504,7 @@ public class frmCriaGrafo extends javax.swing.JFrame {
 
         //System.out.println("==>" + grafo.getId());
         try {
-            File xmlFile = new File("grafo.xml");
+            File xmlFile = new File("teoriaDosGrafos.xml");
             xstream.toXML(grafo, new FileWriter(xmlFile));
 
             JOptionPane.showMessageDialog(null, "Exportado com sucesso. O arquivo foi gerado na pasta do projeto!");
@@ -583,21 +583,18 @@ public class frmCriaGrafo extends javax.swing.JFrame {
     }//GEN-LAST:event_jBRepresentacoesActionPerformed
 
     private void jListVerticesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListVerticesMouseClicked
-        
-        int opcao = JOptionPane.showConfirmDialog(this, "Deseja Editar o Vértice selecionado?");
-        
-        if(opcao == JOptionPane.YES_OPTION){
-                
-                int index = listaVertices.getSelectedIndex();
-                
+         int index = jListVertices.getSelectedIndex();        
+               int opcao = JOptionPane.showConfirmDialog(this, "Deseja Editar o Vértice selecionado?");
+                if(opcao == JOptionPane.YES_OPTION){
+                           
+           
                 if ((vertices.size() > 0) && (index >= 0)) {
-                
+                    
                 String nome = JOptionPane.showInputDialog("Digite o novo nome: ");
                 int confirma = JOptionPane.showConfirmDialog(this, "Confirma?");
                 
-                    if(confirma == JOptionPane.YES_OPTION){
-                        vertices.get(index).setId(nome);
-                        
+                   if(confirma == JOptionPane.YES_OPTION){
+                        vertices.get(index).setId(nome);                        
                     for (Aresta aresta : grafo.getArestas()) {
                         
                         if (aresta.getV1().equals(vertices.get(index))) {
@@ -617,12 +614,13 @@ public class frmCriaGrafo extends javax.swing.JFrame {
 
                     for (Vertice vertice : vertices) {
                     model.addElement(vertice.getId());
-                }
+                }   
+                    
                     
                     } 
-                    else{
+                   else{
                         JOptionPane.showMessageDialog(null, "Edição Cancelada");
-                        } 
+                       } 
                 }
             }
             else{
@@ -633,7 +631,9 @@ public class frmCriaGrafo extends javax.swing.JFrame {
     }//GEN-LAST:event_jListVerticesMouseClicked
 
     private void listaVerticesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaVerticesActionPerformed
-        // TODO add your handling code here:
+        
+        
+        
     }//GEN-LAST:event_listaVerticesActionPerformed
 
     /**
