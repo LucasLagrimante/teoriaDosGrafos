@@ -5,12 +5,16 @@
  */
 package view;
 
+import java.io.File;
 import javax.swing.JOptionPane;
+import model.Grafo;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class frmPrincipal extends javax.swing.JFrame {
 
     static String idGrafo;
-
+    XStream xstream;
     /**
      * Creates new form frmPrincipal
      */
@@ -37,6 +41,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnIniciar = new javax.swing.JButton();
         edtNomeGrafo = new javax.swing.JTextField();
         lblNomeGrafo = new javax.swing.JLabel();
+        btnImportar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -112,6 +117,14 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         lblNomeGrafo.setText("Digite o nome do Grafo: ");
 
+        btnImportar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnImportar.setText("Importar");
+        btnImportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,14 +136,16 @@ public class frmPrincipal extends javax.swing.JFrame {
                         .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addComponent(lblNomeGrafo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edtNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNomeGrafo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(203, 203, 203))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +157,9 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addComponent(lblNomeGrafo)
                     .addComponent(edtNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(btnImportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -164,6 +181,18 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void edtNomeGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtNomeGrafoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtNomeGrafoActionPerformed
+
+    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
+        
+        File xmlFileLer = new File("grafo.xml");
+        Grafo grafo = (Grafo) xstream.fromXML(xmlFileLer);
+        String xmlLer = xstream.toXML(grafo);
+        System.out.println(xmlLer);
+        
+        frmCriaGrafo fcg = new frmCriaGrafo();
+        fcg.setVisible(true);
+        
+    }//GEN-LAST:event_btnImportarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +231,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnImportar;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JTextField edtNomeGrafo;
     private javax.swing.JLabel lblKaio;
