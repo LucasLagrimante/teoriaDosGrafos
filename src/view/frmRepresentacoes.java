@@ -6,7 +6,6 @@
 package view;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import model.Aresta;
 import model.Grafo;
 import model.Vertice;
@@ -18,13 +17,11 @@ import model.Vertice;
 public class frmRepresentacoes extends javax.swing.JDialog {
 
     Grafo grafo = new Grafo();
-            
+
     public frmRepresentacoes(Grafo grafo) {
         initComponents();
         this.grafo = grafo;
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -134,76 +131,84 @@ public class frmRepresentacoes extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMatrizIncidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizIncidenciaActionPerformed
-        
-        int indice = 0;
-        Grafo g = grafo;
-        int[][] v = g.matrizIncidencia(g);
-        for (int i = 0; i <= (g.getArestas().size() - 1); i++) {
-            if (indice == 0) {
-                System.out.print("\nMatrizIncidencia   ");
-                indice = 1;
-                System.out.print("  " + g.getArestas().get(i).getId());
-            } else {
-                System.out.print("  " + g.getArestas().get(i).getId());
-            }
-        }
-        for (int j = 0; j <= (g.getVertices().size() - 1); j++) {
-            System.out.print("\n");
-            System.out.print("                  " + g.getVertices().get(j).getId());
-            for (int i = 0; i <= (g.getArestas().size() - 1); i++) {
-                System.out.print("  " + v[j][i]);
-            }
-        }
-        
+
+//        int indice = 0;
+//        Grafo g = grafo;
+//        int[][] v = grafo.matrizIncidencia(g);
+//        for (int i = 0; i <= (g.getArestas().size() - 1); i++) {
+//            if (indice == 0) {
+//                System.out.print("\nMatrizIncidencia   ");
+//                indice = 1;
+//                System.out.print("  " + g.getArestas().get(i).getId());
+//            } else {
+//                System.out.print("  " + g.getArestas().get(i).getId());
+//            }
+//        }
+//        for (int j = 0; j <= (g.getVertices().size() - 1); j++) {
+//            System.out.print("\n");
+//            System.out.print("                  " + g.getVertices().get(j).getId());
+//            for (int i = 0; i <= (g.getArestas().size() - 1); i++) {
+//                System.out.print("  " + v[j][i]);
+//            }
+//        }
+        frmMatrizIncidencia fmi = new frmMatrizIncidencia(grafo);
+        fmi.setVisible(true);
+
     }//GEN-LAST:event_btnMatrizIncidenciaActionPerformed
 
     private void btnMatrizAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizAdjacenciaActionPerformed
-        
-        int indice = 0;
-        Grafo g = grafo;
-        int[][] v = g.matrizAdjacencia(g);
-        for (int i = 0; i <= (g.getVertices().size() - 1); i++) {
-            if (indice == 0) {
-                System.out.print("\nVertices/vertices   ");
-                indice = 1;
-                System.out.print("  " + g.getVertices().get(i).getId());
-            } else {
-                System.out.print(" " + g.getVertices().get(i).getId());
-            }
-        }
-        for (int j = 0; j <= (g.getVertices().size() - 1); j++) {
-            System.out.print("\n");
-            System.out.print("                  " + g.getVertices().get(j).getId());
-            for (int i = 0; i <= (g.getVertices().size() - 1); i++) {
-                System.out.print("  " + v[j][i]);
-            }
-        }
-        
+
+//        int indice = 0;
+//        Grafo g = grafo;
+//        int[][] v = g.matrizAdjacencia(g);
+//        for (int i = 0; i <= (g.getVertices().size() - 1); i++) {
+//            if (indice == 0) {
+//                System.out.print("\nVertices/vertices   ");
+//                indice = 1;
+//                System.out.print("  " + g.getVertices().get(i).getId());
+//            } else {
+//                System.out.print(" " + g.getVertices().get(i).getId());
+//            }
+//        }
+//        for (int j = 0; j <= (g.getVertices().size() - 1); j++) {
+//            System.out.print("\n");
+//            System.out.print("                  " + g.getVertices().get(j).getId());
+//            for (int i = 0; i <= (g.getVertices().size() - 1); i++) {
+//                System.out.print("  " + v[j][i]);
+//            }
+//        }
+        frmMatrizAdjacencia fma = new frmMatrizAdjacencia(grafo);
+        fma.setVisible(true);
+
     }//GEN-LAST:event_btnMatrizAdjacenciaActionPerformed
 
     private void btnListaAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaAdjacenciaActionPerformed
-        ArrayList<ArrayList> listaAdjacencia = grafo.listaAdjacencia(grafo);
-        for (int i = 0; i < listaAdjacencia.size(); i++) {
-            ArrayList<String> lista = listaAdjacencia.get(i);
-            System.out.print("\n");
-            for (int j = 0; j < lista.size(); j++) {
-                System.out.print(lista.get(j) + "--->");
-                if (j == (lista.size() - 1)) {
-                    System.out.print("null");
-                }
-            }
+//        ArrayList<ArrayList> listaAdjacencia = grafo.listaAdjacencia(grafo);
+//        for (int i = 0; i < listaAdjacencia.size(); i++) {
+//            ArrayList<String> lista = listaAdjacencia.get(i);
+//            System.out.print("\n");
+//            for (int j = 0; j < lista.size(); j++) {
+//                System.out.print(lista.get(j) + "--->");
+//                if (j == (lista.size() - 1)) {
+//                    System.out.print("null");
+//                }
+//            }
+        frmListaAdjacencia fla = new frmListaAdjacencia(grafo);
+        fla.setVisible(true);
     }//GEN-LAST:event_btnListaAdjacenciaActionPerformed
-    }
-    
+
+
     private void btnConjuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConjuntoActionPerformed
-        for (Vertice v : grafo.getVertices()) {
-            System.out.print("\nVertices: " + v.getId());
-        }
-        
-        for (Aresta a : grafo.getArestas()) {
-            System.out.print("\nAresta: ->" + a.getId());
-            System.out.print(" Vertices: " + a.getSource() + "  " + a.getTarget());
-        }
+//        for (Vertice v : grafo.getVertices()) {
+//            System.out.print("\nVertices: " + v.getId());
+//        }
+//
+//        for (Aresta a : grafo.getArestas()) {
+//            System.out.print("\nAresta: ->" + a.getId());
+//            System.out.print(" Vertices: " + a.getSource() + "  " + a.getTarget());
+//        }
+        frmConjunto fc = new frmConjunto(grafo);
+        fc.setVisible(true);
     }//GEN-LAST:event_btnConjuntoActionPerformed
 
     /**
@@ -220,16 +225,24 @@ public class frmRepresentacoes extends javax.swing.JDialog {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmRepresentacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmRepresentacoes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmRepresentacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmRepresentacoes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmRepresentacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmRepresentacoes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmRepresentacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmRepresentacoes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -238,7 +251,7 @@ public class frmRepresentacoes extends javax.swing.JDialog {
             public void run() {
                 Grafo grafo = null;
                 new frmRepresentacoes(grafo).setVisible(true);
-                    
+
             }
         });
     }
