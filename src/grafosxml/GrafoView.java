@@ -15,7 +15,6 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -27,7 +26,6 @@ import java.util.Hashtable;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class GrafoView extends javax.swing.JFrame {
 

@@ -2,30 +2,21 @@ package grafosxml;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxGraph;
-import com.mxgraph.view.mxStylesheet;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import static java.lang.Integer.parseInt;
 import java.util.HashSet;
 
 public class Algoritmos extends javax.swing.JFrame {
@@ -106,7 +97,6 @@ public class Algoritmos extends javax.swing.JFrame {
         jBPrim = new javax.swing.JButton();
         jButtonMalgrange = new javax.swing.JButton();
         jButtonTopologica = new javax.swing.JButton();
-        jButtonFulkerson = new javax.swing.JButton();
         jButtonProfundidade = new javax.swing.JButton();
 
         Remover.setText("Remover");
@@ -194,13 +184,6 @@ public class Algoritmos extends javax.swing.JFrame {
             }
         });
 
-        jButtonFulkerson.setText(" Fulkerson");
-        jButtonFulkerson.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFulkersonActionPerformed(evt);
-            }
-        });
-
         jButtonProfundidade.setText("Profundidade");
         jButtonProfundidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,9 +219,7 @@ public class Algoritmos extends javax.swing.JFrame {
                         .addComponent(jButtonTopologica)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonProfundidade)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonFulkerson)
-                        .addGap(0, 18, Short.MAX_VALUE)))
+                        .addGap(0, 105, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -259,8 +240,7 @@ public class Algoritmos extends javax.swing.JFrame {
                     .addComponent(jBPrim)
                     .addComponent(jButtonMalgrange)
                     .addComponent(jButtonTopologica)
-                    .addComponent(jButtonProfundidade)
-                    .addComponent(jButtonFulkerson))
+                    .addComponent(jButtonProfundidade))
                 .addGap(70, 70, 70))
         );
 
@@ -636,39 +616,6 @@ public class Algoritmos extends javax.swing.JFrame {
         // PARTE 5: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
     }//GEN-LAST:event_jBPrimActionPerformed
-
-    private void jButtonFulkersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFulkersonActionPerformed
-        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
-        Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-ford-fulkerson");   
-        int fonte = g.getQtdVerticesFontes(g);
-        int sumidouro = g.getQtdVerticesSumidouros(g);
-        String tipo = g.getTipo();
-        // PARTE 2: LIMPA A TELA.
-        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-        jTNomeGrafo.setText("");
-        if("directed".equals(tipo) && fonte == 1 && sumidouro == 1){
-            // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
-            fordFulkerson f = new fordFulkerson();
-            int[][]matriz = g.getMatrizComValue();
-            int fontePos = g.getPosicaoFonte(g);
-            int sumidouroPos = g.getPosicaoSumidouro(g);
-            int qtdNos = g.getNos().size();
-            int fluxoMax = f.fordFulkerson(matriz, fontePos, sumidouroPos, qtdNos);
-            
-            // PARTE 4: VISUALIZA O NOVO GRAFO.
-            g.mostraGrafoDesign(g, "ford-fulkerson", f.matrizFinal());
-            jTNomeGrafo.setText(g.getId()); 
-            JOptionPane.showMessageDialog(null, "Fluxo máximo permitido no grafo: "+ fluxoMax+"\n"
-                    + "Vértice de origem: "+g.getNos().get(fontePos).getId()+"\n"
-                    + "Vértice de destino: "+g.getNos().get(sumidouroPos).getId());
-            
-            // PARTE 5: SALVA O GRAFO EM XML.
-            g.salvaGrafo(g);
-        }else{
-            JOptionPane.showMessageDialog(null, "O grafo a ser testado precisa ser Direcionado, ter Apenas UM vértice Fonte e ter Apenas UM vértice Sumidouro.\n"
-                    + "Esse grafo foi rejeitado por ter: "+sumidouro+" vértices Sumidouros, ou por ter: "+fonte+" vértices Fontes, ou então por simplesmente ser um grafo do tipo: "+tipo);
-        }
-    }//GEN-LAST:event_jButtonFulkersonActionPerformed
     
     public List<Aresta> buscaProf(No no){
         List<Aresta> arestasSelecionadas = new ArrayList<Aresta>();
@@ -963,7 +910,6 @@ public class Algoritmos extends javax.swing.JFrame {
     private javax.swing.JButton jBFechar;
     private javax.swing.JButton jBKruskal;
     private javax.swing.JButton jBPrim;
-    private javax.swing.JButton jButtonFulkerson;
     private javax.swing.JButton jButtonLimparTela;
     private javax.swing.JButton jButtonMalgrange;
     private javax.swing.JButton jButtonProfundidade;
