@@ -209,70 +209,70 @@ public class GrafoView extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBAbrirGrafo)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jButtonVisualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonSalvar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonLimparTela))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonAddVertice)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonRemoveVertice)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonAddAresta)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonRemoveAresta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBFechar)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jBAbrirGrafo)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(jButtonVisualizar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonSalvar)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonLimparTela))
+                                .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonAddVertice)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonRemoveVertice)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonAddAresta)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonRemoveAresta)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jBFechar)))
+                        .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAbrirGrafo)
-                    .addComponent(jTNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonLimparTela)
-                    .addComponent(jButtonSalvar)
-                    .addComponent(jButtonVisualizar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBFechar)
-                    .addComponent(jButtonAddVertice)
-                    .addComponent(jButtonRemoveVertice)
-                    .addComponent(jButtonAddAresta)
-                    .addComponent(jButtonRemoveAresta))
-                .addGap(70, 70, 70))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jBAbrirGrafo)
+                                .addComponent(jTNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonLimparTela)
+                                .addComponent(jButtonSalvar)
+                                .addComponent(jButtonVisualizar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jBFechar)
+                                .addComponent(jButtonAddVertice)
+                                .addComponent(jButtonRemoveVertice)
+                                .addComponent(jButtonAddAresta)
+                                .addComponent(jButtonRemoveAresta))
+                        .addGap(70, 70, 70))
         );
 
         setSize(new java.awt.Dimension(593, 492));
         setLocationRelativeTo(null);
     }// </editor-fold>                        
 
-    private void jButtonLimparTelaActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void jButtonLimparTelaActionPerformed(java.awt.event.ActionEvent evt) {
         //Object[] vertices = graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight()));
 
         graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-    }                                                 
+    }
 
-    private void RemoverActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    private void RemoverActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }                                       
+    }
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {
 
         graphComponent.setPreferredSize(new Dimension(jPanel1.getWidth() - 10, jPanel1.getHeight() - 10));
 
@@ -280,13 +280,13 @@ public class GrafoView extends javax.swing.JFrame {
         graphComponent.repaint();
         jPanel1.validate();
         jPanel1.repaint();
-    }                                 
+    }
 
-    private void formComponentResized(java.awt.event.ComponentEvent evt) {                                      
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {
         formWindowOpened(null);
-    }                                     
+    }
 
-    private void jBAbrirGrafoActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    private void jBAbrirGrafoActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showOpenDialog(this);
         File xmlFileLer = new File(fileChooser.getSelectedFile().getName());
@@ -309,14 +309,14 @@ public class GrafoView extends javax.swing.JFrame {
         for (Aresta a : grafo.getArestas()) {
             listaArestas.add(a);
         }
-    }                                            
+    }
 
-    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {
         graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         setVisible(false);
-    }                                        
+    }
 
-    private void jButtonAddVerticeActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void jButtonAddVerticeActionPerformed(java.awt.event.ActionEvent evt) {
         graph.getModel().beginUpdate();
         String nome = "";
         try {
@@ -337,20 +337,20 @@ public class GrafoView extends javax.swing.JFrame {
         }
 
         listaNos.add(new No(nome));
-    }                                                 
+    }
 
-    private void jButtonRemoveVerticeActionPerformed(java.awt.event.ActionEvent evt) {                                                     
+    private void jButtonRemoveVerticeActionPerformed(java.awt.event.ActionEvent evt) {
         graph.getModel().remove(cell);
-        for(Aresta are : listaArestas){
-            if(are.getOrigem().equals((String) cell.getValue()) || are.getDestino().equals((String) cell.getValue())){
+        for (Aresta are : listaArestas) {
+            if (are.getOrigem().equals((String) cell.getValue()) || are.getDestino().equals((String) cell.getValue())) {
                 listaArestas.remove(are);
             }
         }
         listaNos.remove(new No((String) cell.getValue()));
         cell = null;
-    }                                                    
+    }
 
-    private void jButtonAddArestaActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+    private void jButtonAddArestaActionPerformed(java.awt.event.ActionEvent evt) {
         /*
          String vo = JOptionPane.showInputDialog("Vértice  de Origem");
          String vd = JOptionPane.showInputDialog("Vértice  de Destino");
@@ -364,7 +364,7 @@ public class GrafoView extends javax.swing.JFrame {
          mxCell a1 = (mxCell) GrafoView.getGraph().insertEdge(parent1, null, nome, v1, v2);
          a1.setValue(nome);
          listaArestas.add(new Aresta(nome, valor, vo, vd));*/
-        
+
         String v1 = JOptionPane.showInputDialog("Vértice  de Origem");
         String v2 = JOptionPane.showInputDialog("Vértice  de Destino");
         String nome = JOptionPane.showInputDialog("Nome da Aresta");
@@ -396,20 +396,20 @@ public class GrafoView extends javax.swing.JFrame {
         String o = vo.getValue().toString();
         String d = vf.getValue().toString();
         listaArestas.add(new Aresta(nome, valor, o, d));
-    }                                                
+    }
 
-    private void jButtonRemoveArestaActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+    private void jButtonRemoveArestaActionPerformed(java.awt.event.ActionEvent evt) {
         graph.getModel().remove(cell);
-        for(Aresta are : listaArestas){
-            if(are.getNomeAresta().equals((String) cell.getValue())){
+        for (Aresta are : listaArestas) {
+            if (are.getNomeAresta().equals((String) cell.getValue())) {
                 listaArestas.remove(are);
                 break;
             }
         }
         cell = null;
-    }                                                   
+    }
 
-    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {
         XStream xstream = new XStream(new DomDriver());
         xstream.processAnnotations(Grafo.class);
         Grafo g = new Grafo(grafo.getId(), grafo.getTipo(), listaNos, listaArestas);
@@ -429,4 +429,116 @@ public class GrafoView extends javax.swing.JFrame {
         grafo = null;
         jTNomeGrafo.setText("");
         JOptionPane.showMessageDialog(null, "Dados Salvos com Sucesso");
-    }  
+    }
+
+    private void jButtonVisualizarActionPerformed(java.awt.event.ActionEvent evt) {
+        graph.getModel().beginUpdate();
+        try {
+            mxStylesheet stylesheet = GrafoView.getGraph().getStylesheet();
+            Hashtable<String, Object> style = new Hashtable();
+            style.put(mxConstants.STYLE_SHAPE, "ellipse");
+            style.put(mxConstants.STYLE_OPACITY, 50);
+            style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
+            style.put(mxConstants.STYLE_FILLCOLOR, Color.LIGHT_GRAY);
+            stylesheet.putCellStyle("ROUNDED", style);
+            String nomeNo = "";
+            int p1 = 10;
+            int p2 = 20;
+            int i = 2;
+
+            for (No vertice : grafo.getNos()) {
+                nomeNo = vertice.getId();
+                mxCell v1 = (mxCell) GrafoView.getGraph().insertVertex(parent, null, nomeNo, p1, p2, 50, 50, "ROUNDED");
+                v1.setValue(nomeNo);
+                GrafoView.getM().put(nomeNo, v1);
+                i++;
+                if (i % 2 == 0) {
+                    p1 += 60;
+                    p2 = 20;
+                } else {
+                    p1 += 60;
+                    p2 = 150;
+                }
+            }
+
+            for (Aresta aresta : grafo.getArestas()) {
+
+                Object parent1 = GrafoView.getGraph().getDefaultParent();
+                Object v1 = GrafoView.getM().get(aresta.getOrigem());
+                Object v2 = GrafoView.getM().get(aresta.getDestino());
+
+                GrafoView.getGraph().insertEdge(parent1, null, aresta.getNomeAresta() + ":" + aresta.getValorAresta(), v1, v2);
+                /*mxCell a1 = (mxCell) GrafoView.getGraph().insertEdge(parent1, aresta.getValorAresta(), aresta.getNomeAresta(), v1, v2); 
+-                a1.setValue(aresta.getNomeAresta());*/
+            }
+
+        } finally {
+            graph.getModel().endUpdate();
+        }
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GrafoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GrafoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GrafoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GrafoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GrafoView().setVisible(true);
+            }
+        });
+//    
+//        ViewHome frame = new ViewHome();
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setSize(400, 320);
+//        frame.setVisible(true);
+
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JMenuItem Remover;
+    private javax.swing.JMenuItem abc;
+    private javax.swing.JButton jBAbrirGrafo;
+    private javax.swing.JButton jBFechar;
+    private javax.swing.JButton jButtonAddAresta;
+    private javax.swing.JButton jButtonAddVertice;
+    private javax.swing.JButton jButtonLimparTela;
+    private javax.swing.JButton jButtonRemoveAresta;
+    private javax.swing.JButton jButtonRemoveVertice;
+    private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JButton jButtonVisualizar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTNomeGrafo;
+    private javax.swing.JPopupMenu popupMenu;
+    // End of variables declaration                   
+}
