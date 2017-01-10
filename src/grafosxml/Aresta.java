@@ -4,7 +4,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import java.util.List;
 
-
 @XStreamAlias("edge")
 public class Aresta implements Comparable<Aresta>{
     @XStreamAlias("source")
@@ -26,29 +25,58 @@ public class Aresta implements Comparable<Aresta>{
         this.origem = origem;
         this.destino = destino;
     }
-    public String getId() {
-        return id;
+
+    public int getValorAresta() {
+        return valorAresta;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setValorAresta(int valorAresta) {
+        this.valorAresta = valorAresta;
+    }
+
+    public String getOrigem() {
+        return origem;
+    }
+
+    public void setOrigem(String origem) {
+        this.origem = origem;
+    }
+
+    public String getDestino() {
+        return destino;
+    }
+
+    public void setDestino(String destino) {
+        this.destino = destino;
+    }
+
+    public String getNomeAresta() {
+        return nomeAresta;
+    }
+
+    public void setNomeAresta(String nomeAresta) {
+        this.nomeAresta = nomeAresta;
     }
     
-    public Vertice getV1() {
-        return v1;
+    public int compareTo(Aresta aresta) {
+        if(this.valorAresta < aresta.valorAresta){
+            return -1;
+        }
+        else if(this.valorAresta > aresta.valorAresta){
+            return 1;
+        }
+        else{
+            return 0;
+        }
     }
+    
+    public static Aresta getArestaByNos(No origem, No destino, List<Aresta> arestas) {
+        for (Aresta aresta : arestas) {
+            if (aresta.getOrigem().equals(origem.getId()) && aresta.getDestino().equals(destino.getId())) {
+                return aresta;
+            }
 
-    public void setV1(Vertice v1) {
-        this.v1 = v1;
-        source = v1.getId();
+        }
+        return null;
     }
-
-    public Vertice getV2() {
-        return v2;
-    }
-
-    public void setV2(Vertice v2) {
-        this.v2 = v2;
-        target = v2.getId();
-    }    
 }
