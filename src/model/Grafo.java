@@ -143,55 +143,50 @@ public class Grafo {
         return adjacencia;
     }
 
-    public int[][] matrizIncidencia(Grafo grafo){
-        
-        int[][] mi = new int[grafo.getVertices().size()][grafo.getArestas().size()];
-        
-        for(int i=0;i<grafo.getVertices().size();i++){
-            for(int j = 0; i <grafo.getArestas().size();i++){
-                mi[i][j] = 0;
-            }
     
+    public No getNoById(String id) {
+        No a = null;
+        for (No no : nos) {
+            if (no.getId().equals(id)) {
+                a = no;
+                break;
+            }
         }
-        if(grafo.getTipo() == TipoGrafo.unidirected){
-            for(int i=0;i<grafo.getArestas().size();i++){
-                String vertice1 = grafo.getArestas().get(i).getSource();
-                String vertice2 = grafo.getArestas().get(i).getTarget();
-                for(int k = 0; k<grafo.getVertices().size();k++){
-                    if(vertice1.equals(grafo.getVertices().get(k).getId())){
-                        for(int j = 0; j<grafo.getVertices().size();j++){
-                            if(vertice2.equals(grafo.getVertices().get(j).getId())){
-                                mi[k][i] = 1;
-                                mi[j][i] = 1;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-         }
-        if(grafo.getTipo() == TipoGrafo.directed){
-            for(int i=0;i<grafo.getArestas().size();i++){
-                String vertice1 = grafo.getArestas().get(i).getSource();
-                String vertice2 = grafo.getArestas().get(i).getTarget();
-                for(int k = 0; k<grafo.getVertices().size();k++){
-                    if(vertice1.equals(grafo.getVertices().get(k).getId())){
-                        for(int j = 0; j<grafo.getVertices().size();j++){
-                            if(vertice2.equals(grafo.getVertices().get(j).getId())){
-                                mi[k][i] = 1;
-                                mi[j][i] = -1;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-         }
-        
-
-        return mi;    
+        return a;
     }
     
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public List<No> getNos() {
+        return nos;
+    }
+
+    public void setNos(List<No> nos) {
+        this.nos = nos;
+    }
+
+    public List<Aresta> getArestas() {
+        return arestas;
+    }
+
+    public void setArestas(List<Aresta> arestas) {
+        this.arestas = arestas;
+    }
+
     public ArrayList<ArrayList> listaAdjacencia(Grafo grafo){
         ArrayList<ArrayList> listaIncidencia = new ArrayList<ArrayList>();
         
