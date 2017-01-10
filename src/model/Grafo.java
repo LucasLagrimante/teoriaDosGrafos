@@ -42,33 +42,46 @@ public class Grafo {
     Object parent;
     @XStreamOmitField
     List<List<No>> adjacencia = new ArrayList<List<No>>();
+    public Grafo(String id, String tipo, List<No> nos, List<Aresta> arestas) {
+        this.id = id;
+        this.tipo = tipo;
+        this.nos = nos;
+        this.arestas = arestas;
+        geraMatriz();
+    }
+
+    public void geraMatriz() {
+        int Qtdenos = nos.size();
+        matriz = new int[Qtdenos][Qtdenos];
+        for (int i = 0; i < Qtdenos; i++) {
+            for (int j = 0; j < Qtdenos; j++) {
+                matriz[i][j] = 0;
+            }
+        }
+        for (Aresta are : arestas) {
+            int posO = nos.indexOf(new No(are.getOrigem()));
+            int posD = nos.indexOf(new No(are.getDestino()));
+            matriz[posO][posD] = 1;
+            if (tipo.equals("undirected")){
+                matriz[posD][posO] = 1;
+            }
+        }
+    }
     
-    public ArrayList<Aresta> getArestas() {
-        return arestas;
-    }
-
-    public void setArestas(Aresta arestas) {
-        this.arestas.add(arestas);
-    }
-
-    public ArrayList<Vertice> getVertices() {
-        return vertices;
-    }
-
-    public void setVertices(Vertice v) {
-        this.vertices.add(v);
-    }
-
-    public void setVertice(Vertice vertice) {
-        this.vertices.add(vertice);
-    }
-
-    public int getOrdem() {
-        return vertices.size();
-    }
-
-    public int getQuantidadeAretas() {
-        return arestas.size();
+    public int[][] getMatrizComValue() {
+        int Qtdenos = nos.size();
+        matrizValue = new int[Qtdenos][Qtdenos];
+        for (int i = 0; i < Qtdenos; i++) {
+            for (int j = 0; j < Qtdenos; j++) {
+                matrizValue[i][j] = 0;
+            }
+        }
+        for (Aresta are : arestas) {
+            int posO = nos.indexOf(new No(are.getOrigem()));
+            int posD = nos.indexOf(new No(are.getDestino()));
+            matrizValue[posO][posD] = are.getValorAresta();
+        }
+        return matrizValue;
     }
     
     public int[][] matrizAdjacencia(Grafo grafo){
