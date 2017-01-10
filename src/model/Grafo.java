@@ -187,40 +187,37 @@ public class Grafo {
         this.arestas = arestas;
     }
 
-    public ArrayList<ArrayList> listaAdjacencia(Grafo grafo){
-        ArrayList<ArrayList> listaIncidencia = new ArrayList<ArrayList>();
-        
-        if(grafo.getTipo() == TipoGrafo.directed){
-            for(int i=0;i<grafo.getVertices().size();i++){
-                ArrayList<String> lista = new ArrayList<String>();
-                String v1 = grafo.getVertices().get(i).getId();
-                lista.add(v1);
-                for(int j=0;j<grafo.getVertices().size();j++){
-                    if(v1.equals(grafo.getArestas().get(j).getSource())){
-                        lista.add(grafo.getArestas().get(j).getTarget());
-                    } 
-                }
-             listaIncidencia.add(lista);
-           }
-       }
-     
-         if(grafo.getTipo() == TipoGrafo.unidirected){
-            for(int i=0;i<grafo.getVertices().size();i++){
-                ArrayList<String> lista = new ArrayList<String>();
-                String v1 = grafo.getVertices().get(i).getId();
-                lista.add(v1);
-                for(int j=0;j<grafo.getArestas().size();j++){
-                    if(v1.equals(grafo.getArestas().get(j).getTarget()) || v1.equals(grafo.getArestas().get(j).getSource()) ){
-                        if(v1.equals(grafo.getArestas().get(j).getSource())){
-                            lista.add(grafo.getArestas().get(j).getTarget());
-                        }else{
-                            lista.add(grafo.getArestas().get(j).getSource());
-                        }
-                    }   
-                  }
-              listaIncidencia.add(lista);
-             }
-       }   
-        return listaIncidencia;
+
+    public int getOrdem() {
+        return nos.size();
     }
-}    
+    
+    public Grafo copiaGrafo(Grafo grafo, String nome){
+        List<No> listaNos2 = new ArrayList<No>();
+        List<Aresta> listaArestas2 = new ArrayList<Aresta>();
+        for (No n : grafo.getNos()) {
+            listaNos2.add(n);
+        }
+        for (Aresta a : grafo.getArestas()) {
+            listaArestas2.add(a);
+        }
+        Grafo g = new Grafo(nome, grafo.getTipo(), listaNos2, listaArestas2);
+        return g;
+    }
+    
+    public void salvaGrafo(Grafo grafo){
+        XStream xstream = new XStream(new DomDriver());
+        xstream.processAnnotations(Grafo.class);
+        System.out.println(xstream.toXML(grafo));
+        String xml = xstream.toXML(grafo);
+        
+        grafo = null;
+        grafo = (Grafo) xstream.fromXML(xml);
+        try {
+            File xmlFile = new File(grafo.getId()+".xml");
+            xstream.toXML(grafo, new FileWriter(xmlFile));
+        } catch (IOException ex) {
+            System.out.println("Erro ao Gravar Arquivo");
+        }
+    }
+    
