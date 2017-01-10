@@ -319,3 +319,150 @@ public class Algoritmos extends javax.swing.JFrame {
         graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         setVisible(false);
     }
+    
+
+    private void jBKruskalActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-kruskal");   
+        // PARTE 2: LIMPA A TELA.
+        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+        jTNomeGrafo.setText("");
+        // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
+        List<Aresta> arestasOrdenadas = new ArrayList<Aresta>();
+        List<Aresta> novasArestas = new ArrayList<Aresta>();
+        List<No> nosLigados = new ArrayList<No>();
+        List<No> nosSoltos = new ArrayList<No>();
+        for(Aresta are : g.getArestas()){
+            arestasOrdenadas.add(are);
+        }
+        Collections.sort(arestasOrdenadas);
+        int j = 0;
+        while(novasArestas.size()<(g.getNos().size()-1) && arestasOrdenadas.size() != j){
+            for(Aresta ares : arestasOrdenadas){
+                if(novasArestas.size() == 0){
+                    nosLigados.add(g.getNoById(ares.getOrigem()));
+                    nosLigados.add(g.getNoById(ares.getDestino()));
+                    novasArestas.add(ares);
+                    j++;
+                }
+                else{
+                    if(nosLigados.contains(g.getNoById(ares.getOrigem())) || nosLigados.contains(g.getNoById(ares.getDestino()))){
+                        if(nosLigados.contains(g.getNoById(ares.getOrigem())) && nosLigados.contains(g.getNoById(ares.getDestino()))){
+                            if((nosSoltos.contains(g.getNoById(ares.getOrigem())) && !nosSoltos.contains(g.getNoById(ares.getDestino()))) || (nosSoltos.contains(g.getNoById(ares.getDestino())) && !nosSoltos.contains(g.getNoById(ares.getOrigem())))){
+                                novasArestas.add(ares);
+                                j++;
+                                nosSoltos.clear();
+                            }
+                        }
+                        else{
+                            if(!nosSoltos.contains(g.getNoById(ares.getOrigem())) && !nosSoltos.contains(g.getNoById(ares.getDestino()))){
+                                novasArestas.add(ares);
+                                j++;
+                                if(!nosLigados.contains(g.getNoById(ares.getOrigem())))
+                                    nosLigados.add(g.getNoById(ares.getOrigem()));
+                                if(!nosLigados.contains(g.getNoById(ares.getDestino())))
+                                    nosLigados.add(g.getNoById(ares.getDestino()));
+                            }
+                            else{
+                                novasArestas.add(ares);
+                                j++;
+                                if(!nosSoltos.contains(g.getNoById(ares.getOrigem()))){
+                                    nosSoltos.add(g.getNoById(ares.getOrigem()));
+                                    nosLigados.add(g.getNoById(ares.getOrigem()));
+                                }
+                                if(!nosSoltos.contains(g.getNoById(ares.getDestino()))){
+                                    nosSoltos.add(g.getNoById(ares.getDestino()));
+                                    nosLigados.add(g.getNoById(ares.getDestino()));
+                                }
+                            }
+                        }   
+                    }
+                    else{
+                        novasArestas.add(ares);
+                        j++;
+                        nosLigados.add(g.getNoById(ares.getOrigem()));
+                        nosLigados.add(g.getNoById(ares.getDestino()));
+                        nosSoltos.add(g.getNoById(ares.getOrigem()));
+                        nosSoltos.add(g.getNoById(ares.getDestino()));
+                    }
+                }
+            }
+        }
+        g.getArestas().clear();
+        g.setArestas(novasArestas);
+        // PARTE 4: VISUALIZA O NOVO GRAFO.
+        g.mostraGrafoDesign(g, "kruskal", null);
+        jTNomeGrafo.setText(g.getId());
+        JOptionPane.showMessageDialog(null, "Árvore geradora mínima pelo \n algoritmo de Kruskal");
+        // PARTE 5: SALVA O GRAFO EM XML.
+        g.salvaGrafo(g);
+    }                                         
+
+    private void jBDijkstraActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-dijkstra");   
+        // PARTE 2: LIMPA A TELA.
+        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+        jTNomeGrafo.setText("");
+        // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
+        List<No> listaNosFechados = new ArrayList<No>();
+        List<No> listaNosAbertos = new ArrayList<>();
+        int qtNos = listaNos.size();
+
+        int[][] matrizD = new int[qtNos][qtNos];
+
+        listaNosAbertos.addAll(listaNos);
+
+        String verticeRaiz = JOptionPane.showInputDialog("Digite o vértice raiz:");
+
+        int[] tabelaD = new int[listaNosAbertos.size() - 1];
+
+        //eu criei essa lista provisoria
+        List<No> lista = new ArrayList<>();
+        lista.addAll(listaNosAbertos);
+
+        for (int i = 0; i < tabelaD.length; i++) {
+            tabelaD[i] = Integer.MAX_VALUE;
+        }
+
+        No vo = null;
+        while (listaNosAbertos.size() > 0) {
+            No v = null;
+
+            int distanciaAnterior = 0;
+            if (listaNosFechados.size() == 0) {
+
+                v = No.getNoById(verticeRaiz, listaNosAbertos);
+                vo = v;
+            } else {
+                v = listaNosAbertos.get(0);
+
+            }
+            listaNosFechados.add(v);
+            listaNosAbertos.remove(v);
+
+            if (v != vo) {
+                distanciaAnterior = tabelaD[listaNosFechados.size() - 2];
+                if (distanciaAnterior == Integer.MAX_VALUE) {
+                    distanciaAnterior = 0;
+                }
+
+            }
+
+            int i = listaNosFechados.size() - 1;
+            for (No a : listaNosAbertos) {
+                Aresta a1 = Aresta.getArestaByNos(v, a, listaArestas);
+                if (a1 == null) {
+
+                } else if (tabelaD[i] > a1.getValorAresta() + distanciaAnterior) {
+                    tabelaD[i] = a1.getValorAresta() + distanciaAnterior;
+                }
+                i++;
+            }
+
+            for (int j = 0; j < tabelaD.length; j++) {
+                System.out.print(tabelaD[j] + "- ");
+            }
+            System.out.println("");
+
+        }
