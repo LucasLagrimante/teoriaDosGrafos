@@ -271,3 +271,52 @@ public class Grafo {
             graph.getModel().endUpdate();
         }
     }
+
+
+    public String getConjuntoVertices() {
+        String vertices = "V={";
+        for (No ver : nos) {
+            String id = ver.getId();
+            vertices += id + ", ";
+        }
+        return vertices + "}";
+    }
+
+    public String getConjuntoArestas() {
+        String conj = "A={";
+        for (Aresta are : arestas) {
+            String origem = are.getOrigem();
+            String destino = are.getDestino();
+            String nome = are.getNomeAresta();
+            conj += nome + "(" + origem + "," + destino + "), ";
+        }
+        return conj + "}";
+    }
+
+    public String getIncidenciaArestas(Grafo g) {
+        String incidentes = "\n";
+        for (Aresta are : arestas) {
+            String origem = are.getOrigem();
+            String destino = are.getDestino();
+            String nome = are.getNomeAresta();
+            incidentes += "Aresta: " + nome + " Incidentes: " + origem + " e " + destino + "\n";
+        }
+        return incidentes;
+    }
+
+    public String getMensagemGrau(Grafo g, String s) {
+        String estring = "\n";
+        for (int i = 0; i < g.getNos().size(); i++) {
+            if (s == "Vertice") {
+                estring += "Grau(" + g.getNos().get(i).getId() + "): " + g.getGrauVertice(g.getNos().get(i)) + "; \n";
+            }
+            if (s == "Emissao") {
+                estring += "Grau(" + g.getNos().get(i).getId() + "): " + g.getGrauEmissao(g.getNos().get(i)) + "; \n";
+            }
+            if (s == "Recepcao") {
+                estring += "Grau(" + g.getNos().get(i).getId() + "): " + g.getGrauRecepcao(g.getNos().get(i)) + "; \n";
+            }
+        }
+        return estring;
+    }
+
