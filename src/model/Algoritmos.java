@@ -633,3 +633,103 @@ public class Algoritmos extends javax.swing.JFrame {
         T += "}";
         g.getArestas().clear();
         g.setArestas(t);
+        
+// PARTE 4: VISUALIZA O NOVO GRAFO.
+        g.mostraGrafoDesign(g, "prim", null);
+        jTNomeGrafo.setText(g.getId());
+        JOptionPane.showMessageDialog(null, "Conjunto de arestas da árvore geradora mínima:\n"+T);
+        // PARTE 5: SALVA O GRAFO EM XML.
+        g.salvaGrafo(g);
+    }                                      
+
+    private void jButtonFulkersonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-ford-fulkerson");   
+        int fonte = g.getQtdVerticesFontes(g);
+        int sumidouro = g.getQtdVerticesSumidouros(g);
+        String tipo = g.getTipo();
+        // PARTE 2: LIMPA A TELA.
+        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+        jTNomeGrafo.setText("");
+        if("directed".equals(tipo) && fonte == 1 && sumidouro == 1){
+            // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
+            fordFulkerson f = new fordFulkerson();
+            int[][]matriz = g.getMatrizComValue();
+            int fontePos = g.getPosicaoFonte(g);
+            int sumidouroPos = g.getPosicaoSumidouro(g);
+            int qtdNos = g.getNos().size();
+            int fluxoMax = f.fordFulkerson(matriz, fontePos, sumidouroPos, qtdNos);
+            
+            // PARTE 4: VISUALIZA O NOVO GRAFO.
+            g.mostraGrafoDesign(g, "ford-fulkerson", f.matrizFinal());
+            jTNomeGrafo.setText(g.getId()); 
+            JOptionPane.showMessageDialog(null, "Fluxo máximo permitido no grafo: "+ fluxoMax+"\n"
+                    + "Vértice de origem: "+g.getNos().get(fontePos).getId()+"\n"
+                    + "Vértice de destino: "+g.getNos().get(sumidouroPos).getId());
+            
+            // PARTE 5: SALVA O GRAFO EM XML.
+            g.salvaGrafo(g);
+        }else{
+            JOptionPane.showMessageDialog(null, "O grafo a ser testado precisa ser Direcionado, ter Apenas UM vértice Fonte e ter Apenas UM vértice Sumidouro.\n"
+                    + "Esse grafo foi rejeitado por ter: "+sumidouro+" vértices Sumidouros, ou por ter: "+fonte+" vértices Fontes, ou então por simplesmente ser um grafo do tipo: "+tipo);
+        }
+    }                                                
+    
+    public List<Aresta> buscaProf(No no){
+        List<Aresta> arestasSelecionadas = new ArrayList<Aresta>();
+        List<Aresta> retornoArestas = new ArrayList<Aresta>();
+        nosVisitados.add(no);
+        for(List<No> lista : listaAdjacenciaNos){
+            if(lista.get(0) == no){
+                for(int i=0; i<lista.size(); i++){
+                    if(!nosVisitados.contains(lista.get(i))){
+                        for(Aresta ares : listaArestas){
+                            if((no.getId().equals(ares.getOrigem()) && lista.get(i).getId().equals(ares.getDestino())) || (lista.get(i).getId().equals(ares.getOrigem()) && no.getId().equals(ares.getDestino()))){
+                                for(Aresta are : buscaProf(lista.get(i))){
+                                    arestasSelecionadas.add(are);
+                                }
+                                retornoArestas.add(ares);
+                                break;
+                            }
+                        }
+                    }
+                }
+                break;
+            }
+        }
+        for(Aresta are : arestasSelecionadas){
+            retornoArestas.add(are);
+        }
+        return retornoArestas;
+    }
+    
+    private void jButtonProfundidadeActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
+            Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-profundidade");   
+        // PARTE 2: LIMPA A TELA.
+            graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+            jTNomeGrafo.setText("");
+        // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
+            nosVisitados.clear();
+            listaAdjacenciaNos.clear();
+            listaArestas.clear();
+            No no = g.getNos().get(0);
+            List<Aresta> arestas = new ArrayList<Aresta>();
+            for(Aresta are : g.getArestas()){
+                listaArestas.add(are);
+            }
+            for(List<No> list : g.listaAdjacencia(g)){
+                listaAdjacenciaNos.add(list);
+            }
+            for(Aresta ares : buscaProf(no)){
+                arestas.add(ares);
+            }
+            g.getArestas().clear();
+            g.setArestas(arestas);      
+        // PARTE 4: VISUALIZA O NOVO GRAFO.
+            g.mostraGrafoDesign(g, "profundidade", null);
+            jTNomeGrafo.setText(g.getId());
+            JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo Busca em Produndidade");
+        // PARTE 5: SALVA O GRAFO EM XML.
+            g.salvaGrafo(g);
+    }                              
