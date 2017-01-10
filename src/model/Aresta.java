@@ -1,42 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package model;
+package grafosxml;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import java.util.List;
 
 
-public class Aresta {
-    
-    private String id, source, target;
-    private Vertice v1;
-    private Vertice v2;
+@XStreamAlias("edge")
+public class Aresta implements Comparable<Aresta>{
+    @XStreamAlias("source")
+    @XStreamAsAttribute
+    private String origem;
+    @XStreamAlias("target")
+    @XStreamAsAttribute
+    private String destino;
+    @XStreamAlias("name")
+    @XStreamAsAttribute
+    private String nomeAresta;
+    @XStreamAlias("value")  
+    @XStreamAsAttribute
+    private int valorAresta;
 
-    public Aresta() {
+    public Aresta( String nomeAresta, int valorAresta, String origem, String destino) {
+        this.nomeAresta = nomeAresta;
+        this.valorAresta = valorAresta;
+        this.origem = origem;
+        this.destino = destino;
     }
-    
-    /*public Aresta(String id, Vertice v1, Vertice v2) {
-        this.id = id;
-        this.setV1(v1);
-        this.setV2(v2);
-    }*/
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public String getTarget() {
-        return target;
-    }
-
-    public void setTarget(String target) {
-        this.target = target;
-    }
-    
     public String getId() {
         return id;
     }
