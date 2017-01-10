@@ -261,3 +261,172 @@ public class GrafoView extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(593, 492));
         setLocationRelativeTo(null);
     }// </editor-fold>                        
+
+    private void jButtonLimparTelaActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        //Object[] vertices = graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight()));
+
+        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+    }                                                 
+
+    private void RemoverActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+    }                                       
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+
+        graphComponent.setPreferredSize(new Dimension(jPanel1.getWidth() - 10, jPanel1.getHeight() - 10));
+
+        graphComponent.validate();
+        graphComponent.repaint();
+        jPanel1.validate();
+        jPanel1.repaint();
+    }                                 
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {                                      
+        formWindowOpened(null);
+    }                                     
+
+    private void jBAbrirGrafoActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.showOpenDialog(this);
+        File xmlFileLer = new File(fileChooser.getSelectedFile().getName());
+        jTNomeGrafo.setText(fileChooser.getSelectedFile().getName().substring(0, fileChooser.getSelectedFile().getName().lastIndexOf(".")));
+
+        XStream xstream = new XStream(new DomDriver());
+        xstream.processAnnotations(Grafo.class);
+        grafo = (Grafo) xstream.fromXML(xmlFileLer);
+        grafo.geraMatriz();
+        String xml = xstream.toXML(grafo);
+        System.out.println(xml);
+
+        listaNos.clear();
+        listaArestas.clear();
+
+        for (No n : grafo.getNos()) {
+            listaNos.add(n);
+        }
+
+        for (Aresta a : grafo.getArestas()) {
+            listaArestas.add(a);
+        }
+    }                                            
+
+    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+        setVisible(false);
+    }                                        
+
+    private void jButtonAddVerticeActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        graph.getModel().beginUpdate();
+        String nome = "";
+        try {
+            nome = JOptionPane.showInputDialog("Nome do vértice");
+
+            mxStylesheet stylesheet = GrafoView.getGraph().getStylesheet();
+            Hashtable<String, Object> style = new Hashtable();
+            style.put(mxConstants.STYLE_SHAPE, "ellipse");
+            style.put(mxConstants.STYLE_OPACITY, 50);
+            style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
+            style.put(mxConstants.STYLE_FILLCOLOR, Color.LIGHT_GRAY);
+            stylesheet.putCellStyle("ROUNDED", style);
+            mxCell v1 = (mxCell) GrafoView.getGraph().insertVertex(parent, null, nome, 450, 250, 50, 50, "ROUNDED");
+            v1.setValue(nome);
+            GrafoView.getM().put(nome, v1);
+        } finally {
+            graph.getModel().endUpdate();
+        }
+
+        listaNos.add(new No(nome));
+    }                                                 
+
+    private void jButtonRemoveVerticeActionPerformed(java.awt.event.ActionEvent evt) {                                                     
+        graph.getModel().remove(cell);
+        for(Aresta are : listaArestas){
+            if(are.getOrigem().equals((String) cell.getValue()) || are.getDestino().equals((String) cell.getValue())){
+                listaArestas.remove(are);
+            }
+        }
+        listaNos.remove(new No((String) cell.getValue()));
+        cell = null;
+    }                                                    
+
+    private void jButtonAddArestaActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        /*
+         String vo = JOptionPane.showInputDialog("Vértice  de Origem");
+         String vd = JOptionPane.showInputDialog("Vértice  de Destino");
+         String nome = JOptionPane.showInputDialog("Nome da Aresta");
+         int valor = Integer.parseInt(JOptionPane.showInputDialog("Valor da Aresta"));
+ 
+         Object parent1 = GrafoView.getGraph().getDefaultParent();
+         Object v1 = GrafoView.getM().get(vo);
+         Object v2 = GrafoView.getM().get(vd);
+ 
+         mxCell a1 = (mxCell) GrafoView.getGraph().insertEdge(parent1, null, nome, v1, v2);
+         a1.setValue(nome);
+         listaArestas.add(new Aresta(nome, valor, vo, vd));*/
+        
+        String v1 = JOptionPane.showInputDialog("Vértice  de Origem");
+        String v2 = JOptionPane.showInputDialog("Vértice  de Destino");
+        String nome = JOptionPane.showInputDialog("Nome da Aresta");
+        int valor = Integer.parseInt(JOptionPane.showInputDialog("Valor da Aresta"));
+
+        Object[] vertices = graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight()));
+        mxCell vo = null, vf = null;
+        for (Object o : vertices) {
+            mxCell v = (mxCell) o;
+            if (v1.equals(v.getValue().toString())) {
+                vo = (v);
+            }
+            if (v2.equals(v.getValue().toString())) {
+                vf = (v);
+            }
+            if (vo != null && vf != null) {
+                break;
+            }
+        }
+        graph.getModel().beginUpdate();
+        try {
+            mxStylesheet stylesheet = this.graph.getStylesheet();
+            Hashtable<String, Object> style = new Hashtable();
+            graph.insertEdge(parent, Integer.toString(valor), nome, (Object) vo, (Object) vf, "aresta");
+        } finally {
+            graph.getModel().endUpdate();
+        }
+
+        String o = vo.getValue().toString();
+        String d = vf.getValue().toString();
+        listaArestas.add(new Aresta(nome, valor, o, d));
+    }                                                
+
+    private void jButtonRemoveArestaActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+        graph.getModel().remove(cell);
+        for(Aresta are : listaArestas){
+            if(are.getNomeAresta().equals((String) cell.getValue())){
+                listaArestas.remove(are);
+                break;
+            }
+        }
+        cell = null;
+    }                                                   
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        XStream xstream = new XStream(new DomDriver());
+        xstream.processAnnotations(Grafo.class);
+        Grafo g = new Grafo(grafo.getId(), grafo.getTipo(), listaNos, listaArestas);
+        System.out.println(xstream.toXML(g));
+        String xml = xstream.toXML(g);
+        g = null;
+        g = (Grafo) xstream.fromXML(xml);
+        try {
+            File xmlFile = new File(jTNomeGrafo.getText() + ".xml");
+            xstream.toXML(g, new FileWriter(xmlFile));
+        } catch (IOException ex) {
+            System.out.println("Erro ao Gravar Arquivo");
+        }
+        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));//LIMPA A TELA DEPOIS DE SALVAR
+        listaArestas.clear();
+        listaNos.clear();
+        grafo = null;
+        jTNomeGrafo.setText("");
+        JOptionPane.showMessageDialog(null, "Dados Salvos com Sucesso");
+    }  
