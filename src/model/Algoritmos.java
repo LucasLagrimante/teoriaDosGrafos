@@ -633,59 +633,59 @@ public class Algoritmos extends javax.swing.JFrame {
         T += "}";
         g.getArestas().clear();
         g.setArestas(t);
-        
+
 // PARTE 4: VISUALIZA O NOVO GRAFO.
         g.mostraGrafoDesign(g, "prim", null);
         jTNomeGrafo.setText(g.getId());
-        JOptionPane.showMessageDialog(null, "Conjunto de arestas da árvore geradora mínima:\n"+T);
+        JOptionPane.showMessageDialog(null, "Conjunto de arestas da árvore geradora mínima:\n" + T);
         // PARTE 5: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
-    }                                      
+    }
 
-    private void jButtonFulkersonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+    private void jButtonFulkersonActionPerformed(java.awt.event.ActionEvent evt) {
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
-        Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-ford-fulkerson");   
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-ford-fulkerson");
         int fonte = g.getQtdVerticesFontes(g);
         int sumidouro = g.getQtdVerticesSumidouros(g);
         String tipo = g.getTipo();
         // PARTE 2: LIMPA A TELA.
         graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         jTNomeGrafo.setText("");
-        if("directed".equals(tipo) && fonte == 1 && sumidouro == 1){
+        if ("directed".equals(tipo) && fonte == 1 && sumidouro == 1) {
             // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
             fordFulkerson f = new fordFulkerson();
-            int[][]matriz = g.getMatrizComValue();
+            int[][] matriz = g.getMatrizComValue();
             int fontePos = g.getPosicaoFonte(g);
             int sumidouroPos = g.getPosicaoSumidouro(g);
             int qtdNos = g.getNos().size();
             int fluxoMax = f.fordFulkerson(matriz, fontePos, sumidouroPos, qtdNos);
-            
+
             // PARTE 4: VISUALIZA O NOVO GRAFO.
             g.mostraGrafoDesign(g, "ford-fulkerson", f.matrizFinal());
-            jTNomeGrafo.setText(g.getId()); 
-            JOptionPane.showMessageDialog(null, "Fluxo máximo permitido no grafo: "+ fluxoMax+"\n"
-                    + "Vértice de origem: "+g.getNos().get(fontePos).getId()+"\n"
-                    + "Vértice de destino: "+g.getNos().get(sumidouroPos).getId());
-            
+            jTNomeGrafo.setText(g.getId());
+            JOptionPane.showMessageDialog(null, "Fluxo máximo permitido no grafo: " + fluxoMax + "\n"
+                    + "Vértice de origem: " + g.getNos().get(fontePos).getId() + "\n"
+                    + "Vértice de destino: " + g.getNos().get(sumidouroPos).getId());
+
             // PARTE 5: SALVA O GRAFO EM XML.
             g.salvaGrafo(g);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "O grafo a ser testado precisa ser Direcionado, ter Apenas UM vértice Fonte e ter Apenas UM vértice Sumidouro.\n"
-                    + "Esse grafo foi rejeitado por ter: "+sumidouro+" vértices Sumidouros, ou por ter: "+fonte+" vértices Fontes, ou então por simplesmente ser um grafo do tipo: "+tipo);
+                    + "Esse grafo foi rejeitado por ter: " + sumidouro + " vértices Sumidouros, ou por ter: " + fonte + " vértices Fontes, ou então por simplesmente ser um grafo do tipo: " + tipo);
         }
-    }                                                
-    
-    public List<Aresta> buscaProf(No no){
+    }
+
+    public List<Aresta> buscaProf(No no) {
         List<Aresta> arestasSelecionadas = new ArrayList<Aresta>();
         List<Aresta> retornoArestas = new ArrayList<Aresta>();
         nosVisitados.add(no);
-        for(List<No> lista : listaAdjacenciaNos){
-            if(lista.get(0) == no){
-                for(int i=0; i<lista.size(); i++){
-                    if(!nosVisitados.contains(lista.get(i))){
-                        for(Aresta ares : listaArestas){
-                            if((no.getId().equals(ares.getOrigem()) && lista.get(i).getId().equals(ares.getDestino())) || (lista.get(i).getId().equals(ares.getOrigem()) && no.getId().equals(ares.getDestino()))){
-                                for(Aresta are : buscaProf(lista.get(i))){
+        for (List<No> lista : listaAdjacenciaNos) {
+            if (lista.get(0) == no) {
+                for (int i = 0; i < lista.size(); i++) {
+                    if (!nosVisitados.contains(lista.get(i))) {
+                        for (Aresta ares : listaArestas) {
+                            if ((no.getId().equals(ares.getOrigem()) && lista.get(i).getId().equals(ares.getDestino())) || (lista.get(i).getId().equals(ares.getOrigem()) && no.getId().equals(ares.getDestino()))) {
+                                for (Aresta are : buscaProf(lista.get(i))) {
                                     arestasSelecionadas.add(are);
                                 }
                                 retornoArestas.add(ares);
@@ -697,47 +697,47 @@ public class Algoritmos extends javax.swing.JFrame {
                 break;
             }
         }
-        for(Aresta are : arestasSelecionadas){
+        for (Aresta are : arestasSelecionadas) {
             retornoArestas.add(are);
         }
         return retornoArestas;
     }
-    
-    private void jButtonProfundidadeActionPerformed(java.awt.event.ActionEvent evt) {                                                    
-        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
-            Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-profundidade");   
-        // PARTE 2: LIMPA A TELA.
-            graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-            jTNomeGrafo.setText("");
-        // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
-            nosVisitados.clear();
-            listaAdjacenciaNos.clear();
-            listaArestas.clear();
-            No no = g.getNos().get(0);
-            List<Aresta> arestas = new ArrayList<Aresta>();
-            for(Aresta are : g.getArestas()){
-                listaArestas.add(are);
-            }
-            for(List<No> list : g.listaAdjacencia(g)){
-                listaAdjacenciaNos.add(list);
-            }
-            for(Aresta ares : buscaProf(no)){
-                arestas.add(ares);
-            }
-            g.getArestas().clear();
-            g.setArestas(arestas);      
-        // PARTE 4: VISUALIZA O NOVO GRAFO.
-            g.mostraGrafoDesign(g, "profundidade", null);
-            jTNomeGrafo.setText(g.getId());
-            JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo Busca em Produndidade");
-        // PARTE 5: SALVA O GRAFO EM XML.
-            g.salvaGrafo(g);
-    }                              
 
-    private void jButtonTopologicaActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        
+    private void jButtonProfundidadeActionPerformed(java.awt.event.ActionEvent evt) {
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
-        Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-topologica");   
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-profundidade");
+        // PARTE 2: LIMPA A TELA.
+        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+        jTNomeGrafo.setText("");
+        // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
+        nosVisitados.clear();
+        listaAdjacenciaNos.clear();
+        listaArestas.clear();
+        No no = g.getNos().get(0);
+        List<Aresta> arestas = new ArrayList<Aresta>();
+        for (Aresta are : g.getArestas()) {
+            listaArestas.add(are);
+        }
+        for (List<No> list : g.listaAdjacencia(g)) {
+            listaAdjacenciaNos.add(list);
+        }
+        for (Aresta ares : buscaProf(no)) {
+            arestas.add(ares);
+        }
+        g.getArestas().clear();
+        g.setArestas(arestas);
+        // PARTE 4: VISUALIZA O NOVO GRAFO.
+        g.mostraGrafoDesign(g, "profundidade", null);
+        jTNomeGrafo.setText(g.getId());
+        JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo Busca em Produndidade");
+        // PARTE 5: SALVA O GRAFO EM XML.
+        g.salvaGrafo(g);
+    }
+
+    private void jButtonTopologicaActionPerformed(java.awt.event.ActionEvent evt) {
+
+        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-topologica");
         // PARTE 2: LIMPA A TELA.
         graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         jTNomeGrafo.setText("");
@@ -746,27 +746,27 @@ public class Algoritmos extends javax.swing.JFrame {
         List<Aresta> novasArestas = new ArrayList<Aresta>();
         List<No> manipulaNos = new ArrayList<No>();
         List<No> listaOrdem = new ArrayList<No>();
-        String noId="";
-        int j=1;
+        String noId = "";
+        int j = 1;
         int tamanho = g.getNos().size();
-        while(tamanho != 0){
+        while (tamanho != 0) {
             tamanho--;
             manipulaArestas.clear();
             manipulaNos.clear();
             manipulaArestas.addAll(g.getArestas());
             manipulaNos.addAll(g.getNos());
-            for(No nos : manipulaNos){
-                int i=0;
+            for (No nos : manipulaNos) {
+                int i = 0;
                 noId = nos.getId();
-                for(Aresta ares : manipulaArestas){
-                    if(nos.getId().equals(ares.getDestino())){
+                for (Aresta ares : manipulaArestas) {
+                    if (nos.getId().equals(ares.getDestino())) {
                         i++;
                         break;
                     }
                 }
-                if(i == 0){
-                    for(Aresta ares : manipulaArestas){
-                        if(nos.getId() == ares.getOrigem()){
+                if (i == 0) {
+                    for (Aresta ares : manipulaArestas) {
+                        if (nos.getId() == ares.getOrigem()) {
                             g.getArestas().remove(ares);
                         }
                     }
@@ -775,29 +775,29 @@ public class Algoritmos extends javax.swing.JFrame {
                 }
             }
         }
-        if(listaOrdem.size() != tamanho){
+        if (listaOrdem.size() != tamanho) {
             listaOrdem.addAll(g.getNos());
         }
-        for(int i=1; i<listaOrdem.size(); i++){
-            Aresta novaAresta = new Aresta ("A"+j, 1, listaOrdem.get(i-1).getId(), listaOrdem.get(j).getId());
+        for (int i = 1; i < listaOrdem.size(); i++) {
+            Aresta novaAresta = new Aresta("A" + j, 1, listaOrdem.get(i - 1).getId(), listaOrdem.get(j).getId());
             novasArestas.add(novaAresta);
             j++;
         }
         g.getNos().clear();
         g.setNos(listaOrdem);
         g.getArestas().clear();
-        g.setArestas(novasArestas); 
+        g.setArestas(novasArestas);
         // PARTE 4: VISUALIZA O NOVO GRAFO.
         g.mostraGrafoDesign(g, "topologica", null);
         jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo de Ordem Topológica");
         // PARTE 5: SALVA O GRAFO EM XML.
-        g.salvaGrafo(g);  
-        
-    }                                                 
+        g.salvaGrafo(g);
 
-    private void jButtonMalgrangeActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-       // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
+    }
+
+    private void jButtonMalgrangeActionPerformed(java.awt.event.ActionEvent evt) {
+        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-malgrange");
         // PARTE 2: LIMPA A TELA.
         graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
@@ -830,3 +830,135 @@ public class Algoritmos extends javax.swing.JFrame {
                 }
                 j++;
             }
+
+            proximoDaLista++;
+            analisados.add(i, listaNos.get(i).getId());
+            i = proximoDaLista;
+            contador++;
+            j = 0;
+        }
+        List novaLista = new ArrayList(new HashSet(ftd));
+
+        contador = 0;
+        int proximoDaLista2 = 0;
+        i = 0;
+        j = 0;
+
+        fti.add(0, listaNos.get(0).getId());
+        analisados2.add(j, listaNos.get(0).getId());
+
+        while (contador < listaNos.size()) {
+
+            while (i < qt) {
+
+                if (matrizADJ[i][j] == 1) {
+                    if (!fti.contains(analisados2)) {
+                        fti.add(listaNos.get(i).getId());
+                    }
+
+                }
+                i++;
+            }
+
+            proximoDaLista2++;
+            analisados2.add(j, listaNos.get(j).getId());
+            j = proximoDaLista2;
+            contador++;
+            i = 0;
+        }
+
+        List novaLista2 = new ArrayList(new HashSet(fti));
+
+        novaLista.retainAll(novaLista2);
+        intersecao.addAll(novaLista);
+
+        String imprimir = "(";
+        for (int r = 0; r < intersecao.size(); r++) {
+            imprimir += intersecao.get(r) + ",";
+        }
+        imprimir += ")";
+
+        //listaNos.remove(new No((String) cell.getValue()));
+        //cell = null;
+        // PARTE 4: VISUALIZA O NOVO GRAFO.
+        g.mostraGrafoDesign(g, "malgrange", null);
+        jTNomeGrafo.setText(g.getId());
+        JOptionPane.showMessageDialog(null, "Vértices Fortemente Conexos:\n" + imprimir);
+        // PARTE 5: SALVA O GRAFO EM XML.
+        g.salvaGrafo(g);
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Algoritmos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Algoritmos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Algoritmos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Algoritmos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Algoritmos().setVisible(true);
+            }
+        });
+//    
+//        ViewHome frame = new ViewHome();
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setSize(400, 320);
+//        frame.setVisible(true);
+
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JMenuItem Remover;
+    private javax.swing.JMenuItem abc;
+    private javax.swing.JButton jBAbrirGrafo;
+    private javax.swing.JButton jBDijkstra;
+    private javax.swing.JButton jBFechar;
+    private javax.swing.JButton jBKruskal;
+    private javax.swing.JButton jBPrim;
+    private javax.swing.JButton jButtonFulkerson;
+    private javax.swing.JButton jButtonLimparTela;
+    private javax.swing.JButton jButtonMalgrange;
+    private javax.swing.JButton jButtonProfundidade;
+    private javax.swing.JButton jButtonTopologica;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTNomeGrafo;
+    private javax.swing.JPopupMenu popupMenu;
+    // End of variables declaration                   
+}
