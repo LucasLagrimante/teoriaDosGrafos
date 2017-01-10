@@ -1,43 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package model;
+package grafosxml;
 
+import com.mxgraph.model.mxCell;
+import com.mxgraph.util.mxConstants;
+import com.mxgraph.view.mxStylesheet;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import static grafosxml.Algoritmos.graph;
+import java.awt.Color;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 
+@XStreamAlias("graph")
 public class Grafo {
 
+    @XStreamAlias("id")
+    @XStreamAsAttribute
     private String id;
-    private TipoGrafo tipo = TipoGrafo.unidirected;
-    private ArrayList<Vertice> vertices = new ArrayList<>();
-    private ArrayList<Aresta> arestas = new ArrayList<>();
-
-    public Grafo() {
-    }
-
-    public Grafo(String id, TipoGrafo tipo) {
-        this.id = id;
-        this.tipo = tipo;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public TipoGrafo getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoGrafo tipo) {
-        this.tipo = tipo;
-    }
-
+    @XStreamAlias("edgedefault")
+    @XStreamAsAttribute
+    private String tipo;
+    @XStreamImplicit(itemFieldName = "node")
+    private List<No> nos;
+    @XStreamImplicit(itemFieldName = "edge")
+    private List<Aresta> arestas;
+    @XStreamOmitField
+    private int[][] matriz;
+    @XStreamOmitField
+    private int[][] matrizI;
+    @XStreamOmitField
+    private int[][] matrizValue;
+    Object parent;
+    @XStreamOmitField
+    List<List<No>> adjacencia = new ArrayList<List<No>>();
+    
     public ArrayList<Aresta> getArestas() {
         return arestas;
     }
