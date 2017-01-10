@@ -491,3 +491,43 @@ public class Grafo {
         return qtd;
     }
 
+    public int getQtdVerticesSumidouros(Grafo g) {
+        int qtd = 0;
+        for (int i = 0; i < g.getNos().size(); i++) {
+            if (g.getGrauRecepcao(g.getNos().get(i)) != 0 && g.getGrauEmissao(g.getNos().get(i)) == 0) {
+                qtd ++;
+            }
+        }
+        return qtd;
+    }
+    
+    public int getPosicaoFonte(Grafo g) {
+        int pos = 0;
+        for (int i = 0; i < g.getNos().size(); i++) { 
+            int recepcao = g.getGrauRecepcao(g.getNos().get(i));
+            int emissao = g.getGrauEmissao(g.getNos().get(i));
+            if (recepcao == 0 && emissao > 0) {
+                pos = i;
+                break;
+            }
+        }
+        return pos;
+    }
+
+    public int getPosicaoSumidouro(Grafo g) {
+        int pos = 0;
+        for (int i = 0; i < g.getNos().size(); i++) { 
+            int recepcao = g.getGrauRecepcao(g.getNos().get(i));
+            int emissao = g.getGrauEmissao(g.getNos().get(i));
+            if (recepcao > 0 && emissao == 0) {
+                pos = i;
+                break;
+            }
+        }
+        return pos;
+    }
+    
+    public int[][] getMatriz() {
+        return matriz;
+    }
+}
