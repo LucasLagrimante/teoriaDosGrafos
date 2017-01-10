@@ -8,7 +8,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jSeparator2 = new javax.swing.JSeparator();
@@ -100,31 +100,31 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         System.exit(0);
-    }                                             
+    }//GEN-LAST:event_jMenuItemSairActionPerformed
 
-    private void jMenuItemCriaGrafosActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+    private void jMenuItemCriaGrafosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCriaGrafosActionPerformed
         TelaMain tm = new TelaMain();
         tm.setVisible(true);
-    }                                                   
+    }//GEN-LAST:event_jMenuItemCriaGrafosActionPerformed
 
-    private void jMenuItemDadosActionPerformed(java.awt.event.ActionEvent evt) {                                               
+    private void jMenuItemDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDadosActionPerformed
         DadosGrafos tm = new DadosGrafos();
         tm.setVisible(true);
-    }                                              
+    }//GEN-LAST:event_jMenuItemDadosActionPerformed
 
-    private void jMenuItemVisualizarActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+    private void jMenuItemVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVisualizarActionPerformed
         GrafoView tm = new GrafoView();
         tm.setVisible(true);
-    }                                                   
+    }//GEN-LAST:event_jMenuItemVisualizarActionPerformed
 
-    private void jMenuAlgoritmosActionPerformed(java.awt.event.ActionEvent evt) {                                                
+    private void jMenuAlgoritmosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAlgoritmosActionPerformed
         Algoritmos tm = new Algoritmos();
         tm.setVisible(true);
-    }                                               
+    }//GEN-LAST:event_jMenuAlgoritmosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,6 +152,7 @@ public class Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -161,7 +162,7 @@ public class Principal extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jMenuAlgoritmos;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCadastrar;
@@ -175,5 +176,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }

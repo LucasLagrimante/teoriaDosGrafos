@@ -17,8 +17,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
+import static java.lang.Integer.parseInt;
 
-public class TelaMain extends javax.swing.JFrame {
+public class TelaMainold extends javax.swing.JFrame {
 
     List<No> listaNos = new ArrayList<No>();
     List<Aresta> listaArestas = new ArrayList<Aresta>();
@@ -27,7 +28,7 @@ public class TelaMain extends javax.swing.JFrame {
     String destinoAresta;
     int valorAresta;
 
-    public TelaMain() {
+    public TelaMainold() {
         initComponents();
         setLocationRelativeTo(null);// deixa a janela no centro da tela
     }
@@ -488,18 +489,19 @@ public class TelaMain extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMainold.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMainold.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMainold.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaMain().setVisible(true);
+                new TelaMainold().setVisible(true);
             }
         });
     }
