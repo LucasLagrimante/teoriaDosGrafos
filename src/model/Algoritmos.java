@@ -733,3 +733,100 @@ public class Algoritmos extends javax.swing.JFrame {
         // PARTE 5: SALVA O GRAFO EM XML.
             g.salvaGrafo(g);
     }                              
+
+    private void jButtonTopologicaActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        
+        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-topologica");   
+        // PARTE 2: LIMPA A TELA.
+        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+        jTNomeGrafo.setText("");
+        // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
+        List<Aresta> manipulaArestas = new ArrayList<Aresta>();
+        List<Aresta> novasArestas = new ArrayList<Aresta>();
+        List<No> manipulaNos = new ArrayList<No>();
+        List<No> listaOrdem = new ArrayList<No>();
+        String noId="";
+        int j=1;
+        int tamanho = g.getNos().size();
+        while(tamanho != 0){
+            tamanho--;
+            manipulaArestas.clear();
+            manipulaNos.clear();
+            manipulaArestas.addAll(g.getArestas());
+            manipulaNos.addAll(g.getNos());
+            for(No nos : manipulaNos){
+                int i=0;
+                noId = nos.getId();
+                for(Aresta ares : manipulaArestas){
+                    if(nos.getId().equals(ares.getDestino())){
+                        i++;
+                        break;
+                    }
+                }
+                if(i == 0){
+                    for(Aresta ares : manipulaArestas){
+                        if(nos.getId() == ares.getOrigem()){
+                            g.getArestas().remove(ares);
+                        }
+                    }
+                    listaOrdem.add(nos);
+                    g.getNos().remove(new No(noId));
+                }
+            }
+        }
+        if(listaOrdem.size() != tamanho){
+            listaOrdem.addAll(g.getNos());
+        }
+        for(int i=1; i<listaOrdem.size(); i++){
+            Aresta novaAresta = new Aresta ("A"+j, 1, listaOrdem.get(i-1).getId(), listaOrdem.get(j).getId());
+            novasArestas.add(novaAresta);
+            j++;
+        }
+        g.getNos().clear();
+        g.setNos(listaOrdem);
+        g.getArestas().clear();
+        g.setArestas(novasArestas); 
+        // PARTE 4: VISUALIZA O NOVO GRAFO.
+        g.mostraGrafoDesign(g, "topologica", null);
+        jTNomeGrafo.setText(g.getId());
+        JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo de Ordem Topológica");
+        // PARTE 5: SALVA O GRAFO EM XML.
+        g.salvaGrafo(g);  
+        
+    }                                                 
+
+    private void jButtonMalgrangeActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+       // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-malgrange");
+        // PARTE 2: LIMPA A TELA.
+        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+        jTNomeGrafo.setText("");
+        // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
+        List<String> ftd = new ArrayList<String>();
+        List<String> fti = new ArrayList<String>();
+        List<String> intersecao = new ArrayList<String>();
+        List<String> analisados = new ArrayList<String>();
+        List<String> analisados2 = new ArrayList<String>();
+
+        int qt = listaNos.size();
+        int[][] matrizADJ = grafo.getMatriz();
+
+        int i = 0, j = 0, contador = 0;
+
+        int proximoDaLista = 0;
+        ftd.add(0, listaNos.get(0).getId());
+        analisados.add(i, listaNos.get(0).getId());
+
+        while (contador < listaNos.size()) {
+
+            while (j < qt) {
+
+                if (matrizADJ[i][j] == 1) {
+                    if (!ftd.contains(analisados)) {
+                        ftd.add(listaNos.get(j).getId());
+                    }
+
+                }
+                j++;
+            }
