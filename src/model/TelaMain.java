@@ -318,3 +318,146 @@ public class TelaMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
+
+    private void jtVerticesActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+    }                                          
+
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        XStream xstream = new XStream(new DomDriver());
+        xstream.processAnnotations(Grafo.class);
+        String nomeGrafo = jtNomeGrafo.getText();
+        Grafo g = new Grafo(nomeGrafo, "directed", listaNos, listaArestas);
+        if (jRadioButton1.isSelected()) {
+            g.setTipo("directed");
+        }
+        if (jRadioButton2.isSelected()) {
+            g.setTipo("undirected");
+        }
+        System.out.println(xstream.toXML(g));
+        String xml = xstream.toXML(g);
+        g = null;
+        g = (Grafo) xstream.fromXML(xml);
+        try {
+            File xmlFile = new File(nomeGrafo+".xml");
+            xstream.toXML(g, new FileWriter(xmlFile));
+        } catch (IOException ex) {
+            System.out.println("Erro ao Gravar Arquivo");
+        }
+        DefaultTableModel linhaN = (DefaultTableModel) jtbNos.getModel();
+        while (linhaN.getRowCount() != 0) {
+            listaNos.remove(0);
+            linhaN.removeRow(0);
+        }
+        DefaultTableModel linhaA = (DefaultTableModel) jtbArestas.getModel();
+        while (linhaA.getRowCount() != 0) {
+            listaArestas.remove(0);
+            linhaA.removeRow(0);
+        }
+        jtNomeGrafo.setText("");
+        JOptionPane.showMessageDialog(null, "Dados Salvos com Sucesso");
+    }                                        
+
+    private void jbMostrarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+
+        XStream xstream = new XStream(new DomDriver());
+        xstream.processAnnotations(Grafo.class);
+
+        JFileChooser fileChooser = new JFileChooser();
+
+        fileChooser.showOpenDialog(this);
+
+        File xmlFileLer = new File(fileChooser.getSelectedFile().getName());
+        Grafo g = (Grafo) xstream.fromXML(xmlFileLer);
+        String xml = xstream.toXML(g);
+        System.out.println(xml);
+
+        jtNomeGrafo.setText(fileChooser.getSelectedFile().getName().substring(0, fileChooser.getSelectedFile().getName().lastIndexOf(".")));
+        // retona o nome do arquivo na caixa de texto "nome do grafo"
+        // subtring foi usado para conseguir retornar "grafo" ao invés de "grafo.xml"
+        // tive que fazer isso pq se não fizesse iria salvar depois num arquivo sem nome;
+
+        DefaultTableModel linhaN = (DefaultTableModel) jtbNos.getModel();
+        while (linhaN.getRowCount() != 0) {
+            listaNos.remove(0);
+            linhaN.removeRow(0);
+        }
+
+        for (No n : g.getNos()) {
+            listaNos.add(n);
+            linhaN.addRow(new String[]{n.getId()});
+        }
+
+        DefaultTableModel linhaA = (DefaultTableModel) jtbArestas.getModel();
+
+        while (linhaA.getColumnCount() != 0 && linhaA.getRowCount() != 0) {
+            listaArestas.remove(0);
+            linhaA.removeRow(0);
+        }
+
+        for (Aresta a : g.getArestas()) {
+            listaArestas.add(a);
+            linhaA.addRow(new String[]{a.getNomeAresta(), Integer.toString(a.getValorAresta()), a.getOrigem(), a.getDestino()});
+        }
+        
+        if("undirected".equals(g.getTipo())){
+            jRadioButton2.setSelected(true);
+        }
+        
+        if("directed".equals(g.getTipo())){
+            jRadioButton1.setSelected(true);
+        }
+    }                                         
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+    }                                             
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+    }                                             
+
+    private void jbCriarNosActionPerformed(java.awt.event.ActionEvent evt) {                                           
+
+        DefaultTableModel linha = (DefaultTableModel) jtbNos.getModel();
+        while (linha.getRowCount() != 0) {
+            listaNos.remove(0);
+            linha.removeRow(0);
+        }
+        for (int i = 1; i <= parseInt(jtVertices.getText()); i++) {
+            listaNos.add(new No("n" + i));
+            linha.addRow(new String[]{"n" + i});
+        }
+        jtVertices.setText("");
+    }                                          
+
+    private void jtOrigemActionPerformed(java.awt.event.ActionEvent evt) {                                         
+
+    }                                        
+
+    private void jtDestinoActionPerformed(java.awt.event.ActionEvent evt) {                                          
+
+    }                                         
+
+    private void jbCriarArestaActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        nomeAresta = jtNome.getText();
+        valorAresta = Integer.parseInt(jtValor.getText());
+        origemAresta = jtOrigem.getText();
+        destinoAresta = jtDestino.getText();
+        DefaultTableModel linha = (DefaultTableModel) jtbArestas.getModel();
+        listaArestas.add(new Aresta(nomeAresta, valorAresta, origemAresta, destinoAresta));
+        linha.addRow(new String[]{nomeAresta, Integer.toString(valorAresta), origemAresta, destinoAresta});
+        jtNome.setText("");
+        jtOrigem.setText("");
+        jtDestino.setText("");
+        jtValor.setText("");
+    }                                             
+
+    private void jtFecharActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        setVisible(false);
+    }                                        
+
+    private void jbRemoverVerticeActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        listaNos.remove(jtbNos.getSelectedRow());
+        ((DefaultTableModel) jtbNos.getModel()).removeRow(jtbNos.getSelectedRow());
+    }   
