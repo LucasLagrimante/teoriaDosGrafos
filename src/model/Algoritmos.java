@@ -267,3 +267,55 @@ public class Algoritmos extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(623, 492));
         setLocationRelativeTo(null);
     }// </editor-fold>                        
+  
+    private void jButtonLimparTelaActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+        jTNomeGrafo.setText("");
+    }                                                 
+
+    private void RemoverActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+    }                                       
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+        graphComponent.setPreferredSize(new Dimension(jPanel1.getWidth() - 10, jPanel1.getHeight() - 10));
+        graphComponent.validate();
+        graphComponent.repaint();
+        jPanel1.validate();
+        jPanel1.repaint();
+    }                                 
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {                                      
+        formWindowOpened(null);
+    }                                     
+
+    private void jBAbrirGrafoActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.showOpenDialog(this);
+        File xmlFileLer = new File(fileChooser.getSelectedFile().getName());
+        jTNomeGrafo.setText(fileChooser.getSelectedFile().getName().substring(0, fileChooser.getSelectedFile().getName().lastIndexOf(".")));
+        XStream xstream = new XStream(new DomDriver());
+        xstream.processAnnotations(Grafo.class);
+        grafo = (Grafo) xstream.fromXML(xmlFileLer);
+        grafo.geraMatriz();
+        grafo.geraMatrizIncidencia();
+        String xml = xstream.toXML(grafo);
+        System.out.println(xml);
+        listaNos.clear();
+        listaArestas.clear();
+
+        for (No n : grafo.getNos()) {
+            listaNos.add(n);
+        }
+        for (Aresta a : grafo.getArestas()) {
+            listaArestas.add(a);
+        }
+        grafo.setNos(listaNos);
+        grafo.setArestas(listaArestas);
+        grafo.mostraGrafoDesign(grafo, grafo.getId(), null);
+    }                                            
+
+    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+        setVisible(false);
+    }
