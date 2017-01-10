@@ -50,7 +50,6 @@ public class Aresta implements Comparable<Aresta>{
     public void setV2(Vertice v2) {
         this.v2 = v2;
         target = v2.getId();
-    }
-    
-    
+    }    
+   
 }
