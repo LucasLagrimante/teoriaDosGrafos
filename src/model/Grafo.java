@@ -413,3 +413,45 @@ public class Grafo {
         return arestasIndependentes;
     }
     
+    public String getVerticesIndependentes(){
+        String verticesIndependentes = "\n";
+        for (int i = 0; i < nos.size(); i++) {
+            verticesIndependentes += "\n"+nos.get(i).getId()+" independente de: ";
+            for (int j = 0; j < nos.size(); j++) {
+                if(matriz[i][j] == 0 && i != j){
+                    verticesIndependentes += nos.get(j).getId()+", ";
+                }
+            }
+        }
+        if (verticesIndependentes == "\n") {
+            verticesIndependentes = "Não há vértices independentes !!";
+        }
+        return verticesIndependentes;
+    }
+    
+    public String getVerticesIsolados(Grafo g) {
+        String estring = "\n";
+        for (int i = 0; i < g.getNos().size(); i++) {
+            if (g.getGrauVertice(g.getNos().get(i)) == 0) {
+                estring += "Vértice (" + g.getNos().get(i).getId() + ");\n";
+            }
+        }
+        if (estring == "\n") {
+            estring = "Não há vértices isolados !!";
+        }
+        return estring;
+    }
+
+    public String getVerticesTerminais(Grafo g) {
+        String estring = "\n";
+        for (int i = 0; i < g.getNos().size(); i++) {
+            if (g.getGrauVertice(g.getNos().get(i)) == 1) {
+                estring += "Vértice (" + g.getNos().get(i).getId() + ");\n";
+            }
+        }
+        if (estring == "\n") {
+            estring = "Não há vértices terminais !!";
+        }
+        return estring;
+    }
+
