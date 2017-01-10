@@ -372,3 +372,44 @@ public class Grafo {
         return arestasAd;
     }
 
+    public String getVerticesAdjacentes() {
+        String verticesAd = "\n";
+        for (Aresta are : arestas) {
+            String origem = are.getOrigem();
+            String destino = are.getDestino();
+            verticesAd += origem + " e " + destino + "\n";
+        }
+        return verticesAd;
+    }
+    
+    public String getArestasIndependentes() {
+        String arestasIndependentes = "\n";
+        for (int i = 0; i < arestas.size(); i++) {
+            arestasIndependentes += "\n"+arestas.get(i).getNomeAresta()+" independente de: ";
+            int no1 = -1;
+            for (int j = 0; j < nos.size(); j++) {
+                if(matrizI[i][j] == 1 || matrizI[i][j] == -1){
+                    no1 = j;
+                    break;
+                }
+            }
+            int no2 = -1;
+            for (int k = 0; k < nos.size(); k++) {
+                if((matrizI[i][k] == 1 || matrizI[i][k] == -1) && no1 != k){
+                    no2 = k;
+                    break;
+                }
+            }
+            
+            for (int l = 0; l < arestas.size(); l++) {
+                if(matrizI[l][no1] == 0 && matrizI[l][no2] == 0){
+                    arestasIndependentes += arestas.get(l).getNomeAresta()+", ";
+                }
+            }
+        }
+        if (arestasIndependentes == "\n") {
+            arestasIndependentes = "Não há arestas independentes !!";
+        }
+        return arestasIndependentes;
+    }
+    
