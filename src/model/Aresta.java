@@ -51,5 +51,4 @@ public class Aresta implements Comparable<Aresta>{
         this.v2 = v2;
         target = v2.getId();
     }    
-   
 }
