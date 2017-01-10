@@ -320,3 +320,55 @@ public class Grafo {
         return estring;
     }
 
+    public int getGrauEmissao(No no) {
+        int grau = 0;
+        for (Aresta aresta : this.arestas) {
+            if (aresta.getOrigem() == no.getId()) {
+                grau++;
+            }
+        }
+        return grau;
+    }
+
+    public int getGrauRecepcao(No no) {
+        int grau = 0;
+        for (Aresta aresta : this.arestas) {
+            if (aresta.getDestino() == no.getId()) {
+                grau++;
+            }
+        }
+        return grau;
+    }
+
+    public int getGrauVertice(No no) {
+        int grau = 0;
+        for (Aresta aresta : this.arestas) {
+            if (aresta.getDestino() == no.getId()) {
+                grau++;
+            }
+            if (aresta.getOrigem() == no.getId()) {
+                grau++;
+            }
+        }
+        return grau;
+    }
+
+    public String getArestasAdjacentes() {
+        String arestasAd = "";
+        String subArestAd = "";
+        for (No vertice : nos) {
+            int i = 0;
+            for (Aresta ares : arestas) {
+                if (vertice.getId().equals(ares.getOrigem()) || vertice.getId().equals(ares.getDestino())) {
+                    subArestAd += ares.getNomeAresta() + ", ";
+                    i++;
+                }
+            }
+            if (i > 1) {
+                arestasAd += "\n Pelo vértice " + vertice.getId() + ": " + subArestAd;
+                subArestAd = "";
+            }
+        }
+        return arestasAd;
+    }
+
