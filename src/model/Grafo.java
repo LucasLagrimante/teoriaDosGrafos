@@ -455,3 +455,39 @@ public class Grafo {
         return estring;
     }
 
+    public String getVerticesFontes(Grafo g) {
+        String estring = "\n";
+        for (int i = 0; i < g.getNos().size(); i++) {
+            if (g.getGrauRecepcao(g.getNos().get(i)) == 0 && g.getGrauEmissao(g.getNos().get(i)) != 0) {
+                estring += "Vértice (" + g.getNos().get(i).getId() + ");\n";
+            }
+        }
+        if (estring == "\n") {
+            estring = "Não há vértices fontes!";
+        }
+        return estring;
+    }
+
+    public String getVerticesSumidouros(Grafo g) {
+        String estring = "\n";
+        for (int i = 0; i < g.getNos().size(); i++) {
+            if (g.getGrauRecepcao(g.getNos().get(i)) != 0 && g.getGrauEmissao(g.getNos().get(i)) == 0) {
+                estring += "Vértice (" + g.getNos().get(i).getId() + ");\n";
+            }
+        }
+        if (estring == "\n") {
+            estring = "Não há vértices sumidouros!";
+        }
+        return estring;
+    }
+
+    public int getQtdVerticesFontes(Grafo g) {
+        int qtd = 0;
+        for (int i = 0; i < g.getNos().size(); i++) {
+            if (g.getGrauRecepcao(g.getNos().get(i)) == 0 && g.getGrauEmissao(g.getNos().get(i)) != 0) {
+                qtd ++;
+            }
+        }
+        return qtd;
+    }
+
