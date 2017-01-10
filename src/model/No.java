@@ -1,9 +1,3 @@
-/*
-Trabalho de Teoria dos Grafos
-Equipe: Antonio Celestino, Nathan Manera, Pedro Ferreira e Rafael Paiva
-Professor: Daves Martins
-4º Período BSI - IF Sudeste MG Juiz de Fora
- */
 package grafosxml;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
