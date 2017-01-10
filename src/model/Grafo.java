@@ -84,61 +84,65 @@ public class Grafo {
         return matrizValue;
     }
     
-    public int[][] matrizAdjacencia(Grafo grafo){
-        
-        int[][] ma = new int[grafo.getVertices().size()][grafo.getVertices().size()];
-            
-        for(int i=0;i<grafo.getVertices().size();i++){
-                for(int j = 0; i < grafo.getVertices().size();i++){
-                    ma[i][j] = 0;
-        }
     
-    }  
-    
-        if(grafo.getTipo() == TipoGrafo.unidirected){
-            
-            for(int i=0;i<grafo.getVertices().size();i++){
-                String v1 = grafo.getVertices().get(i).getId();
-                    
-                for(int j=0;j<grafo.getArestas().size();j++){
-                    if(v1.equals(grafo.getArestas().get(j).getSource())){
-                        
-                        for(int k = 0; k<grafo.getVertices().size();k++){
-                            String v2 = grafo.getVertices().get(k).getId();
-                            
-                            if(v1.equals(grafo.getArestas().get(j).getSource()) && v2.equals(grafo.getArestas().get(j).getTarget())){
-                                ma[i][k] = 1;
-                                ma[k][i] = 1;
-                                break;
-                }
-                }
+    public void geraMatrizIncidencia() {
+        int Qtarestas = arestas.size();
+        int Qtdenos = nos.size();
+        matrizI = new int[Qtarestas][Qtdenos];
+        for (int i = 0; i < Qtarestas; i++) {
+            for (int j = 0; j < Qtdenos; j++) {
+                matrizI[i][j] = 0;
             }
         }
-    }
-    }
-        if(grafo.getTipo() == TipoGrafo.directed){
-            for(int i=0;i<grafo.getVertices().size();i++){
-                String vertice1 = grafo.getVertices().get(i).getId();
-        
-                for(int j=0;j<grafo.getArestas().size();j++){
-                    if(vertice1.equals(grafo.getArestas().get(j).getSource())){
+        for (Aresta are : arestas){
+            for (No no : nos) {
+                int posA = arestas.indexOf(are);
+                int posV = nos.indexOf(no);
                 
-                        for(int k = 0; k<grafo.getVertices().size();k++){
-                            String vertice2 = grafo.getVertices().get(k).getId();
-                    
-                            if(vertice1.equals(grafo.getArestas().get(j).getSource()) && vertice2.equals(grafo.getArestas().get(j).getTarget())){
-                            ma[i][k] = 1;
-                            break;
+                if(tipo.equals("directed")){
+                    if(nos.indexOf(new No(are.getDestino())) == posV){
+                        matrizI[posA][posV] = 1;
+                    }
+
+                    if(nos.indexOf(new No(are.getOrigem())) == posV){
+                        matrizI[posA][posV] = -1;
+                    }
                 }
+                if (tipo.equals("undirected")){
+                    if(nos.indexOf(new No(are.getDestino())) == posV || nos.indexOf(new No(are.getOrigem())) == posV){
+                        matrizI[posA][posV] = 1;
+                    }
                 }
             }
         }
     }
-    }
-        
-    return ma;
-    }
     
+    public List<List<No>> listaAdjacencia(Grafo g){
+        adjacencia.clear();
+        List<No> nosg = new ArrayList<No>();
+        List<Aresta> arestasg = new ArrayList<Aresta>();
+        for(No no : g.getNos()){
+            nosg.add(no);
+        }
+        for(Aresta are : g.getArestas()){
+            arestasg.add(are);
+        }
+        for(No no : nosg){
+            List<No> vertice = new ArrayList<No>();
+            vertice.add(no);
+            for(No no1 : nosg){
+                for(Aresta are : arestasg){
+                    if((are.getOrigem().equals(no.getId()) && are.getDestino().equals(no1.getId())) || (are.getOrigem().equals(no1.getId()) && are.getDestino().equals(no.getId()))){
+                        vertice.add(no1);
+                        break;
+                    }
+                }
+            }
+            adjacencia.add(vertice);
+        }
+        return adjacencia;
+    }
+
     public int[][] matrizIncidencia(Grafo grafo){
         
         int[][] mi = new int[grafo.getVertices().size()][grafo.getArestas().size()];
