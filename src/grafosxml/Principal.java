@@ -4,7 +4,7 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-        setLocationRelativeTo(null);// deixa a janela no centro da tela
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -12,119 +12,139 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jSeparator2 = new javax.swing.JSeparator();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuCadastrar = new javax.swing.JMenu();
-        jMenuItemCriaGrafos = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItemVisualizar = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        jMenuItemSair = new javax.swing.JMenuItem();
-        jMenuEstatisticas = new javax.swing.JMenu();
-        jMenuItemDados = new javax.swing.JMenuItem();
-        jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        jMenuAlgoritmos = new javax.swing.JMenuItem();
-        jMenuEditar = new javax.swing.JMenu();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jBCriar = new javax.swing.JButton();
+        jBExibir = new javax.swing.JButton();
+        jBSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenuCadastrar.setText("Cadastrar");
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jMenuItemCriaGrafos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemCriaGrafos.setText("Criar Grafos");
-        jMenuItemCriaGrafos.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 36)); // NOI18N
+        jLabel1.setText("Teria dos Grafos");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Lucas Lagrimante");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Ramon Souza");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Victor Duque");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Kaio Costa");
+
+        jBCriar.setText("Criar");
+        jBCriar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemCriaGrafosActionPerformed(evt);
+                jBCriarActionPerformed(evt);
             }
         });
-        jMenuCadastrar.add(jMenuItemCriaGrafos);
-        jMenuCadastrar.add(jSeparator1);
 
-        jMenuItemVisualizar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemVisualizar.setText("Visualizar Grafo");
-        jMenuItemVisualizar.addActionListener(new java.awt.event.ActionListener() {
+        jBExibir.setText("Exibir");
+        jBExibir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemVisualizarActionPerformed(evt);
+                jBExibirActionPerformed(evt);
             }
         });
-        jMenuCadastrar.add(jMenuItemVisualizar);
-        jMenuCadastrar.add(jSeparator3);
 
-        jMenuItemSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemSair.setText("Sair");
-        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
+        jBSair.setText("Sair");
+        jBSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemSairActionPerformed(evt);
+                jBSairActionPerformed(evt);
             }
         });
-        jMenuCadastrar.add(jMenuItemSair);
-
-        jMenuBar1.add(jMenuCadastrar);
-
-        jMenuEstatisticas.setText("Estatísticas");
-
-        jMenuItemDados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemDados.setText("Obter Dados");
-        jMenuItemDados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemDadosActionPerformed(evt);
-            }
-        });
-        jMenuEstatisticas.add(jMenuItemDados);
-        jMenuEstatisticas.add(jSeparator4);
-
-        jMenuAlgoritmos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuAlgoritmos.setText("Algoritmos");
-        jMenuAlgoritmos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAlgoritmosActionPerformed(evt);
-            }
-        });
-        jMenuEstatisticas.add(jMenuAlgoritmos);
-
-        jMenuBar1.add(jMenuEstatisticas);
-
-        jMenuEditar.setText("Editar");
-        jMenuBar1.add(jMenuEditar);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBExibir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBSair)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jBCriar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(159, 159, 159))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBCriar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(48, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBSair)
+                            .addComponent(jBExibir))
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItemSairActionPerformed
-
-    private void jMenuItemCriaGrafosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCriaGrafosActionPerformed
+    private void jBCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCriarActionPerformed
         TelaMain tm = new TelaMain();
         tm.setVisible(true);
-    }//GEN-LAST:event_jMenuItemCriaGrafosActionPerformed
+    }//GEN-LAST:event_jBCriarActionPerformed
 
-    private void jMenuItemDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDadosActionPerformed
-        DadosGrafos tm = new DadosGrafos();
-        tm.setVisible(true);
-    }//GEN-LAST:event_jMenuItemDadosActionPerformed
-
-    private void jMenuItemVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVisualizarActionPerformed
+    private void jBExibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExibirActionPerformed
         GrafoView tm = new GrafoView();
         tm.setVisible(true);
-    }//GEN-LAST:event_jMenuItemVisualizarActionPerformed
+    }//GEN-LAST:event_jBExibirActionPerformed
 
-    private void jMenuAlgoritmosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAlgoritmosActionPerformed
-        Algoritmos tm = new Algoritmos();
-        tm.setVisible(true);
-    }//GEN-LAST:event_jMenuAlgoritmosActionPerformed
+    private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jBSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,18 +183,15 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem jMenuAlgoritmos;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenuCadastrar;
-    private javax.swing.JMenu jMenuEditar;
-    private javax.swing.JMenu jMenuEstatisticas;
-    private javax.swing.JMenuItem jMenuItemCriaGrafos;
-    private javax.swing.JMenuItem jMenuItemDados;
-    private javax.swing.JMenuItem jMenuItemSair;
-    private javax.swing.JMenuItem jMenuItemVisualizar;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JButton jBCriar;
+    private javax.swing.JButton jBExibir;
+    private javax.swing.JButton jBSair;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
-    private javax.swing.JPopupMenu.Separator jSeparator4;
     // End of variables declaration//GEN-END:variables
 }

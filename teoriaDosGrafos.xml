@@ -1,8 +1,8 @@
-<graph id="Lucas" edgedefault="unidirected">
-  <node id="45"/>
-  <node id="2"/>
-  <node id="3"/>
-  <edge id="4545" source="1" target="1"/>
-  <edge id="2" source="2" target="2"/>
-  <edge id="3" source="3" target="3"/>
+<graph id="teste" edgedefault="unidirected">
+  <node id="a"/>
+  <node id="b"/>
+  <node id="c"/>
+  <edge id="1" source="a" target="b"/>
+  <edge id="2" source="b" target="c"/>
+  <edge id="3" source="c" target="a"/>
 </graph>
