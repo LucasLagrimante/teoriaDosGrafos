@@ -60,7 +60,7 @@ public class Algoritmos extends javax.swing.JFrame {
         graphComponent.setPreferredSize(new Dimension(10, 10));
         graphComponent.setBackground(Color.WHITE);
         graphComponent.setComponentPopupMenu(popupMenu);
-        jPanel1.add(graphComponent);
+//        jPanel1.add(graphComponent);
 
         graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent e) {
@@ -71,8 +71,8 @@ public class Algoritmos extends javax.swing.JFrame {
 
         graphComponent.validate();
         graphComponent.repaint();
-        jPanel1.validate();
-        jPanel1.repaint();
+//        jPanel1.validate();
+//        jPanel1.repaint();
     }
 
     /**
@@ -87,11 +87,8 @@ public class Algoritmos extends javax.swing.JFrame {
         popupMenu = new javax.swing.JPopupMenu();
         Remover = new javax.swing.JMenuItem();
         abc = new javax.swing.JMenuItem();
-        jPanel1 = new javax.swing.JPanel();
-        jButtonLimparTela = new javax.swing.JButton();
         jBAbrirGrafo = new javax.swing.JButton();
         jTNomeGrafo = new javax.swing.JTextField();
-        jBFechar = new javax.swing.JButton();
         jBDijkstra = new javax.swing.JButton();
         jBKruskal = new javax.swing.JButton();
         jBPrim = new javax.swing.JButton();
@@ -110,26 +107,15 @@ public class Algoritmos extends javax.swing.JFrame {
         abc.setText("Cor");
         popupMenu.add(abc);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
             }
         });
-
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.setComponentPopupMenu(popupMenu);
-        jPanel1.setPreferredSize(new java.awt.Dimension(400, 10));
-
-        jButtonLimparTela.setText("Limpar Tela");
-        jButtonLimparTela.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimparTelaActionPerformed(evt);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -141,13 +127,6 @@ public class Algoritmos extends javax.swing.JFrame {
         });
 
         jTNomeGrafo.setEnabled(false);
-
-        jBFechar.setText("Fechar");
-        jBFechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBFecharActionPerformed(evt);
-            }
-        });
 
         jBDijkstra.setText("Dijkstra");
         jBDijkstra.addActionListener(new java.awt.event.ActionListener() {
@@ -195,18 +174,13 @@ public class Algoritmos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAbrirGrafo)
                         .addGap(18, 18, 18)
-                        .addComponent(jTNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonLimparTela)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBFechar))
+                        .addComponent(jTNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBDijkstra)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -218,9 +192,8 @@ public class Algoritmos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonTopologica)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonProfundidade)
-                        .addGap(0, 105, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jButtonProfundidade)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,11 +201,7 @@ public class Algoritmos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBAbrirGrafo)
-                    .addComponent(jTNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonLimparTela)
-                    .addComponent(jBFechar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBDijkstra)
@@ -241,29 +210,24 @@ public class Algoritmos extends javax.swing.JFrame {
                     .addComponent(jButtonMalgrange)
                     .addComponent(jButtonTopologica)
                     .addComponent(jButtonProfundidade))
-                .addGap(70, 70, 70))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(623, 492));
+        setSize(new java.awt.Dimension(530, 124));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
    
-    private void jButtonLimparTelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparTelaActionPerformed
-        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-        jTNomeGrafo.setText("");
-    }//GEN-LAST:event_jButtonLimparTelaActionPerformed
-
     private void RemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RemoverActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        graphComponent.setPreferredSize(new Dimension(jPanel1.getWidth() - 10, jPanel1.getHeight() - 10));
+//        graphComponent.setPreferredSize(new Dimension(jPanel1.getWidth() - 10, jPanel1.getHeight() - 10));
         graphComponent.validate();
         graphComponent.repaint();
-        jPanel1.validate();
-        jPanel1.repaint();
+//        jPanel1.validate();
+//        jPanel1.repaint();
     }//GEN-LAST:event_formWindowOpened
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
@@ -295,11 +259,6 @@ public class Algoritmos extends javax.swing.JFrame {
         grafo.setArestas(listaArestas);
         grafo.mostraGrafoDesign(grafo, grafo.getId(), null);
     }//GEN-LAST:event_jBAbrirGrafoActionPerformed
-
-    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
-        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-        setVisible(false);
-    }//GEN-LAST:event_jBFecharActionPerformed
 
     private void jBKruskalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKruskalActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
@@ -907,14 +866,11 @@ public class Algoritmos extends javax.swing.JFrame {
     private javax.swing.JMenuItem abc;
     private javax.swing.JButton jBAbrirGrafo;
     private javax.swing.JButton jBDijkstra;
-    private javax.swing.JButton jBFechar;
     private javax.swing.JButton jBKruskal;
     private javax.swing.JButton jBPrim;
-    private javax.swing.JButton jButtonLimparTela;
     private javax.swing.JButton jButtonMalgrange;
     private javax.swing.JButton jButtonProfundidade;
     private javax.swing.JButton jButtonTopologica;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTNomeGrafo;
     private javax.swing.JPopupMenu popupMenu;
     // End of variables declaration//GEN-END:variables

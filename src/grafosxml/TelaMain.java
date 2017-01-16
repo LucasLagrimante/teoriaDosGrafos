@@ -36,7 +36,6 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jbSalvar = new javax.swing.JButton();
         jbMostrar = new javax.swing.JButton();
-        jtFechar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jtNomeGrafo = new javax.swing.JTextField();
         jBPropriedades = new javax.swing.JButton();
@@ -66,10 +65,11 @@ public class TelaMain extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbNos = new javax.swing.JTable();
         jbRemoverVertice = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel7.setText("jLabel7");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jbSalvar.setText("Salvar Grafo");
         jbSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -78,17 +78,10 @@ public class TelaMain extends javax.swing.JFrame {
             }
         });
 
-        jbMostrar.setText("Mostrar Grafo");
+        jbMostrar.setText("Abrir Grafo");
         jbMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbMostrarActionPerformed(evt);
-            }
-        });
-
-        jtFechar.setText("Fechar");
-        jtFechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtFecharActionPerformed(evt);
             }
         });
 
@@ -342,6 +335,13 @@ public class TelaMain extends javax.swing.JFrame {
                 .addGap(7, 7, 7))
         );
 
+        jButton1.setText("Exibir Grafo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -359,8 +359,8 @@ public class TelaMain extends javax.swing.JFrame {
                                 .addComponent(jBPropriedades)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBAlgoritmos)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtFechar))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -370,7 +370,7 @@ public class TelaMain extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addGap(38, 38, 38)
                         .addComponent(jtNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,8 +389,8 @@ public class TelaMain extends javax.swing.JFrame {
                     .addComponent(jbMostrar)
                     .addComponent(jBPropriedades)
                     .addComponent(jBAlgoritmos)
-                    .addComponent(jtFechar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -520,10 +520,6 @@ public class TelaMain extends javax.swing.JFrame {
         jtValor.setText("");
     }//GEN-LAST:event_jbCriarArestaActionPerformed
 
-    private void jtFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtFecharActionPerformed
-        setVisible(false);
-    }//GEN-LAST:event_jtFecharActionPerformed
-
     private void jbRemoverVerticeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRemoverVerticeActionPerformed
         listaNos.remove(jtbNos.getSelectedRow());
         ((DefaultTableModel) jtbNos.getModel()).removeRow(jtbNos.getSelectedRow());
@@ -551,6 +547,10 @@ public class TelaMain extends javax.swing.JFrame {
         Algoritmos tm = new Algoritmos();
         tm.setVisible(true);
     }//GEN-LAST:event_jBAlgoritmosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -590,6 +590,7 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBAlgoritmos;
     private javax.swing.JButton jBPropriedades;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -613,7 +614,6 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JButton jbRemoverVertice;
     private javax.swing.JButton jbSalvar;
     private javax.swing.JTextField jtDestino;
-    private javax.swing.JButton jtFechar;
     private javax.swing.JTextField jtNome;
     private javax.swing.JTextField jtNomeGrafo;
     private javax.swing.JTextField jtOrigem;

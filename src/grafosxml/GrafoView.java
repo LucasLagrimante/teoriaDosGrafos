@@ -123,15 +123,15 @@ public class GrafoView extends javax.swing.JFrame {
         abc.setText("Cor");
         popupMenu.add(abc);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -228,9 +228,9 @@ public class GrafoView extends javax.swing.JFrame {
                         .addComponent(jButtonRemoveVertice)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonAddAresta)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonRemoveAresta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonRemoveAresta)
+                        .addGap(18, 18, 18)
                         .addComponent(jBFechar)))
                 .addContainerGap())
         );
