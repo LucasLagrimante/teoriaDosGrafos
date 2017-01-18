@@ -12,6 +12,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
+import os.ifet.RumApp;
 
 public class TelaMain extends javax.swing.JFrame {
 
@@ -416,7 +417,7 @@ public class TelaMain extends javax.swing.JFrame {
         g = null;
         g = (Grafo) xstream.fromXML(xml);
         try {
-            File xmlFile = new File(nomeGrafo+".xml");
+            File xmlFile = new File(nomeGrafo + ".xml");
             xstream.toXML(g, new FileWriter(xmlFile));
         } catch (IOException ex) {
             System.out.println("Erro ao Gravar Arquivo");
@@ -450,7 +451,7 @@ public class TelaMain extends javax.swing.JFrame {
         System.out.println(xml);
 
         jtNomeGrafo.setText(fileChooser.getSelectedFile().getName().substring(0, fileChooser.getSelectedFile().getName().lastIndexOf(".")));
- 
+
         DefaultTableModel linhaN = (DefaultTableModel) jtbNos.getModel();
         while (linhaN.getRowCount() != 0) {
             listaNos.remove(0);
@@ -473,12 +474,12 @@ public class TelaMain extends javax.swing.JFrame {
             listaArestas.add(a);
             linhaA.addRow(new String[]{a.getNomeAresta(), Integer.toString(a.getValorAresta()), a.getOrigem(), a.getDestino()});
         }
-        
-        if("undirected".equals(g.getTipo())){
+
+        if ("undirected".equals(g.getTipo())) {
             jRadioButton2.setSelected(true);
         }
-        
-        if("directed".equals(g.getTipo())){
+
+        if ("directed".equals(g.getTipo())) {
             jRadioButton1.setSelected(true);
         }
     }//GEN-LAST:event_jbMostrarActionPerformed
@@ -549,7 +550,8 @@ public class TelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAlgoritmosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        RumApp ra = new RumApp();
+        ra.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -1,8 +1,5 @@
 package grafosxml;
 
-import com.mxgraph.model.mxCell;
-import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.view.mxGraph;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.awt.Color;
@@ -35,18 +32,18 @@ public class Algoritmos extends javax.swing.JFrame {
     List<No> nosDestino = new ArrayList<No>();
     List<No> nosOrigem = new ArrayList<No>();
 
-    protected static mxGraph graph = new mxGraph();
-    protected static HashMap m = new HashMap();
-    private mxGraphComponent graphComponent;
-    private mxCell cell = null;
+//    protected static mxGraph graph = new mxGraph();
+//    protected static HashMap m = new HashMap();
+//    private mxGraphComponent graphComponent;
+//    private mxCell cell = null;
 
-    public static HashMap getM() {
-        return m;
-    }
+//    public static HashMap getM() {
+//        return m;
+//    }
 
-    public static mxGraph getGraph() {
-        return graph;
-    }
+//    public static mxGraph getGraph() {
+//        return graph;
+//    }
 
     Object parent;
 
@@ -54,23 +51,23 @@ public class Algoritmos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null); // deixa a janela no centro da tela
 
-        parent = graph.getDefaultParent();
-        graphComponent = new mxGraphComponent(graph);
+//        parent = graph.getDefaultParent();
+//        graphComponent = new mxGraphComponent(graph);
 
-        graphComponent.setPreferredSize(new Dimension(10, 10));
-        graphComponent.setBackground(Color.WHITE);
-        graphComponent.setComponentPopupMenu(popupMenu);
+//        graphComponent.setPreferredSize(new Dimension(10, 10));
+//        graphComponent.setBackground(Color.WHITE);
+//        graphComponent.setComponentPopupMenu(popupMenu);
 //        jPanel1.add(graphComponent);
 
-        graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
-            public void mouseReleased(MouseEvent e) {
-                cell = (mxCell) graphComponent.getCellAt(e.getX(), e.getY());
-            }
-        });
-        getContentPane().setBackground(Color.white);
-
-        graphComponent.validate();
-        graphComponent.repaint();
+//        graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
+//            public void mouseReleased(MouseEvent e) {
+//                cell = (mxCell) graphComponent.getCellAt(e.getX(), e.getY());
+//            }
+//        });
+//        getContentPane().setBackground(Color.white);
+//
+//        graphComponent.validate();
+//        graphComponent.repaint();
 //        jPanel1.validate();
 //        jPanel1.repaint();
     }
@@ -224,8 +221,8 @@ public class Algoritmos extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 //        graphComponent.setPreferredSize(new Dimension(jPanel1.getWidth() - 10, jPanel1.getHeight() - 10));
-        graphComponent.validate();
-        graphComponent.repaint();
+//        graphComponent.validate();
+//        graphComponent.repaint();
 //        jPanel1.validate();
 //        jPanel1.repaint();
     }//GEN-LAST:event_formWindowOpened
@@ -257,14 +254,14 @@ public class Algoritmos extends javax.swing.JFrame {
         }
         grafo.setNos(listaNos);
         grafo.setArestas(listaArestas);
-        grafo.mostraGrafoDesign(grafo, grafo.getId(), null);
+//        grafo.mostraGrafoDesign(grafo, grafo.getId(), null);
     }//GEN-LAST:event_jBAbrirGrafoActionPerformed
 
     private void jBKruskalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKruskalActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-kruskal");   
         // PARTE 2: LIMPA A TELA.
-        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+//        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<Aresta> arestasOrdenadas = new ArrayList<Aresta>();
@@ -330,7 +327,7 @@ public class Algoritmos extends javax.swing.JFrame {
         g.getArestas().clear();
         g.setArestas(novasArestas);
         // PARTE 4: VISUALIZA O NOVO GRAFO.
-        g.mostraGrafoDesign(g, "kruskal", null);
+//        g.mostraGrafoDesign(g, "kruskal", null);
         jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Árvore geradora mínima pelo \n algoritmo de Kruskal");
         // PARTE 5: SALVA O GRAFO EM XML.
@@ -341,7 +338,7 @@ public class Algoritmos extends javax.swing.JFrame {
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-dijkstra");   
         // PARTE 2: LIMPA A TELA.
-        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+//        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<No> listaNosFechados = new ArrayList<No>();
@@ -414,7 +411,7 @@ public class Algoritmos extends javax.swing.JFrame {
         }
         
         // PARTE 4: VISUALIZA O NOVO GRAFO.
-        g.mostraGrafoDesign(g, "dijkstra", null);
+//        g.mostraGrafoDesign(g, "dijkstra", null);
         jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Caminho Minímo:\n" + imprime);
         // PARTE 5: SALVA O GRAFO EM XML.
@@ -425,7 +422,7 @@ public class Algoritmos extends javax.swing.JFrame {
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-prim");
         // PARTE 2: LIMPA A TELA.
-        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+//        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<Aresta> t = new ArrayList<Aresta>();                               //T: conjunto de arestas da árvore geradora mínima
@@ -569,7 +566,7 @@ public class Algoritmos extends javax.swing.JFrame {
         g.setArestas(t);
         
         // PARTE 4: VISUALIZA O NOVO GRAFO.
-        g.mostraGrafoDesign(g, "prim", null);
+//        g.mostraGrafoDesign(g, "prim", null);
         jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Conjunto de arestas da árvore geradora mínima:\n"+T);
         // PARTE 5: SALVA O GRAFO EM XML.
@@ -608,7 +605,7 @@ public class Algoritmos extends javax.swing.JFrame {
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
             Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-profundidade");   
         // PARTE 2: LIMPA A TELA.
-            graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+//            graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
             jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
             nosVisitados.clear();
@@ -628,7 +625,7 @@ public class Algoritmos extends javax.swing.JFrame {
             g.getArestas().clear();
             g.setArestas(arestas);      
         // PARTE 4: VISUALIZA O NOVO GRAFO.
-            g.mostraGrafoDesign(g, "profundidade", null);
+//            g.mostraGrafoDesign(g, "profundidade", null);
             jTNomeGrafo.setText(g.getId());
             JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo Busca em Produndidade");
         // PARTE 5: SALVA O GRAFO EM XML.
@@ -640,7 +637,7 @@ public class Algoritmos extends javax.swing.JFrame {
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-topologica");   
         // PARTE 2: LIMPA A TELA.
-        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+//        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<Aresta> manipulaArestas = new ArrayList<Aresta>();
@@ -689,7 +686,7 @@ public class Algoritmos extends javax.swing.JFrame {
         g.getArestas().clear();
         g.setArestas(novasArestas); 
         // PARTE 4: VISUALIZA O NOVO GRAFO.
-        g.mostraGrafoDesign(g, "topologica", null);
+//        g.mostraGrafoDesign(g, "topologica", null);
         jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo de Ordem Topológica");
         // PARTE 5: SALVA O GRAFO EM XML.
@@ -701,7 +698,7 @@ public class Algoritmos extends javax.swing.JFrame {
        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-malgrange");
         // PARTE 2: LIMPA A TELA.
-        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
+//        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<String> ftd = new ArrayList<String>();
@@ -782,7 +779,7 @@ public class Algoritmos extends javax.swing.JFrame {
         //listaNos.remove(new No((String) cell.getValue()));
         //cell = null;
         // PARTE 4: VISUALIZA O NOVO GRAFO.
-        g.mostraGrafoDesign(g, "malgrange", null);
+//        g.mostraGrafoDesign(g, "malgrange", null);
         jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Vértices Fortemente Conexos:\n" + imprimir);
         // PARTE 5: SALVA O GRAFO EM XML.
