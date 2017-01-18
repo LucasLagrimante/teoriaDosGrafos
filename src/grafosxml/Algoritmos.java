@@ -92,6 +92,7 @@ public class Algoritmos extends javax.swing.JFrame {
         jButtonMalgrange = new javax.swing.JButton();
         jButtonTopologica = new javax.swing.JButton();
         jButtonProfundidade = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         Remover.setText("Remover");
         Remover.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +168,13 @@ public class Algoritmos extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Testar Planaridade");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,20 +185,26 @@ public class Algoritmos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAbrirGrafo)
                         .addGap(18, 18, 18)
-                        .addComponent(jTNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTNomeGrafo))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBDijkstra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBKruskal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBPrim)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonMalgrange)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonTopologica)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonProfundidade)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBDijkstra)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBPrim)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonTopologica)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jBKruskal)
+                                .addGap(32, 32, 32)
+                                .addComponent(jButtonMalgrange)
+                                .addGap(37, 37, 37)
+                                .addComponent(jButtonProfundidade)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,15 +216,18 @@ public class Algoritmos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBDijkstra)
-                    .addComponent(jBKruskal)
                     .addComponent(jBPrim)
-                    .addComponent(jButtonMalgrange)
                     .addComponent(jButtonTopologica)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBKruskal)
+                    .addComponent(jButtonMalgrange)
                     .addComponent(jButtonProfundidade))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(530, 124));
+        setSize(new java.awt.Dimension(418, 157));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -786,6 +803,10 @@ public class Algoritmos extends javax.swing.JFrame {
         g.salvaGrafo(g); 
     }//GEN-LAST:event_jButtonMalgrangeActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -865,6 +886,7 @@ public class Algoritmos extends javax.swing.JFrame {
     private javax.swing.JButton jBDijkstra;
     private javax.swing.JButton jBKruskal;
     private javax.swing.JButton jBPrim;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonMalgrange;
     private javax.swing.JButton jButtonProfundidade;
     private javax.swing.JButton jButtonTopologica;
