@@ -25,7 +25,7 @@ public class Algoritmos extends javax.swing.JFrame {
     String nomeAresta;
     String origemAresta;
     String destinoAresta;
-    
+
     List<List<No>> listaAdjacenciaNos = new ArrayList<List<No>>();
     List<No> nosVisitados = new ArrayList<No>();
     List<No> todosNos = new ArrayList<No>();
@@ -36,15 +36,12 @@ public class Algoritmos extends javax.swing.JFrame {
 //    protected static HashMap m = new HashMap();
 //    private mxGraphComponent graphComponent;
 //    private mxCell cell = null;
-
 //    public static HashMap getM() {
 //        return m;
 //    }
-
 //    public static mxGraph getGraph() {
 //        return graph;
 //    }
-
     Object parent;
 
     public Algoritmos() {
@@ -53,12 +50,10 @@ public class Algoritmos extends javax.swing.JFrame {
 
 //        parent = graph.getDefaultParent();
 //        graphComponent = new mxGraphComponent(graph);
-
 //        graphComponent.setPreferredSize(new Dimension(10, 10));
 //        graphComponent.setBackground(Color.WHITE);
 //        graphComponent.setComponentPopupMenu(popupMenu);
 //        jPanel1.add(graphComponent);
-
 //        graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
 //            public void mouseReleased(MouseEvent e) {
 //                cell = (mxCell) graphComponent.getCellAt(e.getX(), e.getY());
@@ -84,15 +79,29 @@ public class Algoritmos extends javax.swing.JFrame {
         popupMenu = new javax.swing.JPopupMenu();
         Remover = new javax.swing.JMenuItem();
         abc = new javax.swing.JMenuItem();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jBAbrirGrafo = new javax.swing.JButton();
         jTNomeGrafo = new javax.swing.JTextField();
+        jButtonTopologica = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jBDijkstra = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         jBKruskal = new javax.swing.JButton();
         jBPrim = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
         jButtonMalgrange = new javax.swing.JButton();
-        jButtonTopologica = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jButtonProfundidade = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         Remover.setText("Remover");
         Remover.addActionListener(new java.awt.event.ActionListener() {
@@ -104,6 +113,28 @@ public class Algoritmos extends javax.swing.JFrame {
 
         abc.setText("Cor");
         popupMenu.add(abc);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -126,12 +157,45 @@ public class Algoritmos extends javax.swing.JFrame {
 
         jTNomeGrafo.setEnabled(false);
 
+        jButtonTopologica.setText("Topológica");
+        jButtonTopologica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTopologicaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Distância:");
+
         jBDijkstra.setText("Dijkstra");
         jBDijkstra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBDijkstraActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jBDijkstra)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBDijkstra)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jBKruskal.setText("Kruskal");
         jBKruskal.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +211,35 @@ public class Algoritmos extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Árvore Geradora");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBPrim)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBKruskal)
+                .addGap(0, 9, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBPrim)
+                    .addComponent(jBKruskal))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
         jButtonMalgrange.setText("Malgrange");
         jButtonMalgrange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,12 +247,50 @@ public class Algoritmos extends javax.swing.JFrame {
             }
         });
 
-        jButtonTopologica.setText("Topológica");
-        jButtonTopologica.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setText("Grafo Reduzido");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jButtonMalgrange))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonMalgrange)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 143, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 64, Short.MAX_VALUE)
+        );
+
+        jButton2.setText("Ordenação");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTopologicaActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
+
+        jButton3.setText("Largura");
+
+        jLabel4.setText("Busca em Grafo");
 
         jButtonProfundidade.setText("Profundidade");
         jButtonProfundidade.addActionListener(new java.awt.event.ActionListener() {
@@ -168,12 +299,44 @@ public class Algoritmos extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jButtonProfundidade)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(101, 101, 101))))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButtonProfundidade)
+                    .addComponent(jButton3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         jButton1.setText("Testar Planaridade");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("Seminário");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,28 +346,29 @@ public class Algoritmos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBAbrirGrafo)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTNomeGrafo))
+                        .addComponent(jButtonTopologica))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBDijkstra)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBPrim)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonTopologica)
-                                .addGap(18, 18, 18)
+                                .addGap(29, 29, 29)
                                 .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jBKruskal)
-                                .addGap(32, 32, 32)
-                                .addComponent(jButtonMalgrange)
-                                .addGap(37, 37, 37)
-                                .addComponent(jButtonProfundidade)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGap(64, 64, 64)
+                                .addComponent(jLabel5))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBAbrirGrafo)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTNomeGrafo)))
+                .addGap(39, 39, 39)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,25 +377,41 @@ public class Algoritmos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBAbrirGrafo)
                     .addComponent(jTNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBDijkstra)
-                    .addComponent(jBPrim)
-                    .addComponent(jButtonTopologica)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBKruskal)
-                    .addComponent(jButtonMalgrange)
-                    .addComponent(jButtonProfundidade))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jButtonTopologica)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)))))
+                .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(418, 157));
+        setSize(new java.awt.Dimension(505, 252));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-   
+
     private void RemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RemoverActionPerformed
@@ -276,7 +456,7 @@ public class Algoritmos extends javax.swing.JFrame {
 
     private void jBKruskalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKruskalActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
-        Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-kruskal");   
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-kruskal");
         // PARTE 2: LIMPA A TELA.
 //        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         jTNomeGrafo.setText("");
@@ -285,52 +465,50 @@ public class Algoritmos extends javax.swing.JFrame {
         List<Aresta> novasArestas = new ArrayList<Aresta>();
         List<No> nosLigados = new ArrayList<No>();
         List<No> nosSoltos = new ArrayList<No>();
-        for(Aresta are : g.getArestas()){
+        for (Aresta are : g.getArestas()) {
             arestasOrdenadas.add(are);
         }
         Collections.sort(arestasOrdenadas);
         int j = 0;
-        while(novasArestas.size()<(g.getNos().size()-1) && arestasOrdenadas.size() != j){
-            for(Aresta ares : arestasOrdenadas){
-                if(novasArestas.size() == 0){
+        while (novasArestas.size() < (g.getNos().size() - 1) && arestasOrdenadas.size() != j) {
+            for (Aresta ares : arestasOrdenadas) {
+                if (novasArestas.size() == 0) {
                     nosLigados.add(g.getNoById(ares.getOrigem()));
                     nosLigados.add(g.getNoById(ares.getDestino()));
                     novasArestas.add(ares);
                     j++;
-                }
-                else{
-                    if(nosLigados.contains(g.getNoById(ares.getOrigem())) || nosLigados.contains(g.getNoById(ares.getDestino()))){
-                        if(nosLigados.contains(g.getNoById(ares.getOrigem())) && nosLigados.contains(g.getNoById(ares.getDestino()))){
-                            if((nosSoltos.contains(g.getNoById(ares.getOrigem())) && !nosSoltos.contains(g.getNoById(ares.getDestino()))) || (nosSoltos.contains(g.getNoById(ares.getDestino())) && !nosSoltos.contains(g.getNoById(ares.getOrigem())))){
+                } else {
+                    if (nosLigados.contains(g.getNoById(ares.getOrigem())) || nosLigados.contains(g.getNoById(ares.getDestino()))) {
+                        if (nosLigados.contains(g.getNoById(ares.getOrigem())) && nosLigados.contains(g.getNoById(ares.getDestino()))) {
+                            if ((nosSoltos.contains(g.getNoById(ares.getOrigem())) && !nosSoltos.contains(g.getNoById(ares.getDestino()))) || (nosSoltos.contains(g.getNoById(ares.getDestino())) && !nosSoltos.contains(g.getNoById(ares.getOrigem())))) {
                                 novasArestas.add(ares);
                                 j++;
                                 nosSoltos.clear();
                             }
-                        }
-                        else{
-                            if(!nosSoltos.contains(g.getNoById(ares.getOrigem())) && !nosSoltos.contains(g.getNoById(ares.getDestino()))){
+                        } else {
+                            if (!nosSoltos.contains(g.getNoById(ares.getOrigem())) && !nosSoltos.contains(g.getNoById(ares.getDestino()))) {
                                 novasArestas.add(ares);
                                 j++;
-                                if(!nosLigados.contains(g.getNoById(ares.getOrigem())))
+                                if (!nosLigados.contains(g.getNoById(ares.getOrigem()))) {
                                     nosLigados.add(g.getNoById(ares.getOrigem()));
-                                if(!nosLigados.contains(g.getNoById(ares.getDestino())))
+                                }
+                                if (!nosLigados.contains(g.getNoById(ares.getDestino()))) {
                                     nosLigados.add(g.getNoById(ares.getDestino()));
-                            }
-                            else{
+                                }
+                            } else {
                                 novasArestas.add(ares);
                                 j++;
-                                if(!nosSoltos.contains(g.getNoById(ares.getOrigem()))){
+                                if (!nosSoltos.contains(g.getNoById(ares.getOrigem()))) {
                                     nosSoltos.add(g.getNoById(ares.getOrigem()));
                                     nosLigados.add(g.getNoById(ares.getOrigem()));
                                 }
-                                if(!nosSoltos.contains(g.getNoById(ares.getDestino()))){
+                                if (!nosSoltos.contains(g.getNoById(ares.getDestino()))) {
                                     nosSoltos.add(g.getNoById(ares.getDestino()));
                                     nosLigados.add(g.getNoById(ares.getDestino()));
                                 }
                             }
-                        }   
-                    }
-                    else{
+                        }
+                    } else {
                         novasArestas.add(ares);
                         j++;
                         nosLigados.add(g.getNoById(ares.getOrigem()));
@@ -353,7 +531,7 @@ public class Algoritmos extends javax.swing.JFrame {
 
     private void jBDijkstraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDijkstraActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
-        Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-dijkstra");   
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-dijkstra");
         // PARTE 2: LIMPA A TELA.
 //        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         jTNomeGrafo.setText("");
@@ -426,7 +604,7 @@ public class Algoritmos extends javax.swing.JFrame {
             imprime += "(" + verticeRaiz + " , " + lista.get(p).getId() + ") = " + tabelaD[j] + "\n";
             p++;
         }
-        
+
         // PARTE 4: VISUALIZA O NOVO GRAFO.
 //        g.mostraGrafoDesign(g, "dijkstra", null);
         jTNomeGrafo.setText(g.getId());
@@ -437,7 +615,7 @@ public class Algoritmos extends javax.swing.JFrame {
 
     private void jBPrimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPrimActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
-        Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-prim");
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-prim");
         // PARTE 2: LIMPA A TELA.
 //        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         jTNomeGrafo.setText("");
@@ -449,16 +627,16 @@ public class Algoritmos extends javax.swing.JFrame {
         List<No> b = new ArrayList<No>();                                       //B: conjunto de vértices da árvore geradora mínima
         b.add(listaNos.get(0));
         v.remove(v.get(0));
-        while(b.size() <= listaNos.size()){
+        while (b.size() <= listaNos.size()) {
             for (Aresta are : arestasOriginais) {   //esse 'for' procura as arestas do último vértice adicionado ao conjunto B
-                if(are.getOrigem().equals(b.get(b.size()-1).getId()) || are.getDestino().equals(b.get(b.size()-1).getId())){ 
-                    if(t.isEmpty()) {
+                if (are.getOrigem().equals(b.get(b.size() - 1).getId()) || are.getDestino().equals(b.get(b.size() - 1).getId())) {
+                    if (t.isEmpty()) {
                         arestasPossiveis.add(are);
                     } else {
                         for (No nov : v) {
-                            if(nov.getId() == are.getOrigem()){
+                            if (nov.getId() == are.getOrigem()) {
                                 for (No nob : b) {
-                                    if(nob.getId() == are.getDestino()){
+                                    if (nob.getId() == are.getDestino()) {
                                         arestasPossiveis.add(are);
                                         break;
                                     }
@@ -466,9 +644,9 @@ public class Algoritmos extends javax.swing.JFrame {
                             }
                         }
                         for (No nov : v) {
-                            if(nov.getId() == are.getDestino()){
+                            if (nov.getId() == are.getDestino()) {
                                 for (No nob : b) {
-                                    if(nob.getId() == are.getOrigem()){
+                                    if (nob.getId() == are.getOrigem()) {
                                         arestasPossiveis.add(are);
                                         break;
                                     }
@@ -478,62 +656,74 @@ public class Algoritmos extends javax.swing.JFrame {
                     }
                 }
             }
-            
+
             boolean bw = true;
             boolean bo = false;
             boolean bd = false;
-            while(bw == true){                      //esse 'while' remove do conjunto AP e AO, as arestas que possuem ambos os vértices
+            while (bw == true) {                      //esse 'while' remove do conjunto AP e AO, as arestas que possuem ambos os vértices
                 bw = false;                         //já incluídos no conjunto B, ou seja, remove do conjunto AP e AO as arestas que estão fechando circuito.
                 for (Aresta aresPos : arestasPossiveis) {
                     String ao = aresPos.getOrigem();
                     String ad = aresPos.getDestino();
                     for (No no1 : b) {
-                        if(no1.getId() == ao){
+                        if (no1.getId() == ao) {
                             bo = true;
                             break;
-                        }else{bw = false; bo = false;}
+                        } else {
+                            bw = false;
+                            bo = false;
+                        }
                     }
-                    
+
                     for (No no2 : b) {
-                        if(no2.getId() == ad){
-                           bd = true;
-                           break;
-                        }else{bw = false; bd = false;}
+                        if (no2.getId() == ad) {
+                            bd = true;
+                            break;
+                        } else {
+                            bw = false;
+                            bd = false;
+                        }
                     }
-                    
-                    if(bo == true && bd == true){
+
+                    if (bo == true && bd == true) {
                         arestasPossiveis.remove(aresPos);
                         bw = true;
                         for (Aresta a : arestasOriginais) {
-                            if(aresPos.getNomeAresta() == a.getNomeAresta() && aresPos.getValorAresta() == a.getValorAresta() && aresPos.getOrigem() == a.getOrigem() && aresPos.getDestino() == a.getDestino()){
+                            if (aresPos.getNomeAresta() == a.getNomeAresta() && aresPos.getValorAresta() == a.getValorAresta() && aresPos.getOrigem() == a.getOrigem() && aresPos.getDestino() == a.getDestino()) {
                                 arestasOriginais.remove(a);
                                 break;
                             }
                         }
                         break;
-                    }else{bw = false; bo = false; bd = false;}
+                    } else {
+                        bw = false;
+                        bo = false;
+                        bd = false;
+                    }
                 }
-                if(bw == false){break;}
+                if (bw == false) {
+                    break;
+                }
             }
-            
-            if(arestasPossiveis.size() > 0){
+
+            if (arestasPossiveis.size() > 0) {
                 int valorMenor = arestasPossiveis.get(0).getValorAresta();//esse trecho do algoritmo adiciona ao conjunto T a aresta do conjunto AP que tiver o menor getValorAresta()  
-                for (Aresta aresPos : arestasPossiveis) {                           
-                    if(aresPos.getValorAresta() < valorMenor){
+                for (Aresta aresPos : arestasPossiveis) {
+                    if (aresPos.getValorAresta() < valorMenor) {
                         valorMenor = aresPos.getValorAresta();
                     }
                 }
                 for (Aresta aresPos : arestasPossiveis) {
-                    if(aresPos.getValorAresta() == valorMenor){           //e quando adicionada ao conjunto T, é removida do conjunto AP e AO, pois já foi eleita aresta do conjunto T
+                    if (aresPos.getValorAresta() == valorMenor) {           //e quando adicionada ao conjunto T, é removida do conjunto AP e AO, pois já foi eleita aresta do conjunto T
                         t.add(new Aresta(aresPos.getNomeAresta(), aresPos.getValorAresta(), aresPos.getOrigem(), aresPos.getDestino()));
                         for (Aresta a : arestasPossiveis) {
-                            if(aresPos.getNomeAresta() == a.getNomeAresta() && aresPos.getValorAresta() == a.getValorAresta() && aresPos.getOrigem() == a.getOrigem() && aresPos.getDestino() == a.getDestino()){
+                            if (aresPos.getNomeAresta() == a.getNomeAresta() && aresPos.getValorAresta() == a.getValorAresta() && aresPos.getOrigem() == a.getOrigem() && aresPos.getDestino() == a.getDestino()) {
                                 arestasPossiveis.remove(a);
                                 break;
                             }
                         }
                         for (Aresta a : arestasOriginais) {
-                            if(aresPos.getNomeAresta() == a.getNomeAresta() && aresPos.getValorAresta() == a.getValorAresta() && aresPos.getOrigem() == a.getOrigem() && aresPos.getDestino() == a.getDestino()){
+                            if (aresPos.getNomeAresta() == a.getNomeAresta() && aresPos.getValorAresta() == a.getValorAresta() && aresPos.getOrigem() == a.getOrigem() && aresPos.getDestino() == a.getDestino()) {
                                 arestasOriginais.remove(a);
                                 break;
                             }
@@ -542,14 +732,14 @@ public class Algoritmos extends javax.swing.JFrame {
                     }
                 }
             }
-            
-            if(b.size() < listaNos.size()){                     //esse trecho do algoritmo adiciona ao conjunto B o vértice (um dos vértices da última aresta adicionada ao conjunto T) 
-                String ao = t.get(t.size()-1).getOrigem();      //que está ainda no conjunto V, e depois de adicionar no conjunto B remove-o do conjunto V
-                String ad = t.get(t.size()-1).getDestino();
+
+            if (b.size() < listaNos.size()) {                     //esse trecho do algoritmo adiciona ao conjunto B o vértice (um dos vértices da última aresta adicionada ao conjunto T) 
+                String ao = t.get(t.size() - 1).getOrigem();      //que está ainda no conjunto V, e depois de adicionar no conjunto B remove-o do conjunto V
+                String ad = t.get(t.size() - 1).getDestino();
                 for (No nov : v) {
-                    if(nov.getId() == ao){
+                    if (nov.getId() == ao) {
                         for (No nob : b) {
-                            if(nob.getId() == ad){
+                            if (nob.getId() == ad) {
                                 b.add(new No(ao));
                                 v.remove(new No(ao));
                                 break;
@@ -559,9 +749,9 @@ public class Algoritmos extends javax.swing.JFrame {
                     }
                 }
                 for (No nov : v) {
-                    if(nov.getId() == ad){
+                    if (nov.getId() == ad) {
                         for (No nob : b) {
-                            if(nob.getId() == ao){
+                            if (nob.getId() == ao) {
                                 b.add(new No(ad));
                                 v.remove(new No(ad));
                                 break;
@@ -570,37 +760,37 @@ public class Algoritmos extends javax.swing.JFrame {
                         break;
                     }
                 }
-            }else{
+            } else {
                 break;  //quando todos os vértices do conjunto V estão no conjunto B o 'while' se encerra e depois é mostrado as arestas que foram para o conjunto T
             }
         }
         String T = "{";
         for (Aresta ares : t) {
-            T += ares.getNomeAresta()+", ";
+            T += ares.getNomeAresta() + ", ";
         }
         T += "}";
         g.getArestas().clear();
         g.setArestas(t);
-        
+
         // PARTE 4: VISUALIZA O NOVO GRAFO.
 //        g.mostraGrafoDesign(g, "prim", null);
         jTNomeGrafo.setText(g.getId());
-        JOptionPane.showMessageDialog(null, "Conjunto de arestas da árvore geradora mínima:\n"+T);
+        JOptionPane.showMessageDialog(null, "Conjunto de arestas da árvore geradora mínima:\n" + T);
         // PARTE 5: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
     }//GEN-LAST:event_jBPrimActionPerformed
-    
-    public List<Aresta> buscaProf(No no){
+
+    public List<Aresta> buscaProf(No no) {
         List<Aresta> arestasSelecionadas = new ArrayList<Aresta>();
         List<Aresta> retornoArestas = new ArrayList<Aresta>();
         nosVisitados.add(no);
-        for(List<No> lista : listaAdjacenciaNos){
-            if(lista.get(0) == no){
-                for(int i=0; i<lista.size(); i++){
-                    if(!nosVisitados.contains(lista.get(i))){
-                        for(Aresta ares : listaArestas){
-                            if((no.getId().equals(ares.getOrigem()) && lista.get(i).getId().equals(ares.getDestino())) || (lista.get(i).getId().equals(ares.getOrigem()) && no.getId().equals(ares.getDestino()))){
-                                for(Aresta are : buscaProf(lista.get(i))){
+        for (List<No> lista : listaAdjacenciaNos) {
+            if (lista.get(0) == no) {
+                for (int i = 0; i < lista.size(); i++) {
+                    if (!nosVisitados.contains(lista.get(i))) {
+                        for (Aresta ares : listaArestas) {
+                            if ((no.getId().equals(ares.getOrigem()) && lista.get(i).getId().equals(ares.getDestino())) || (lista.get(i).getId().equals(ares.getOrigem()) && no.getId().equals(ares.getDestino()))) {
+                                for (Aresta are : buscaProf(lista.get(i))) {
                                     arestasSelecionadas.add(are);
                                 }
                                 retornoArestas.add(ares);
@@ -612,47 +802,47 @@ public class Algoritmos extends javax.swing.JFrame {
                 break;
             }
         }
-        for(Aresta are : arestasSelecionadas){
+        for (Aresta are : arestasSelecionadas) {
             retornoArestas.add(are);
         }
         return retornoArestas;
     }
-    
+
     private void jButtonProfundidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProfundidadeActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
-            Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-profundidade");   
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-profundidade");
         // PARTE 2: LIMPA A TELA.
 //            graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-            jTNomeGrafo.setText("");
+        jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
-            nosVisitados.clear();
-            listaAdjacenciaNos.clear();
-            listaArestas.clear();
-            No no = g.getNos().get(0);
-            List<Aresta> arestas = new ArrayList<Aresta>();
-            for(Aresta are : g.getArestas()){
-                listaArestas.add(are);
-            }
-            for(List<No> list : g.listaAdjacencia(g)){
-                listaAdjacenciaNos.add(list);
-            }
-            for(Aresta ares : buscaProf(no)){
-                arestas.add(ares);
-            }
-            g.getArestas().clear();
-            g.setArestas(arestas);      
+        nosVisitados.clear();
+        listaAdjacenciaNos.clear();
+        listaArestas.clear();
+        No no = g.getNos().get(0);
+        List<Aresta> arestas = new ArrayList<Aresta>();
+        for (Aresta are : g.getArestas()) {
+            listaArestas.add(are);
+        }
+        for (List<No> list : g.listaAdjacencia(g)) {
+            listaAdjacenciaNos.add(list);
+        }
+        for (Aresta ares : buscaProf(no)) {
+            arestas.add(ares);
+        }
+        g.getArestas().clear();
+        g.setArestas(arestas);
         // PARTE 4: VISUALIZA O NOVO GRAFO.
 //            g.mostraGrafoDesign(g, "profundidade", null);
-            jTNomeGrafo.setText(g.getId());
-            JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo Busca em Produndidade");
+        jTNomeGrafo.setText(g.getId());
+        JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo Busca em Produndidade");
         // PARTE 5: SALVA O GRAFO EM XML.
-            g.salvaGrafo(g);
+        g.salvaGrafo(g);
     }//GEN-LAST:event_jButtonProfundidadeActionPerformed
 
     private void jButtonTopologicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTopologicaActionPerformed
-        
+
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
-        Grafo g = grafo.copiaGrafo(grafo, grafo.getId()+"-topologica");   
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-topologica");
         // PARTE 2: LIMPA A TELA.
 //        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         jTNomeGrafo.setText("");
@@ -661,27 +851,27 @@ public class Algoritmos extends javax.swing.JFrame {
         List<Aresta> novasArestas = new ArrayList<Aresta>();
         List<No> manipulaNos = new ArrayList<No>();
         List<No> listaOrdem = new ArrayList<No>();
-        String noId="";
-        int j=1;
+        String noId = "";
+        int j = 1;
         int tamanho = g.getNos().size();
-        while(tamanho != 0){
+        while (tamanho != 0) {
             tamanho--;
             manipulaArestas.clear();
             manipulaNos.clear();
             manipulaArestas.addAll(g.getArestas());
             manipulaNos.addAll(g.getNos());
-            for(No nos : manipulaNos){
-                int i=0;
+            for (No nos : manipulaNos) {
+                int i = 0;
                 noId = nos.getId();
-                for(Aresta ares : manipulaArestas){
-                    if(nos.getId().equals(ares.getDestino())){
+                for (Aresta ares : manipulaArestas) {
+                    if (nos.getId().equals(ares.getDestino())) {
                         i++;
                         break;
                     }
                 }
-                if(i == 0){
-                    for(Aresta ares : manipulaArestas){
-                        if(nos.getId() == ares.getOrigem()){
+                if (i == 0) {
+                    for (Aresta ares : manipulaArestas) {
+                        if (nos.getId() == ares.getOrigem()) {
                             g.getArestas().remove(ares);
                         }
                     }
@@ -690,29 +880,29 @@ public class Algoritmos extends javax.swing.JFrame {
                 }
             }
         }
-        if(listaOrdem.size() != tamanho){
+        if (listaOrdem.size() != tamanho) {
             listaOrdem.addAll(g.getNos());
         }
-        for(int i=1; i<listaOrdem.size(); i++){
-            Aresta novaAresta = new Aresta ("A"+j, 1, listaOrdem.get(i-1).getId(), listaOrdem.get(j).getId());
+        for (int i = 1; i < listaOrdem.size(); i++) {
+            Aresta novaAresta = new Aresta("A" + j, 1, listaOrdem.get(i - 1).getId(), listaOrdem.get(j).getId());
             novasArestas.add(novaAresta);
             j++;
         }
         g.getNos().clear();
         g.setNos(listaOrdem);
         g.getArestas().clear();
-        g.setArestas(novasArestas); 
+        g.setArestas(novasArestas);
         // PARTE 4: VISUALIZA O NOVO GRAFO.
 //        g.mostraGrafoDesign(g, "topologica", null);
         jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo de Ordem Topológica");
         // PARTE 5: SALVA O GRAFO EM XML.
-        g.salvaGrafo(g);  
-        
+        g.salvaGrafo(g);
+
     }//GEN-LAST:event_jButtonTopologicaActionPerformed
 
     private void jButtonMalgrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMalgrangeActionPerformed
-       // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
+        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-malgrange");
         // PARTE 2: LIMPA A TELA.
 //        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
@@ -800,12 +990,48 @@ public class Algoritmos extends javax.swing.JFrame {
         jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Vértices Fortemente Conexos:\n" + imprimir);
         // PARTE 5: SALVA O GRAFO EM XML.
-        g.salvaGrafo(g); 
+        g.salvaGrafo(g);
     }//GEN-LAST:event_jButtonMalgrangeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+//    public boolean isPlanar() {
+//        // Se V >= 3, então
+//        // E <= 3V – 6
+//        // Se V >= 3 e não existem ciclos de comprimento 3 então
+//        // E <= 2V – 4 
+//
+//        if (getVerticesCount() >= 3) {
+//            if (hasCiclosDeComprimentoTres()) {
+//                if (getLigacoesCount() <= (3 * getVerticesCount() - 6)) {
+//                    return true;
+//                }
+//            } else {
+//                if (getLigacoesCount() <= (2 * getVerticesCount() - 4)) {
+//                    return true;
+//                }
+//            }
+//        }
+//
+//        return getVerticesCount() <= 3;
+//    }
+//
+//    public boolean isConexo() {
+//// para ser conexo, qualquer par de vértices tem que poder se comunicar
+//        for (Vertice vOrigem : getVertices()) {
+//            for (Vertice vDestino : getVertices()) {
+//                if (vOrigem != vDestino) {
+//                    if (!hasLigacaoIndireta(vOrigem, vDestino)) {
+//                        return false;
+//                    }
+//                }
+//            }
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -887,9 +1113,23 @@ public class Algoritmos extends javax.swing.JFrame {
     private javax.swing.JButton jBKruskal;
     private javax.swing.JButton jBPrim;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonMalgrange;
     private javax.swing.JButton jButtonProfundidade;
     private javax.swing.JButton jButtonTopologica;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JTextField jTNomeGrafo;
     private javax.swing.JPopupMenu popupMenu;
     // End of variables declaration//GEN-END:variables
