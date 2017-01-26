@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package os.ifet;
+package grafosxml;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,14 +12,14 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Daves
+ * @author KAIO, VITIN, LUCAS, RAMON
  */
-public class RumApp extends javax.swing.JFrame {
+public class ExibirGrafo extends javax.swing.JFrame {
 
     /**
      * Creates new form RumApp
      */
-    public RumApp() {
+    public ExibirGrafo() {
         initComponents();
     }
 
@@ -41,7 +41,7 @@ public class RumApp extends javax.swing.JFrame {
 
         jtaEntrada.setColumns(20);
         jtaEntrada.setRows(5);
-        jtaEntrada.setText("digraph G {\n     a -> b -> c;\n     b -> d [label=\"0.2\",color=red,penwidth=3.0 ];\n     d -> a;\n }");
+        jtaEntrada.setText("digraph G {\n     a -> b -> c;\n     b -> d [label=\"0.2\",color=red,penwidth=3.0 ];\n     d -> a;\nd -> a;\n }");
         jScrollPane1.setViewportView(jtaEntrada);
 
         jButton1.setText("Gerar");
@@ -83,6 +83,10 @@ public class RumApp extends javax.swing.JFrame {
         try {
             Process p;
             File arquivo = new File("src\\os\\dot\\fileS.dot");
+//            String digraph_text = "digraph G { ";
+//            digraph_text += grafo.ListaAdajcesndiue;
+//            digraph_text += " }";
+//            jtaEntrada.setText(digraph_text);
             try (FileWriter fw = new FileWriter(arquivo)) {
                 fw.write(jtaEntrada.getText());
                 fw.flush();
@@ -125,20 +129,21 @@ public class RumApp extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RumApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExibirGrafo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RumApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExibirGrafo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RumApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExibirGrafo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RumApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExibirGrafo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RumApp().setVisible(true);
+                new ExibirGrafo().setVisible(true);
             }
         });
     }

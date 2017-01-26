@@ -2,15 +2,9 @@ package grafosxml;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -83,7 +77,6 @@ public class Algoritmos extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jBAbrirGrafo = new javax.swing.JButton();
         jTNomeGrafo = new javax.swing.JTextField();
-        jButtonTopologica = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jBDijkstra = new javax.swing.JButton();
@@ -100,8 +93,6 @@ public class Algoritmos extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButtonProfundidade = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
 
         Remover.setText("Remover");
         Remover.addActionListener(new java.awt.event.ActionListener() {
@@ -156,13 +147,6 @@ public class Algoritmos extends javax.swing.JFrame {
         });
 
         jTNomeGrafo.setEnabled(false);
-
-        jButtonTopologica.setText("Topológica");
-        jButtonTopologica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTopologicaActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Distância:");
 
@@ -237,7 +221,7 @@ public class Algoritmos extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBPrim)
                     .addComponent(jBKruskal))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jButtonMalgrange.setText("Malgrange");
@@ -329,15 +313,6 @@ public class Algoritmos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Testar Planaridade");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Seminário");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -346,29 +321,21 @@ public class Algoritmos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonTopologica))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addComponent(jLabel5))))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAbrirGrafo)
                         .addGap(18, 18, 18)
-                        .addComponent(jTNomeGrafo)))
+                        .addComponent(jTNomeGrafo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(39, 39, 39)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,22 +359,12 @@ public class Algoritmos extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jButtonTopologica)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(505, 252));
+        setSize(new java.awt.Dimension(397, 252));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -839,68 +796,6 @@ public class Algoritmos extends javax.swing.JFrame {
         g.salvaGrafo(g);
     }//GEN-LAST:event_jButtonProfundidadeActionPerformed
 
-    private void jButtonTopologicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTopologicaActionPerformed
-
-        // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
-        Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-topologica");
-        // PARTE 2: LIMPA A TELA.
-//        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-        jTNomeGrafo.setText("");
-        // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
-        List<Aresta> manipulaArestas = new ArrayList<Aresta>();
-        List<Aresta> novasArestas = new ArrayList<Aresta>();
-        List<No> manipulaNos = new ArrayList<No>();
-        List<No> listaOrdem = new ArrayList<No>();
-        String noId = "";
-        int j = 1;
-        int tamanho = g.getNos().size();
-        while (tamanho != 0) {
-            tamanho--;
-            manipulaArestas.clear();
-            manipulaNos.clear();
-            manipulaArestas.addAll(g.getArestas());
-            manipulaNos.addAll(g.getNos());
-            for (No nos : manipulaNos) {
-                int i = 0;
-                noId = nos.getId();
-                for (Aresta ares : manipulaArestas) {
-                    if (nos.getId().equals(ares.getDestino())) {
-                        i++;
-                        break;
-                    }
-                }
-                if (i == 0) {
-                    for (Aresta ares : manipulaArestas) {
-                        if (nos.getId() == ares.getOrigem()) {
-                            g.getArestas().remove(ares);
-                        }
-                    }
-                    listaOrdem.add(nos);
-                    g.getNos().remove(new No(noId));
-                }
-            }
-        }
-        if (listaOrdem.size() != tamanho) {
-            listaOrdem.addAll(g.getNos());
-        }
-        for (int i = 1; i < listaOrdem.size(); i++) {
-            Aresta novaAresta = new Aresta("A" + j, 1, listaOrdem.get(i - 1).getId(), listaOrdem.get(j).getId());
-            novasArestas.add(novaAresta);
-            j++;
-        }
-        g.getNos().clear();
-        g.setNos(listaOrdem);
-        g.getArestas().clear();
-        g.setArestas(novasArestas);
-        // PARTE 4: VISUALIZA O NOVO GRAFO.
-//        g.mostraGrafoDesign(g, "topologica", null);
-        jTNomeGrafo.setText(g.getId());
-        JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo de Ordem Topológica");
-        // PARTE 5: SALVA O GRAFO EM XML.
-        g.salvaGrafo(g);
-
-    }//GEN-LAST:event_jButtonTopologicaActionPerformed
-
     private void jButtonMalgrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMalgrangeActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-malgrange");
@@ -993,42 +888,6 @@ public class Algoritmos extends javax.swing.JFrame {
         g.salvaGrafo(g);
     }//GEN-LAST:event_jButtonMalgrangeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-//    public boolean isPlanar() {
-//        // Se V >= 3, então
-//        // E <= 3V – 6
-//        // Se V >= 3 e não existem ciclos de comprimento 3 então
-//        // E <= 2V – 4 
-//
-//        if (getVerticesCount() >= 3) {
-//            if (hasCiclosDeComprimentoTres()) {
-//                if (getLigacoesCount() <= (3 * getVerticesCount() - 6)) {
-//                    return true;
-//                }
-//            } else {
-//                if (getLigacoesCount() <= (2 * getVerticesCount() - 4)) {
-//                    return true;
-//                }
-//            }
-//        }
-//
-//        return getVerticesCount() <= 3;
-//    }
-//
-//    public boolean isConexo() {
-//// para ser conexo, qualquer par de vértices tem que poder se comunicar
-//        for (Vertice vOrigem : getVertices()) {
-//            for (Vertice vDestino : getVertices()) {
-//                if (vOrigem != vDestino) {
-//                    if (!hasLigacaoIndireta(vOrigem, vDestino)) {
-//                        return false;
-//                    }
-//                }
-//            }
-//        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -1112,17 +971,14 @@ public class Algoritmos extends javax.swing.JFrame {
     private javax.swing.JButton jBDijkstra;
     private javax.swing.JButton jBKruskal;
     private javax.swing.JButton jBPrim;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonMalgrange;
     private javax.swing.JButton jButtonProfundidade;
-    private javax.swing.JButton jButtonTopologica;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

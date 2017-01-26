@@ -7,12 +7,10 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 //import static grafosxml.Algoritmos.graph;
-import java.awt.Color;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
 @XStreamAlias("graph")
@@ -37,12 +35,24 @@ public class Grafo {
     Object parent;
     @XStreamOmitField
     List<List<No>> adjacencia = new ArrayList<List<No>>();
+
     public Grafo(String id, String tipo, List<No> nos, List<Aresta> arestas) {
         this.id = id;
         this.tipo = tipo;
         this.nos = nos;
         this.arestas = arestas;
         geraMatriz();
+    }
+
+    public Grafo() {
+    }
+
+    public List<No> getVertices() {
+        return nos;
+    }
+
+    public int getQuantidadeAretas() {
+        return arestas.size();
     }
 
     public void geraMatriz() {
@@ -57,12 +67,12 @@ public class Grafo {
             int posO = nos.indexOf(new No(are.getOrigem()));
             int posD = nos.indexOf(new No(are.getDestino()));
             matriz[posO][posD] = 1;
-            if (tipo.equals("undirected")){
+            if (tipo.equals("undirected")) {
                 matriz[posD][posO] = 1;
             }
         }
     }
-    
+
     public int[][] getMatrizComValue() {
         int Qtdenos = nos.size();
         matrizValue = new int[Qtdenos][Qtdenos];
@@ -78,8 +88,7 @@ public class Grafo {
         }
         return matrizValue;
     }
-    
-    
+
     public void geraMatrizIncidencia() {
         int Qtarestas = arestas.size();
         int Qtdenos = nos.size();
@@ -89,56 +98,29 @@ public class Grafo {
                 matrizI[i][j] = 0;
             }
         }
-        for (Aresta are : arestas){
+        for (Aresta are : arestas) {
             for (No no : nos) {
                 int posA = arestas.indexOf(are);
                 int posV = nos.indexOf(no);
-                
-                if(tipo.equals("directed")){
-                    if(nos.indexOf(new No(are.getDestino())) == posV){
+
+                if (tipo.equals("directed")) {
+                    if (nos.indexOf(new No(are.getDestino())) == posV) {
                         matrizI[posA][posV] = 1;
                     }
 
-                    if(nos.indexOf(new No(are.getOrigem())) == posV){
+                    if (nos.indexOf(new No(are.getOrigem())) == posV) {
                         matrizI[posA][posV] = -1;
                     }
                 }
-                if (tipo.equals("undirected")){
-                    if(nos.indexOf(new No(are.getDestino())) == posV || nos.indexOf(new No(are.getOrigem())) == posV){
+                if (tipo.equals("undirected")) {
+                    if (nos.indexOf(new No(are.getDestino())) == posV || nos.indexOf(new No(are.getOrigem())) == posV) {
                         matrizI[posA][posV] = 1;
                     }
                 }
             }
         }
     }
-    
-    public List<List<No>> listaAdjacencia(Grafo g){
-        adjacencia.clear();
-        List<No> nosg = new ArrayList<No>();
-        List<Aresta> arestasg = new ArrayList<Aresta>();
-        for(No no : g.getNos()){
-            nosg.add(no);
-        }
-        for(Aresta are : g.getArestas()){
-            arestasg.add(are);
-        }
-        for(No no : nosg){
-            List<No> vertice = new ArrayList<No>();
-            vertice.add(no);
-            for(No no1 : nosg){
-                for(Aresta are : arestasg){
-                    if((are.getOrigem().equals(no.getId()) && are.getDestino().equals(no1.getId())) || (are.getOrigem().equals(no1.getId()) && are.getDestino().equals(no.getId()))){
-                        vertice.add(no1);
-                        break;
-                    }
-                }
-            }
-            adjacencia.add(vertice);
-        }
-        return adjacencia;
-    }
 
-    
     public No getNoById(String id) {
         No a = null;
         for (No no : nos) {
@@ -149,7 +131,7 @@ public class Grafo {
         }
         return a;
     }
-    
+
     public String getId() {
         return id;
     }
@@ -182,12 +164,11 @@ public class Grafo {
         this.arestas = arestas;
     }
 
-
     public int getOrdem() {
         return nos.size();
     }
-    
-    public Grafo copiaGrafo(Grafo grafo, String nome){
+
+    public Grafo copiaGrafo(Grafo grafo, String nome) {
         List<No> listaNos2 = new ArrayList<No>();
         List<Aresta> listaArestas2 = new ArrayList<Aresta>();
         for (No n : grafo.getNos()) {
@@ -199,23 +180,23 @@ public class Grafo {
         Grafo g = new Grafo(nome, grafo.getTipo(), listaNos2, listaArestas2);
         return g;
     }
-    
-    public void salvaGrafo(Grafo grafo){
+
+    public void salvaGrafo(Grafo grafo) {
         XStream xstream = new XStream(new DomDriver());
         xstream.processAnnotations(Grafo.class);
         System.out.println(xstream.toXML(grafo));
         String xml = xstream.toXML(grafo);
-        
+
         grafo = null;
         grafo = (Grafo) xstream.fromXML(xml);
         try {
-            File xmlFile = new File(grafo.getId()+".xml");
+            File xmlFile = new File(grafo.getId() + ".xml");
             xstream.toXML(grafo, new FileWriter(xmlFile));
         } catch (IOException ex) {
             System.out.println("Erro ao Gravar Arquivo");
         }
     }
-    
+
 //    public void mostraGrafoDesign(Grafo grafo, String nome, int[][]matriz){
 //        graph.getModel().beginUpdate();
 //        try {
@@ -266,8 +247,6 @@ public class Grafo {
 //            graph.getModel().endUpdate();
 //        }
 //    }
-
-
     public String getConjuntoVertices() {
         String vertices = "V={";
         for (No ver : nos) {
@@ -376,29 +355,29 @@ public class Grafo {
         }
         return verticesAd;
     }
-    
+
     public String getArestasIndependentes() {
         String arestasIndependentes = "\n";
         for (int i = 0; i < arestas.size(); i++) {
-            arestasIndependentes += "\n"+arestas.get(i).getNomeAresta()+" independente de: ";
+            arestasIndependentes += "\n" + arestas.get(i).getNomeAresta() + " independente de: ";
             int no1 = -1;
             for (int j = 0; j < nos.size(); j++) {
-                if(matrizI[i][j] == 1 || matrizI[i][j] == -1){
+                if (matrizI[i][j] == 1 || matrizI[i][j] == -1) {
                     no1 = j;
                     break;
                 }
             }
             int no2 = -1;
             for (int k = 0; k < nos.size(); k++) {
-                if((matrizI[i][k] == 1 || matrizI[i][k] == -1) && no1 != k){
+                if ((matrizI[i][k] == 1 || matrizI[i][k] == -1) && no1 != k) {
                     no2 = k;
                     break;
                 }
             }
-            
+
             for (int l = 0; l < arestas.size(); l++) {
-                if(matrizI[l][no1] == 0 && matrizI[l][no2] == 0){
-                    arestasIndependentes += arestas.get(l).getNomeAresta()+", ";
+                if (matrizI[l][no1] == 0 && matrizI[l][no2] == 0) {
+                    arestasIndependentes += arestas.get(l).getNomeAresta() + ", ";
                 }
             }
         }
@@ -407,14 +386,14 @@ public class Grafo {
         }
         return arestasIndependentes;
     }
-    
-    public String getVerticesIndependentes(){
+
+    public String getVerticesIndependentes() {
         String verticesIndependentes = "\n";
         for (int i = 0; i < nos.size(); i++) {
-            verticesIndependentes += "\n"+nos.get(i).getId()+" independente de: ";
+            verticesIndependentes += "\n" + nos.get(i).getId() + " independente de: ";
             for (int j = 0; j < nos.size(); j++) {
-                if(matriz[i][j] == 0 && i != j){
-                    verticesIndependentes += nos.get(j).getId()+", ";
+                if (matriz[i][j] == 0 && i != j) {
+                    verticesIndependentes += nos.get(j).getId() + ", ";
                 }
             }
         }
@@ -423,7 +402,7 @@ public class Grafo {
         }
         return verticesIndependentes;
     }
-    
+
     public String getVerticesIsolados(Grafo g) {
         String estring = "\n";
         for (int i = 0; i < g.getNos().size(); i++) {
@@ -480,7 +459,7 @@ public class Grafo {
         int qtd = 0;
         for (int i = 0; i < g.getNos().size(); i++) {
             if (g.getGrauRecepcao(g.getNos().get(i)) == 0 && g.getGrauEmissao(g.getNos().get(i)) != 0) {
-                qtd ++;
+                qtd++;
             }
         }
         return qtd;
@@ -490,15 +469,15 @@ public class Grafo {
         int qtd = 0;
         for (int i = 0; i < g.getNos().size(); i++) {
             if (g.getGrauRecepcao(g.getNos().get(i)) != 0 && g.getGrauEmissao(g.getNos().get(i)) == 0) {
-                qtd ++;
+                qtd++;
             }
         }
         return qtd;
     }
-    
+
     public int getPosicaoFonte(Grafo g) {
         int pos = 0;
-        for (int i = 0; i < g.getNos().size(); i++) { 
+        for (int i = 0; i < g.getNos().size(); i++) {
             int recepcao = g.getGrauRecepcao(g.getNos().get(i));
             int emissao = g.getGrauEmissao(g.getNos().get(i));
             if (recepcao == 0 && emissao > 0) {
@@ -511,7 +490,7 @@ public class Grafo {
 
     public int getPosicaoSumidouro(Grafo g) {
         int pos = 0;
-        for (int i = 0; i < g.getNos().size(); i++) { 
+        for (int i = 0; i < g.getNos().size(); i++) {
             int recepcao = g.getGrauRecepcao(g.getNos().get(i));
             int emissao = g.getGrauEmissao(g.getNos().get(i));
             if (recepcao > 0 && emissao == 0) {
@@ -521,8 +500,148 @@ public class Grafo {
         }
         return pos;
     }
-    
+
     public int[][] getMatriz() {
         return matriz;
+    }
+
+    public int[][] matrizAdjacencia(Grafo grafo) {
+
+        int[][] ma = new int[grafo.getVertices().size()][grafo.getVertices().size()];
+
+        for (int i = 0; i < grafo.getVertices().size(); i++) {
+            for (int j = 0; i < grafo.getVertices().size(); i++) {
+                ma[i][j] = 0;
+            }
+
+        }
+
+        if (grafo.getTipo().equals("unidirected")) {
+
+            for (int i = 0; i < grafo.getVertices().size(); i++) {
+                String v1 = grafo.getVertices().get(i).getId();
+
+                for (int j = 0; j < grafo.getArestas().size(); j++) {
+                    if (v1.equals(grafo.getArestas().get(j).getOrigem())) {
+
+                        for (int k = 0; k < grafo.getVertices().size(); k++) {
+                            String v2 = grafo.getVertices().get(k).getId();
+
+                            if (v1.equals(grafo.getArestas().get(j).getOrigem()) && v2.equals(grafo.getArestas().get(j).getDestino())) {
+                                ma[i][k] = 1;
+                                ma[k][i] = 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (grafo.getTipo().equals("directed")) {
+            for (int i = 0; i < grafo.getVertices().size(); i++) {
+                String vertice1 = grafo.getVertices().get(i).getId();
+
+                for (int j = 0; j < grafo.getArestas().size(); j++) {
+                    if (vertice1.equals(grafo.getArestas().get(j).getOrigem())) {
+
+                        for (int k = 0; k < grafo.getVertices().size(); k++) {
+                            String vertice2 = grafo.getVertices().get(k).getId();
+
+                            if (vertice1.equals(grafo.getArestas().get(j).getOrigem()) && vertice2.equals(grafo.getArestas().get(j).getDestino())) {
+                                ma[i][k] = 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return ma;
+    }
+
+    public int[][] matrizIncidencia(Grafo grafo) {
+
+        int[][] mi = new int[grafo.getVertices().size()][grafo.getArestas().size()];
+
+        for (int i = 0; i < grafo.getVertices().size(); i++) {
+            for (int j = 0; i < grafo.getArestas().size(); i++) {
+                mi[i][j] = 0;
+            }
+
+        }
+        if (grafo.getTipo().equals("unidirected")) {
+            for (int i = 0; i < grafo.getArestas().size(); i++) {
+                String vertice1 = grafo.getArestas().get(i).getOrigem();
+                String vertice2 = grafo.getArestas().get(i).getDestino();
+                for (int k = 0; k < grafo.getVertices().size(); k++) {
+                    if (vertice1.equals(grafo.getVertices().get(k).getId())) {
+                        for (int j = 0; j < grafo.getVertices().size(); j++) {
+                            if (vertice2.equals(grafo.getVertices().get(j).getId())) {
+                                mi[k][i] = 1;
+                                mi[j][i] = 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (grafo.getTipo().equals("directed")) {
+            for (int i = 0; i < grafo.getArestas().size(); i++) {
+                String vertice1 = grafo.getArestas().get(i).getOrigem();
+                String vertice2 = grafo.getArestas().get(i).getDestino();
+                for (int k = 0; k < grafo.getVertices().size(); k++) {
+                    if (vertice1.equals(grafo.getVertices().get(k).getId())) {
+                        for (int j = 0; j < grafo.getVertices().size(); j++) {
+                            if (vertice2.equals(grafo.getVertices().get(j).getId())) {
+                                mi[k][i] = 1;
+                                mi[j][i] = -1;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return mi;
+    }
+
+    public ArrayList<ArrayList> listaAdjacencia(Grafo grafo) {
+        ArrayList<ArrayList> listaIncidencia = new ArrayList<ArrayList>();
+
+        if (grafo.getTipo().equals("directed")) {
+            for (int i = 0; i < grafo.getVertices().size(); i++) {
+                ArrayList<String> lista = new ArrayList<String>();
+                String v1 = grafo.getVertices().get(i).getId();
+                lista.add(v1);
+                for (int j = 0; j < grafo.getVertices().size(); j++) {
+                    if (v1.equals(grafo.getArestas().get(j).getOrigem())) {
+                        lista.add(grafo.getArestas().get(j).getDestino());
+                    }
+                }
+                listaIncidencia.add(lista);
+            }
+        }
+
+        if (grafo.getTipo().equals("unidirected")) {
+            for (int i = 0; i < grafo.getVertices().size(); i++) {
+                ArrayList<String> lista = new ArrayList<String>();
+                String v1 = grafo.getVertices().get(i).getId();
+                lista.add(v1);
+                for (int j = 0; j < grafo.getArestas().size(); j++) {
+                    if (v1.equals(grafo.getArestas().get(j).getDestino()) || v1.equals(grafo.getArestas().get(j).getOrigem())) {
+                        if (v1.equals(grafo.getArestas().get(j).getOrigem())) {
+                            lista.add(grafo.getArestas().get(j).getDestino());
+                        } else {
+                            lista.add(grafo.getArestas().get(j).getOrigem());
+                        }
+                    }
+                }
+                listaIncidencia.add(lista);
+            }
+        }
+        return listaIncidencia;
     }
 }

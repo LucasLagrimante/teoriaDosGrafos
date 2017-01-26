@@ -12,7 +12,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
-import os.ifet.RumApp;
+import static java.lang.Integer.parseInt;
 
 public class TelaMain extends javax.swing.JFrame {
 
@@ -23,7 +23,9 @@ public class TelaMain extends javax.swing.JFrame {
     String origemAresta;
     String destinoAresta;
     int valorAresta;
+    public Grafo grafo = new Grafo();
 
+//    grafo.setId (grafo.idGrafo);
     public TelaMain() {
         initComponents();
         setLocationRelativeTo(null);// deixa a janela no centro da tela
@@ -540,8 +542,8 @@ public class TelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jtNomeActionPerformed
 
     private void jBPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPropriedadesActionPerformed
-        DadosGrafos tm = new DadosGrafos();
-        tm.setVisible(true);
+        frmRepresentacoes frr = new frmRepresentacoes(grafo);
+        frr.setVisible(true);
     }//GEN-LAST:event_jBPropriedadesActionPerformed
 
     private void jBAlgoritmosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlgoritmosActionPerformed
@@ -550,7 +552,7 @@ public class TelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAlgoritmosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        RumApp ra = new RumApp();
+        ExibirGrafo ra = new ExibirGrafo();
         ra.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
