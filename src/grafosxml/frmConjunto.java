@@ -16,9 +16,9 @@ public class frmConjunto extends javax.swing.JFrame {
      */
     Grafo grafo = new Grafo();
 
-    public frmConjunto(Grafo grafo) {
+    public frmConjunto() {
         initComponents();
-        this.grafo = grafo;
+        this.grafo = GraphSession.getGrafo();
         for (No v : grafo.getVertices()) {
             jtaConjunto.append("\nVertices: " + v.getId());
         }
@@ -27,7 +27,6 @@ public class frmConjunto extends javax.swing.JFrame {
             jtaConjunto.append("\nAresta: ->" + a.getNomeAresta());
             jtaConjunto.append(" Vertices: " + a.getOrigem() + "  " + a.getDestino());
         }
-
     }
 
     /**
@@ -42,7 +41,7 @@ public class frmConjunto extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaConjunto = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jtaConjunto.setEditable(false);
         jtaConjunto.setColumns(20);
@@ -107,8 +106,7 @@ public class frmConjunto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Grafo grafo = null;
-                new frmMatrizIncidencia(grafo).setVisible(true);
+                new frmMatrizIncidencia().setVisible(true);
             }
         });
     }

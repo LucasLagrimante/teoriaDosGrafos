@@ -8,7 +8,9 @@ package grafosxml;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,12 +20,10 @@ public class ExibirGrafo extends javax.swing.JFrame {
 
     Grafo grafo = new Grafo();
 
-    /**
-     * Creates new form RumApp
-     */
     public ExibirGrafo() {
         initComponents();
         this.grafo = GraphSession.getGrafo();
+        montaGrafo();
     }
 
     /**
@@ -35,85 +35,27 @@ public class ExibirGrafo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtaEntrada = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jtaEntrada.setColumns(20);
-        jtaEntrada.setRows(5);
-        jtaEntrada.setText("digraph G {\n     a -> b -> c;\n     b -> d [label=\"0.2\",color=red,penwidth=3.0 ];\n     d -> a;\nd -> a;\n }");
-        jScrollPane1.setViewportView(jtaEntrada);
-
-        jButton1.setText("Gerar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(452, 452, 452))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        try {
-            Process p;
-            File arquivo = new File("src\\os\\dot\\fileS.dot");
-            String digraph_text = "digraph G { ";
-            digraph_text += grafo.listaAdjacencia(grafo);
-            digraph_text += " }";
-            jtaEntrada.setText(digraph_text);
-            try (FileWriter fw = new FileWriter(arquivo)) {
-                fw.write(jtaEntrada.getText());
-                fw.flush();
-            } catch (IOException ex) {
-                System.out.println("Erro ao Criar Arquivo: " + ex.getMessage());
-            }
-            String commandLine = "dot -Tpng " + arquivo.getCanonicalPath() + " -o src\\os\\img\\fileS.png";
-
-            p = Runtime.getRuntime().exec(commandLine);
-            while (p.isAlive()) {
-            }
-
-            File arqImg = new File("src\\os\\img\\fileS.png");
-            ImageIcon image = new ImageIcon(arqImg.getCanonicalPath());
-            image.getImage().flush();
-            jLabel1.setIcon(image);
-            jLabel1.setText("");
-
-        } catch (IOException ex) {
-            System.out.println("Erro do Executar Comando: " + ex.getMessage());
-        }
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,9 +94,53 @@ public class ExibirGrafo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jtaEntrada;
     // End of variables declaration//GEN-END:variables
+
+    public void montaGrafo() {
+        try {
+            Process p;
+            File arquivo = new File("src\\os\\dot\\fileS.dot");
+            List<Aresta> listaAresta = grafo.getArestas();
+            String digraph_text="";
+            if (grafo.getTipo().equals("undirected")) {
+                digraph_text = "graph G {";
+            } else {
+                digraph_text = "digraph G {";
+            }
+            for (int i = 0; i < listaAresta.size(); i++) {
+                digraph_text += "\n";
+                if (grafo.getTipo().equals("undirected")) {
+                    digraph_text += listaAresta.get(i).getOrigem() + "--" + listaAresta.get(i).getDestino() + ";";
+                } else {
+                    digraph_text += listaAresta.get(i).getOrigem() + "->" + listaAresta.get(i).getDestino() + ";";
+                }
+            }
+            digraph_text += "\n}";
+            System.out.println(digraph_text);
+            try (FileWriter fw = new FileWriter(arquivo)) {
+                fw.write(digraph_text);
+                fw.flush();
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao Criar Arquivo: " + ex.getMessage());
+                System.out.println("Erro ao Criar Arquivo: " + ex.getMessage());
+            }
+            String commandLine = "dot -Tpng " + arquivo.getCanonicalPath() + " -o src\\os\\img\\fileS.png";
+            System.out.println(commandLine);
+
+            p = Runtime.getRuntime().exec(commandLine);
+            while (p.isAlive()) {
+            }
+
+            File arqImg = new File("src\\os\\img\\fileS.png");
+            ImageIcon image = new ImageIcon(arqImg.getCanonicalPath());
+            image.getImage().flush();
+            jLabel1.setIcon(image);
+            jLabel1.setText("");
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao Criar Arquivo: " + ex.getMessage());
+            System.out.println("Erro do Executar Comando: " + ex.getMessage());
+        }
+    }
 }

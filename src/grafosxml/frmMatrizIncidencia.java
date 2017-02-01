@@ -16,9 +16,9 @@ public class frmMatrizIncidencia extends javax.swing.JFrame {
      */
     Grafo grafo = new Grafo();
 
-    public frmMatrizIncidencia(Grafo grafo) {
+    public frmMatrizIncidencia() {
         initComponents();
-        this.grafo = grafo;
+        this.grafo = GraphSession.getGrafo();
 
         int indice = 0;
         Grafo g = grafo;
@@ -114,7 +114,7 @@ public class frmMatrizIncidencia extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Grafo grafo = null;
-                new frmMatrizIncidencia(grafo).setVisible(true);
+                new frmMatrizIncidencia().setVisible(true);
             }
         });
     }

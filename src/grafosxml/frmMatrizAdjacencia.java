@@ -16,9 +16,9 @@ public class frmMatrizAdjacencia extends javax.swing.JFrame {
      */
     Grafo grafo = new Grafo();
 
-    public frmMatrizAdjacencia(Grafo grafo) {
+    public frmMatrizAdjacencia() {
         initComponents();
-        this.grafo = grafo;
+        this.grafo = GraphSession.getGrafo();
 
         int indice = 0;
         Grafo g = grafo;
@@ -53,7 +53,7 @@ public class frmMatrizAdjacencia extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaMatrizAdjacencia = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jtaMatrizAdjacencia.setEditable(false);
         jtaMatrizAdjacencia.setColumns(20);
@@ -115,7 +115,7 @@ public class frmMatrizAdjacencia extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Grafo grafo = null;
-                new frmMatrizIncidencia(grafo).setVisible(true);
+                new frmMatrizIncidencia().setVisible(true);
             }
         });
     }

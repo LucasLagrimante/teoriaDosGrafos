@@ -5,7 +5,8 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import java.util.List;
 
 @XStreamAlias("edge")
-public class Aresta implements Comparable<Aresta>{
+public class Aresta implements Comparable<Aresta> {
+
     @XStreamAlias("source")
     @XStreamAsAttribute
     private String origem;
@@ -15,11 +16,11 @@ public class Aresta implements Comparable<Aresta>{
     @XStreamAlias("name")
     @XStreamAsAttribute
     private String nomeAresta;
-    @XStreamAlias("value")  
+    @XStreamAlias("value")
     @XStreamAsAttribute
     private int valorAresta;
 
-    public Aresta( String nomeAresta, int valorAresta, String origem, String destino) {
+    public Aresta(String nomeAresta, int valorAresta, String origem, String destino) {
         this.nomeAresta = nomeAresta;
         this.valorAresta = valorAresta;
         this.origem = origem;
@@ -57,19 +58,17 @@ public class Aresta implements Comparable<Aresta>{
     public void setNomeAresta(String nomeAresta) {
         this.nomeAresta = nomeAresta;
     }
-    
+
     public int compareTo(Aresta aresta) {
-        if(this.valorAresta < aresta.valorAresta){
+        if (this.valorAresta < aresta.valorAresta) {
             return -1;
-        }
-        else if(this.valorAresta > aresta.valorAresta){
+        } else if (this.valorAresta > aresta.valorAresta) {
             return 1;
-        }
-        else{
+        } else {
             return 0;
         }
     }
-    
+
     public static Aresta getArestaByNos(No origem, No destino, List<Aresta> arestas) {
         for (Aresta aresta : arestas) {
             if (aresta.getOrigem().equals(origem.getId()) && aresta.getDestino().equals(destino.getId())) {

@@ -25,10 +25,8 @@ public class TelaMain extends javax.swing.JFrame {
     int valorAresta;
     public Grafo grafo = new Grafo();
 
-//    grafo.setId (grafo.idGrafo);
     public TelaMain() {
         initComponents();
-        setLocationRelativeTo(null);// deixa a janela no centro da tela
     }
 
     @SuppressWarnings("unchecked")
@@ -111,7 +109,7 @@ public class TelaMain extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel6.setText("Nome da aresta:");
 
@@ -255,7 +253,7 @@ public class TelaMain extends javax.swing.JFrame {
                 .addGap(5, 5, 5))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Criar Vértice");
@@ -393,10 +391,11 @@ public class TelaMain extends javax.swing.JFrame {
                     .addComponent(jBPropriedades)
                     .addComponent(jBAlgoritmos)
                     .addComponent(jButton1))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtVerticesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtVerticesActionPerformed
@@ -404,41 +403,41 @@ public class TelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jtVerticesActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        XStream xstream = new XStream(new DomDriver());
-        xstream.processAnnotations(Grafo.class);
-        String nomeGrafo = jtNomeGrafo.getText();
-        Grafo g = new Grafo(nomeGrafo, "directed", listaNos, listaArestas);
-        if (jRadioButton1.isSelected()) {
-            g.setTipo("directed");
-        }
-        if (jRadioButton2.isSelected()) {
-            g.setTipo("undirected");
-        }
-        System.out.println(xstream.toXML(g));
-        String xml = xstream.toXML(g);
-        g = null;
-        g = (Grafo) xstream.fromXML(xml);
-        try {
-            File xmlFile = new File(nomeGrafo + ".xml");
-            xstream.toXML(g, new FileWriter(xmlFile));
-        } catch (IOException ex) {
-            System.out.println("Erro ao Gravar Arquivo");
-        }
-        DefaultTableModel linhaN = (DefaultTableModel) jtbNos.getModel();
-        while (linhaN.getRowCount() != 0) {
-            listaNos.remove(0);
-            linhaN.removeRow(0);
-        }
-        DefaultTableModel linhaA = (DefaultTableModel) jtbArestas.getModel();
-        while (linhaA.getRowCount() != 0) {
-            listaArestas.remove(0);
-            linhaA.removeRow(0);
-        }
+            XStream xstream = new XStream(new DomDriver());
+            xstream.processAnnotations(Grafo.class);
+            String nomeGrafo = jtNomeGrafo.getText();
+            Grafo g = new Grafo(nomeGrafo, "directed", listaNos, listaArestas);
+            if (jRadioButton1.isSelected()) {
+                g.setTipo("directed");
+            }
+            if (jRadioButton2.isSelected()) {
+                g.setTipo("undirected");
+            }
+            System.out.println(xstream.toXML(g));
+            String xml = xstream.toXML(g);
+            g = null;
+            g = (Grafo) xstream.fromXML(xml);
+            try {
+                File xmlFile = new File(nomeGrafo + ".xml");
+                xstream.toXML(g, new FileWriter(xmlFile));
+            } catch (IOException ex) {
+                System.out.println("Erro ao Gravar Arquivo");
+            }
+            DefaultTableModel linhaN = (DefaultTableModel) jtbNos.getModel();
+            while (linhaN.getRowCount() != 0) {
+                listaNos.remove(0);
+                linhaN.removeRow(0);
+            }
+            DefaultTableModel linhaA = (DefaultTableModel) jtbArestas.getModel();
+            while (linhaA.getRowCount() != 0) {
+                listaArestas.remove(0);
+                linhaA.removeRow(0);
+            }
 
-        GraphSession.setGrafo(g);
+            GraphSession.setGrafo(g);
 
-        jtNomeGrafo.setText("");
-        JOptionPane.showMessageDialog(null, "Dados Salvos com Sucesso");
+            jtNomeGrafo.setText("");
+            JOptionPane.showMessageDialog(null, "Dados Salvos com Sucesso");
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarActionPerformed
@@ -516,7 +515,11 @@ public class TelaMain extends javax.swing.JFrame {
 
     private void jbCriarArestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCriarArestaActionPerformed
         nomeAresta = jtNome.getText();
-        valorAresta = Integer.parseInt(jtValor.getText());
+        if (jtValor.getText().equals("")) {
+            valorAresta = 0;
+        } else {
+            valorAresta = Integer.parseInt(jtValor.getText());
+        }
         origemAresta = jtOrigem.getText();
         destinoAresta = jtDestino.getText();
         DefaultTableModel linha = (DefaultTableModel) jtbArestas.getModel();
@@ -547,18 +550,30 @@ public class TelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jtNomeActionPerformed
 
     private void jBPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPropriedadesActionPerformed
-        frmRepresentacoes frr = new frmRepresentacoes();
-        frr.setVisible(true);
+        if (GraphSession.getGrafo() == null) {
+            JOptionPane.showMessageDialog(null, "Grafo não existente");
+        } else {
+            frmRepresentacoes frr = new frmRepresentacoes();
+            frr.setVisible(true);
+        }
     }//GEN-LAST:event_jBPropriedadesActionPerformed
 
     private void jBAlgoritmosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlgoritmosActionPerformed
-        Algoritmos tm = new Algoritmos();
-        tm.setVisible(true);
+        if (GraphSession.getGrafo() == null) {
+            JOptionPane.showMessageDialog(null, "Grafo não existente");
+        } else {
+            Algoritmos tm = new Algoritmos();
+            tm.setVisible(true);
+        }
     }//GEN-LAST:event_jBAlgoritmosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ExibirGrafo ra = new ExibirGrafo();
-        ra.setVisible(true);
+        if (GraphSession.getGrafo() == null) {
+            JOptionPane.showMessageDialog(null, "Grafo não existente");
+        } else {
+            ExibirGrafo ra = new ExibirGrafo();
+            ra.setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

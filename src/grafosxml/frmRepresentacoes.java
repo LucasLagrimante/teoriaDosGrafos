@@ -11,11 +11,8 @@ package grafosxml;
  */
 public class frmRepresentacoes extends javax.swing.JDialog {
 
-    Grafo grafo = new Grafo();
-
     public frmRepresentacoes() {
         initComponents();
-        this.grafo = GraphSession.getGrafo();
     }
 
     /**
@@ -127,26 +124,26 @@ public class frmRepresentacoes extends javax.swing.JDialog {
 
     private void btnMatrizIncidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizIncidenciaActionPerformed
 
-        frmMatrizIncidencia fmi = new frmMatrizIncidencia(grafo);
+        frmMatrizIncidencia fmi = new frmMatrizIncidencia();
         fmi.setVisible(true);
 
     }//GEN-LAST:event_btnMatrizIncidenciaActionPerformed
 
     private void btnMatrizAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizAdjacenciaActionPerformed
 
-        frmMatrizAdjacencia fma = new frmMatrizAdjacencia(grafo);
+        frmMatrizAdjacencia fma = new frmMatrizAdjacencia();
         fma.setVisible(true);
 
     }//GEN-LAST:event_btnMatrizAdjacenciaActionPerformed
 
     private void btnListaAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaAdjacenciaActionPerformed
-        frmListaAdjacencia fla = new frmListaAdjacencia(grafo);
+        frmListaAdjacencia fla = new frmListaAdjacencia();
         fla.setVisible(true);
     }//GEN-LAST:event_btnListaAdjacenciaActionPerformed
 
 
     private void btnConjuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConjuntoActionPerformed
-        frmConjunto fc = new frmConjunto(grafo);
+        frmConjunto fc = new frmConjunto();
         fc.setVisible(true);
     }//GEN-LAST:event_btnConjuntoActionPerformed
 
@@ -189,7 +186,6 @@ public class frmRepresentacoes extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Grafo grafo = null;
                 new frmRepresentacoes().setVisible(true);
 
             }

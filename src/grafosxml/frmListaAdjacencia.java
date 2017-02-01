@@ -18,16 +18,20 @@ public class frmListaAdjacencia extends javax.swing.JFrame {
      */
     Grafo grafo = new Grafo();
 
-    public frmListaAdjacencia(Grafo grafo) {
+    public frmListaAdjacencia() {
         initComponents();
-        this.grafo = grafo;
+        this.grafo = GraphSession.getGrafo();
 
         ArrayList<ArrayList> listaAdjacencia = grafo.listaAdjacencia(grafo);
         for (int i = 0; i < listaAdjacencia.size(); i++) {
             ArrayList<String> lista = listaAdjacencia.get(i);
             jtaListaAdjacencia.append("\n");
             for (int j = 0; j < lista.size(); j++) {
-                jtaListaAdjacencia.append(lista.get(j) + "--->");
+                if (grafo.getTipo().equals("undirected")) {
+                    jtaListaAdjacencia.append(lista.get(j) + "-");
+                } else {
+                    jtaListaAdjacencia.append(lista.get(j) + "->");
+                }
                 if (j == (lista.size() - 1)) {
                     jtaListaAdjacencia.append("null");
                 }
@@ -48,7 +52,7 @@ public class frmListaAdjacencia extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaListaAdjacencia = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jtaListaAdjacencia.setEditable(false);
         jtaListaAdjacencia.setColumns(20);
@@ -113,8 +117,7 @@ public class frmListaAdjacencia extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Grafo grafo = null;
-                new frmMatrizIncidencia(grafo).setVisible(true);
+                new frmMatrizIncidencia().setVisible(true);
             }
         });
     }
