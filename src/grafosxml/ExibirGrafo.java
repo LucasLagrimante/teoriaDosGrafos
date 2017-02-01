@@ -102,7 +102,7 @@ public class ExibirGrafo extends javax.swing.JFrame {
             Process p;
             File arquivo = new File("src\\os\\dot\\fileS.dot");
             List<Aresta> listaAresta = grafo.getArestas();
-            String digraph_text="";
+            String digraph_text = "";
             if (grafo.getTipo().equals("undirected")) {
                 digraph_text = "graph G {";
             } else {
@@ -111,9 +111,11 @@ public class ExibirGrafo extends javax.swing.JFrame {
             for (int i = 0; i < listaAresta.size(); i++) {
                 digraph_text += "\n";
                 if (grafo.getTipo().equals("undirected")) {
-                    digraph_text += listaAresta.get(i).getOrigem() + "--" + listaAresta.get(i).getDestino() + ";";
+                    digraph_text += listaAresta.get(i).getOrigem() + "--" + listaAresta.get(i).getDestino() + "[label=" + listaAresta.get(i).getValorAresta() + "]" + ";";
+
                 } else {
-                    digraph_text += listaAresta.get(i).getOrigem() + "->" + listaAresta.get(i).getDestino() + ";";
+                    digraph_text += listaAresta.get(i).getOrigem() + "->" + listaAresta.get(i).getDestino() + "[label=" + listaAresta.get(i).getValorAresta() + "]" + ";";
+
                 }
             }
             digraph_text += "\n}";
