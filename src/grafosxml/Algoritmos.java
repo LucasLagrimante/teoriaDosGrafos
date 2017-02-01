@@ -25,40 +25,12 @@ public class Algoritmos extends javax.swing.JFrame {
     List<No> todosNos = new ArrayList<No>();
     List<No> nosDestino = new ArrayList<No>();
     List<No> nosOrigem = new ArrayList<No>();
-
-//    protected static mxGraph graph = new mxGraph();
-//    protected static HashMap m = new HashMap();
-//    private mxGraphComponent graphComponent;
-//    private mxCell cell = null;
-//    public static HashMap getM() {
-//        return m;
-//    }
-//    public static mxGraph getGraph() {
-//        return graph;
-//    }
     Object parent;
 
     public Algoritmos() {
         initComponents();
         setLocationRelativeTo(null); // deixa a janela no centro da tela
-
-//        parent = graph.getDefaultParent();
-//        graphComponent = new mxGraphComponent(graph);
-//        graphComponent.setPreferredSize(new Dimension(10, 10));
-//        graphComponent.setBackground(Color.WHITE);
-//        graphComponent.setComponentPopupMenu(popupMenu);
-//        jPanel1.add(graphComponent);
-//        graphComponent.getGraphControl().addMouseListener(new MouseAdapter() {
-//            public void mouseReleased(MouseEvent e) {
-//                cell = (mxCell) graphComponent.getCellAt(e.getX(), e.getY());
-//            }
-//        });
-//        getContentPane().setBackground(Color.white);
-//
-//        graphComponent.validate();
-//        graphComponent.repaint();
-//        jPanel1.validate();
-//        jPanel1.repaint();
+         this.grafo = GraphSession.getGrafo();
     }
 
     /**
@@ -75,8 +47,6 @@ public class Algoritmos extends javax.swing.JFrame {
         abc = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jBAbrirGrafo = new javax.swing.JButton();
-        jTNomeGrafo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jBDijkstra = new javax.swing.JButton();
@@ -87,7 +57,6 @@ public class Algoritmos extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jButtonMalgrange = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -138,15 +107,6 @@ public class Algoritmos extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-
-        jBAbrirGrafo.setText("Abrir Grafo");
-        jBAbrirGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAbrirGrafoActionPerformed(evt);
-            }
-        });
-
-        jTNomeGrafo.setEnabled(false);
 
         jLabel1.setText("Distância:");
 
@@ -221,7 +181,7 @@ public class Algoritmos extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBPrim)
                     .addComponent(jBKruskal))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButtonMalgrange.setText("Malgrange");
@@ -252,17 +212,6 @@ public class Algoritmos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonMalgrange)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 143, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 64, Short.MAX_VALUE)
         );
 
         jButton2.setText("Ordenação");
@@ -321,50 +270,30 @@ public class Algoritmos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBAbrirGrafo)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTNomeGrafo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(39, 39, 39)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAbrirGrafo)
-                    .addComponent(jTNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        setSize(new java.awt.Dimension(397, 252));
+        setSize(new java.awt.Dimension(397, 179));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -385,38 +314,11 @@ public class Algoritmos extends javax.swing.JFrame {
         formWindowOpened(null);
     }//GEN-LAST:event_formComponentResized
 
-    private void jBAbrirGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAbrirGrafoActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.showOpenDialog(this);
-        File xmlFileLer = new File(fileChooser.getSelectedFile().getName());
-        jTNomeGrafo.setText(fileChooser.getSelectedFile().getName().substring(0, fileChooser.getSelectedFile().getName().lastIndexOf(".")));
-        XStream xstream = new XStream(new DomDriver());
-        xstream.processAnnotations(Grafo.class);
-        grafo = (Grafo) xstream.fromXML(xmlFileLer);
-        grafo.geraMatriz();
-        grafo.geraMatrizIncidencia();
-        String xml = xstream.toXML(grafo);
-        System.out.println(xml);
-        listaNos.clear();
-        listaArestas.clear();
-
-        for (No n : grafo.getNos()) {
-            listaNos.add(n);
-        }
-        for (Aresta a : grafo.getArestas()) {
-            listaArestas.add(a);
-        }
-        grafo.setNos(listaNos);
-        grafo.setArestas(listaArestas);
-//        grafo.mostraGrafoDesign(grafo, grafo.getId(), null);
-    }//GEN-LAST:event_jBAbrirGrafoActionPerformed
-
     private void jBKruskalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKruskalActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-kruskal");
         // PARTE 2: LIMPA A TELA.
 //        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-        jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<Aresta> arestasOrdenadas = new ArrayList<Aresta>();
         List<Aresta> novasArestas = new ArrayList<Aresta>();
@@ -480,7 +382,6 @@ public class Algoritmos extends javax.swing.JFrame {
         g.setArestas(novasArestas);
         // PARTE 4: VISUALIZA O NOVO GRAFO.
 //        g.mostraGrafoDesign(g, "kruskal", null);
-        jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Árvore geradora mínima pelo \n algoritmo de Kruskal");
         // PARTE 5: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
@@ -491,7 +392,6 @@ public class Algoritmos extends javax.swing.JFrame {
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-dijkstra");
         // PARTE 2: LIMPA A TELA.
 //        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-        jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<No> listaNosFechados = new ArrayList<No>();
         List<No> listaNosAbertos = new ArrayList<>();
@@ -564,7 +464,6 @@ public class Algoritmos extends javax.swing.JFrame {
 
         // PARTE 4: VISUALIZA O NOVO GRAFO.
 //        g.mostraGrafoDesign(g, "dijkstra", null);
-        jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Caminho Minímo:\n" + imprime);
         // PARTE 5: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
@@ -575,7 +474,6 @@ public class Algoritmos extends javax.swing.JFrame {
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-prim");
         // PARTE 2: LIMPA A TELA.
 //        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-        jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<Aresta> t = new ArrayList<Aresta>();                               //T: conjunto de arestas da árvore geradora mínima
         List<Aresta> arestasPossiveis = new ArrayList<Aresta>();                //AP: conjunto de arestas que se tornaram potenciais candidatas a entrarem conjunto T
@@ -731,7 +629,6 @@ public class Algoritmos extends javax.swing.JFrame {
 
         // PARTE 4: VISUALIZA O NOVO GRAFO.
 //        g.mostraGrafoDesign(g, "prim", null);
-        jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Conjunto de arestas da árvore geradora mínima:\n" + T);
         // PARTE 5: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
@@ -770,7 +667,6 @@ public class Algoritmos extends javax.swing.JFrame {
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-profundidade");
         // PARTE 2: LIMPA A TELA.
 //            graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-        jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         nosVisitados.clear();
         listaAdjacenciaNos.clear();
@@ -790,7 +686,6 @@ public class Algoritmos extends javax.swing.JFrame {
         g.setArestas(arestas);
         // PARTE 4: VISUALIZA O NOVO GRAFO.
 //            g.mostraGrafoDesign(g, "profundidade", null);
-        jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo Busca em Produndidade");
         // PARTE 5: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
@@ -801,7 +696,6 @@ public class Algoritmos extends javax.swing.JFrame {
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-malgrange");
         // PARTE 2: LIMPA A TELA.
 //        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-        jTNomeGrafo.setText("");
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<String> ftd = new ArrayList<String>();
         List<String> fti = new ArrayList<String>();
@@ -882,7 +776,6 @@ public class Algoritmos extends javax.swing.JFrame {
         //cell = null;
         // PARTE 4: VISUALIZA O NOVO GRAFO.
 //        g.mostraGrafoDesign(g, "malgrange", null);
-        jTNomeGrafo.setText(g.getId());
         JOptionPane.showMessageDialog(null, "Vértices Fortemente Conexos:\n" + imprimir);
         // PARTE 5: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
@@ -967,7 +860,6 @@ public class Algoritmos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Remover;
     private javax.swing.JMenuItem abc;
-    private javax.swing.JButton jBAbrirGrafo;
     private javax.swing.JButton jBDijkstra;
     private javax.swing.JButton jBKruskal;
     private javax.swing.JButton jBPrim;
@@ -984,9 +876,7 @@ public class Algoritmos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JTextField jTNomeGrafo;
     private javax.swing.JPopupMenu popupMenu;
     // End of variables declaration//GEN-END:variables
 }
