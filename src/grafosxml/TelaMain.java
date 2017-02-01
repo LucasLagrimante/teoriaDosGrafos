@@ -434,6 +434,9 @@ public class TelaMain extends javax.swing.JFrame {
             listaArestas.remove(0);
             linhaA.removeRow(0);
         }
+
+        GraphSession.setGrafo(g);
+
         jtNomeGrafo.setText("");
         JOptionPane.showMessageDialog(null, "Dados Salvos com Sucesso");
     }//GEN-LAST:event_jbSalvarActionPerformed
@@ -451,6 +454,8 @@ public class TelaMain extends javax.swing.JFrame {
         Grafo g = (Grafo) xstream.fromXML(xmlFileLer);
         String xml = xstream.toXML(g);
         System.out.println(xml);
+
+        GraphSession.setGrafo(g);
 
         jtNomeGrafo.setText(fileChooser.getSelectedFile().getName().substring(0, fileChooser.getSelectedFile().getName().lastIndexOf(".")));
 
@@ -542,7 +547,7 @@ public class TelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jtNomeActionPerformed
 
     private void jBPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPropriedadesActionPerformed
-        frmRepresentacoes frr = new frmRepresentacoes(grafo);
+        frmRepresentacoes frr = new frmRepresentacoes();
         frr.setVisible(true);
     }//GEN-LAST:event_jBPropriedadesActionPerformed
 

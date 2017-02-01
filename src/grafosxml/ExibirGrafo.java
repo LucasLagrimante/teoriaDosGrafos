@@ -16,11 +16,14 @@ import javax.swing.ImageIcon;
  */
 public class ExibirGrafo extends javax.swing.JFrame {
 
+    Grafo grafo = new Grafo();
+
     /**
      * Creates new form RumApp
      */
     public ExibirGrafo() {
         initComponents();
+        this.grafo = GraphSession.getGrafo();
     }
 
     /**
@@ -83,10 +86,10 @@ public class ExibirGrafo extends javax.swing.JFrame {
         try {
             Process p;
             File arquivo = new File("src\\os\\dot\\fileS.dot");
-//            String digraph_text = "digraph G { ";
-//            digraph_text += grafo.ListaAdajcesndiue;
-//            digraph_text += " }";
-//            jtaEntrada.setText(digraph_text);
+            String digraph_text = "digraph G { ";
+            digraph_text += grafo.listaAdjacencia(grafo);
+            digraph_text += " }";
+            jtaEntrada.setText(digraph_text);
             try (FileWriter fw = new FileWriter(arquivo)) {
                 fw.write(jtaEntrada.getText());
                 fw.flush();

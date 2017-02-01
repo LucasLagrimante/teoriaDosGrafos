@@ -5,8 +5,6 @@
  */
 package grafosxml;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Kaio
@@ -15,9 +13,9 @@ public class frmRepresentacoes extends javax.swing.JDialog {
 
     Grafo grafo = new Grafo();
 
-    public frmRepresentacoes(Grafo grafo) {
+    public frmRepresentacoes() {
         initComponents();
-        this.grafo = grafo;
+        this.grafo = GraphSession.getGrafo();
     }
 
     /**
@@ -129,25 +127,6 @@ public class frmRepresentacoes extends javax.swing.JDialog {
 
     private void btnMatrizIncidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizIncidenciaActionPerformed
 
-//        int indice = 0;
-//        Grafo g = grafo;
-//        int[][] v = grafo.matrizIncidencia(g);
-//        for (int i = 0; i <= (g.getArestas().size() - 1); i++) {
-//            if (indice == 0) {
-//                System.out.print("\nMatrizIncidencia   ");
-//                indice = 1;
-//                System.out.print("  " + g.getArestas().get(i).getId());
-//            } else {
-//                System.out.print("  " + g.getArestas().get(i).getId());
-//            }
-//        }
-//        for (int j = 0; j <= (g.getVertices().size() - 1); j++) {
-//            System.out.print("\n");
-//            System.out.print("                  " + g.getVertices().get(j).getId());
-//            for (int i = 0; i <= (g.getArestas().size() - 1); i++) {
-//                System.out.print("  " + v[j][i]);
-//            }
-//        }
         frmMatrizIncidencia fmi = new frmMatrizIncidencia(grafo);
         fmi.setVisible(true);
 
@@ -155,55 +134,18 @@ public class frmRepresentacoes extends javax.swing.JDialog {
 
     private void btnMatrizAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizAdjacenciaActionPerformed
 
-//        int indice = 0;
-//        Grafo g = grafo;
-//        int[][] v = g.matrizAdjacencia(g);
-//        for (int i = 0; i <= (g.getVertices().size() - 1); i++) {
-//            if (indice == 0) {
-//                System.out.print("\nVertices/vertices   ");
-//                indice = 1;
-//                System.out.print("  " + g.getVertices().get(i).getId());
-//            } else {
-//                System.out.print(" " + g.getVertices().get(i).getId());
-//            }
-//        }
-//        for (int j = 0; j <= (g.getVertices().size() - 1); j++) {
-//            System.out.print("\n");
-//            System.out.print("                  " + g.getVertices().get(j).getId());
-//            for (int i = 0; i <= (g.getVertices().size() - 1); i++) {
-//                System.out.print("  " + v[j][i]);
-//            }
-//        }
         frmMatrizAdjacencia fma = new frmMatrizAdjacencia(grafo);
         fma.setVisible(true);
 
     }//GEN-LAST:event_btnMatrizAdjacenciaActionPerformed
 
     private void btnListaAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaAdjacenciaActionPerformed
-//        ArrayList<ArrayList> listaAdjacencia = grafo.listaAdjacencia(grafo);
-//        for (int i = 0; i < listaAdjacencia.size(); i++) {
-//            ArrayList<String> lista = listaAdjacencia.get(i);
-//            System.out.print("\n");
-//            for (int j = 0; j < lista.size(); j++) {
-//                System.out.print(lista.get(j) + "--->");
-//                if (j == (lista.size() - 1)) {
-//                    System.out.print("null");
-//                }
-//            }
         frmListaAdjacencia fla = new frmListaAdjacencia(grafo);
         fla.setVisible(true);
     }//GEN-LAST:event_btnListaAdjacenciaActionPerformed
 
 
     private void btnConjuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConjuntoActionPerformed
-//        for (Vertice v : grafo.getVertices()) {
-//            System.out.print("\nVertices: " + v.getId());
-//        }
-//
-//        for (Aresta a : grafo.getArestas()) {
-//            System.out.print("\nAresta: ->" + a.getId());
-//            System.out.print(" Vertices: " + a.getDestino() + "  " + a.getTarget());
-//        }
         frmConjunto fc = new frmConjunto(grafo);
         fc.setVisible(true);
     }//GEN-LAST:event_btnConjuntoActionPerformed
@@ -248,7 +190,7 @@ public class frmRepresentacoes extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Grafo grafo = null;
-                new frmRepresentacoes(grafo).setVisible(true);
+                new frmRepresentacoes().setVisible(true);
 
             }
         });
