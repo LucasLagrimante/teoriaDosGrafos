@@ -22,7 +22,7 @@ public class TelaMain extends javax.swing.JFrame {
     public static String origemAresta;
     public static String destinoAresta;
     int valorAresta;
-    public Grafo grafo = new Grafo();
+    public static Grafo grafo;
 
     public TelaMain() {
         initComponents();
@@ -38,7 +38,7 @@ public class TelaMain extends javax.swing.JFrame {
         jbMostrar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jtNomeGrafo = new javax.swing.JTextField();
-        jBPropriedades = new javax.swing.JButton();
+        jBRepresentacoes = new javax.swing.JButton();
         jBAlgoritmos = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -66,6 +66,7 @@ public class TelaMain extends javax.swing.JFrame {
         jtbNos = new javax.swing.JTable();
         jbRemoverVertice = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jBPropriedades = new javax.swing.JButton();
 
         jLabel7.setText("jLabel7");
 
@@ -94,10 +95,10 @@ public class TelaMain extends javax.swing.JFrame {
             }
         });
 
-        jBPropriedades.setText("Propriedades");
-        jBPropriedades.addActionListener(new java.awt.event.ActionListener() {
+        jBRepresentacoes.setText("Representações");
+        jBRepresentacoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBPropriedadesActionPerformed(evt);
+                jBRepresentacoesActionPerformed(evt);
             }
         });
 
@@ -195,33 +196,31 @@ public class TelaMain extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(20, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jbCriarAresta))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jbRemoverAresta)
-                                    .addGap(87, 87, 87)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton2))))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbCriarAresta))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jbRemoverAresta)
+                                .addGap(87, 87, 87)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jRadioButton1)
+                            .addGap(18, 18, 18)
+                            .addComponent(jRadioButton2)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,35 +355,45 @@ public class TelaMain extends javax.swing.JFrame {
             }
         });
 
+        jBPropriedades.setText("Propriedades");
+        jBPropriedades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPropriedadesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jbSalvar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbMostrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jBPropriedades)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBAlgoritmos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jLabel8)
-                        .addGap(38, 38, 38)
-                        .addComponent(jtNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbMostrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBRepresentacoes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBAlgoritmos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBPropriedades)
+                        .addGap(0, 22, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(jLabel8)
+                .addGap(38, 38, 38)
+                .addComponent(jtNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,10 +410,11 @@ public class TelaMain extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSalvar)
                     .addComponent(jbMostrar)
-                    .addComponent(jBPropriedades)
+                    .addComponent(jBRepresentacoes)
                     .addComponent(jBAlgoritmos)
-                    .addComponent(jButton1))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(jBPropriedades))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -468,6 +478,7 @@ public class TelaMain extends javax.swing.JFrame {
 
         File xmlFileLer = new File(fileChooser.getSelectedFile().getName());
         Grafo g = (Grafo) xstream.fromXML(xmlFileLer);
+        grafo = g;
         String xml = xstream.toXML(g);
         System.out.println(xml);
 
@@ -576,14 +587,14 @@ public class TelaMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtNomeActionPerformed
 
-    private void jBPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPropriedadesActionPerformed
+    private void jBRepresentacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRepresentacoesActionPerformed
         if (GraphSession.getGrafo() == null) {
             JOptionPane.showMessageDialog(null, "Grafo não existente");
         } else {
             frmRepresentacoes frr = new frmRepresentacoes();
             frr.setVisible(true);
         }
-    }//GEN-LAST:event_jBPropriedadesActionPerformed
+    }//GEN-LAST:event_jBRepresentacoesActionPerformed
 
     private void jBAlgoritmosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlgoritmosActionPerformed
         if (GraphSession.getGrafo() == null) {
@@ -610,6 +621,51 @@ public class TelaMain extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jBPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPropriedadesActionPerformed
+        
+        JOptionPane.showMessageDialog(null,"A ordem do grafo é: " + grafo.getNos().size());
+        
+        int grau = 0, grau2 = 0, i = 0;
+        
+        if (grafo.getTipo().equals("unidirected")) {
+            
+            for (i = 0; i <= grafo.getNos().size() - 1; i++) {
+                String vertice1 = grafo.getNos().get(i).getId();
+                for (int j = 0; j <= grafo.getArestas().size() - 1; j++) {
+                    if (vertice1.equals(grafo.getArestas().get(j).getOrigem()) || vertice1.equals(grafo.getArestas().get(j).getDestino())) {
+                        grau++;
+                    }
+                }
+                
+                JOptionPane.showMessageDialog(null, "vertice: "
+                                              + grafo.getNos().get(i).getId()
+                                              + " " + grau, "Grau do Vertice", 0);
+                grau = 0;
+            }
+            
+        }
+        if (grafo.getTipo().equals("directed")) {
+            for (i = 0; i <= grafo.getNos().size() - 1; i++) {
+                String vertice1 = grafo.getNos().get(i).getId();
+                for (int j = 0; j <= grafo.getArestas().size() - 1; j++) {
+                    if (vertice1.equals(grafo.getArestas().get(j).getOrigem())) {
+                        grau++;
+                    }
+                    if (vertice1.equals(grafo.getArestas().get(j).getDestino())) {
+                        grau2++;
+                    }
+                }
+                JOptionPane.showMessageDialog(null,"\n vertice: " + grafo.getNos().get(i).getId() + " Grau de Emissão " + grau
+                                              + "\n vertice: " + grafo.getNos().get(i).getId() + " Grau de Recepção " + grau2);
+                grau = 0;
+                
+                grau2 = 0;
+            }
+
+        }
+
+    }//GEN-LAST:event_jBPropriedadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -649,6 +705,7 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBAlgoritmos;
     private javax.swing.JButton jBPropriedades;
+    private javax.swing.JButton jBRepresentacoes;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;

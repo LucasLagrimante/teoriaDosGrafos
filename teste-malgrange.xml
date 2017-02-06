@@ -1,4 +1,4 @@
-<graph id="teste" edgedefault="undirected">
+<graph id="teste-malgrange" edgedefault="undirected">
   <node id="n1"/>
   <node id="n2"/>
   <node id="n3"/>

@@ -1,5 +1,5 @@
-<graph id="teste-profundidade" edgedefault="unidirected">
-  <node id="a"/>
-  <node id="b"/>
-  <node id="c"/>
+<graph id="teste-profundidade" edgedefault="undirected">
+  <node id="n1"/>
+  <node id="n2"/>
+  <node id="n3"/>
 </graph>

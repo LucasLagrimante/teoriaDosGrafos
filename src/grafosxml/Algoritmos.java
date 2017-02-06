@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 public class Algoritmos extends javax.swing.JFrame {
 
-    Grafo grafo;
+    Grafo grafo = TelaMain.grafo;
 
     List<No> listaNos = new ArrayList<No>(TelaMain.listaNos);
     List<Aresta> listaArestas = new ArrayList<Aresta>(TelaMain.listaArestas);
@@ -676,6 +676,7 @@ public class Algoritmos extends javax.swing.JFrame {
         List<String> analisados2 = new ArrayList<String>();
 
         int qt = listaNos.size();
+        grafo.geraMatriz();
         int[][] matrizADJ = grafo.getMatriz();
 
         int i = 0, j = 0, contador = 0;
