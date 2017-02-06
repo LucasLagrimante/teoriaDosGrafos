@@ -1,12 +1,8 @@
 package grafosxml;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.util.HashSet;
 
@@ -14,11 +10,11 @@ public class Algoritmos extends javax.swing.JFrame {
 
     Grafo grafo;
 
-    List<No> listaNos = new ArrayList<No>();
-    List<Aresta> listaArestas = new ArrayList<Aresta>();
-    String nomeAresta;
-    String origemAresta;
-    String destinoAresta;
+    List<No> listaNos = new ArrayList<No>(TelaMain.listaNos);
+    List<Aresta> listaArestas = new ArrayList<Aresta>(TelaMain.listaArestas);
+    String nomeAresta = TelaMain.nomeAresta;
+    String origemAresta = TelaMain.origemAresta;
+    String destinoAresta = TelaMain.destinoAresta;
 
     List<List<No>> listaAdjacenciaNos = new ArrayList<List<No>>();
     List<No> nosVisitados = new ArrayList<No>();
@@ -30,7 +26,7 @@ public class Algoritmos extends javax.swing.JFrame {
     public Algoritmos() {
         initComponents();
         setLocationRelativeTo(null); // deixa a janela no centro da tela
-         this.grafo = GraphSession.getGrafo();
+        this.grafo = GraphSession.getGrafo();
     }
 
     /**
@@ -303,11 +299,6 @@ public class Algoritmos extends javax.swing.JFrame {
     }//GEN-LAST:event_RemoverActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-//        graphComponent.setPreferredSize(new Dimension(jPanel1.getWidth() - 10, jPanel1.getHeight() - 10));
-//        graphComponent.validate();
-//        graphComponent.repaint();
-//        jPanel1.validate();
-//        jPanel1.repaint();
     }//GEN-LAST:event_formWindowOpened
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
@@ -317,9 +308,7 @@ public class Algoritmos extends javax.swing.JFrame {
     private void jBKruskalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKruskalActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-kruskal");
-        // PARTE 2: LIMPA A TELA.
-//        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
-        // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
+        // PARTE 2: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<Aresta> arestasOrdenadas = new ArrayList<Aresta>();
         List<Aresta> novasArestas = new ArrayList<Aresta>();
         List<No> nosLigados = new ArrayList<No>();
@@ -336,54 +325,48 @@ public class Algoritmos extends javax.swing.JFrame {
                     nosLigados.add(g.getNoById(ares.getDestino()));
                     novasArestas.add(ares);
                     j++;
-                } else {
-                    if (nosLigados.contains(g.getNoById(ares.getOrigem())) || nosLigados.contains(g.getNoById(ares.getDestino()))) {
-                        if (nosLigados.contains(g.getNoById(ares.getOrigem())) && nosLigados.contains(g.getNoById(ares.getDestino()))) {
-                            if ((nosSoltos.contains(g.getNoById(ares.getOrigem())) && !nosSoltos.contains(g.getNoById(ares.getDestino()))) || (nosSoltos.contains(g.getNoById(ares.getDestino())) && !nosSoltos.contains(g.getNoById(ares.getOrigem())))) {
-                                novasArestas.add(ares);
-                                j++;
-                                nosSoltos.clear();
-                            }
-                        } else {
-                            if (!nosSoltos.contains(g.getNoById(ares.getOrigem())) && !nosSoltos.contains(g.getNoById(ares.getDestino()))) {
-                                novasArestas.add(ares);
-                                j++;
-                                if (!nosLigados.contains(g.getNoById(ares.getOrigem()))) {
-                                    nosLigados.add(g.getNoById(ares.getOrigem()));
-                                }
-                                if (!nosLigados.contains(g.getNoById(ares.getDestino()))) {
-                                    nosLigados.add(g.getNoById(ares.getDestino()));
-                                }
-                            } else {
-                                novasArestas.add(ares);
-                                j++;
-                                if (!nosSoltos.contains(g.getNoById(ares.getOrigem()))) {
-                                    nosSoltos.add(g.getNoById(ares.getOrigem()));
-                                    nosLigados.add(g.getNoById(ares.getOrigem()));
-                                }
-                                if (!nosSoltos.contains(g.getNoById(ares.getDestino()))) {
-                                    nosSoltos.add(g.getNoById(ares.getDestino()));
-                                    nosLigados.add(g.getNoById(ares.getDestino()));
-                                }
-                            }
+                } else if (nosLigados.contains(g.getNoById(ares.getOrigem())) || nosLigados.contains(g.getNoById(ares.getDestino()))) {
+                    if (nosLigados.contains(g.getNoById(ares.getOrigem())) && nosLigados.contains(g.getNoById(ares.getDestino()))) {
+                        if ((nosSoltos.contains(g.getNoById(ares.getOrigem())) && !nosSoltos.contains(g.getNoById(ares.getDestino()))) || (nosSoltos.contains(g.getNoById(ares.getDestino())) && !nosSoltos.contains(g.getNoById(ares.getOrigem())))) {
+                            novasArestas.add(ares);
+                            j++;
+                            nosSoltos.clear();
+                        }
+                    } else if (!nosSoltos.contains(g.getNoById(ares.getOrigem())) && !nosSoltos.contains(g.getNoById(ares.getDestino()))) {
+                        novasArestas.add(ares);
+                        j++;
+                        if (!nosLigados.contains(g.getNoById(ares.getOrigem()))) {
+                            nosLigados.add(g.getNoById(ares.getOrigem()));
+                        }
+                        if (!nosLigados.contains(g.getNoById(ares.getDestino()))) {
+                            nosLigados.add(g.getNoById(ares.getDestino()));
                         }
                     } else {
                         novasArestas.add(ares);
                         j++;
-                        nosLigados.add(g.getNoById(ares.getOrigem()));
-                        nosLigados.add(g.getNoById(ares.getDestino()));
-                        nosSoltos.add(g.getNoById(ares.getOrigem()));
-                        nosSoltos.add(g.getNoById(ares.getDestino()));
+                        if (!nosSoltos.contains(g.getNoById(ares.getOrigem()))) {
+                            nosSoltos.add(g.getNoById(ares.getOrigem()));
+                            nosLigados.add(g.getNoById(ares.getOrigem()));
+                        }
+                        if (!nosSoltos.contains(g.getNoById(ares.getDestino()))) {
+                            nosSoltos.add(g.getNoById(ares.getDestino()));
+                            nosLigados.add(g.getNoById(ares.getDestino()));
+                        }
                     }
+                } else {
+                    novasArestas.add(ares);
+                    j++;
+                    nosLigados.add(g.getNoById(ares.getOrigem()));
+                    nosLigados.add(g.getNoById(ares.getDestino()));
+                    nosSoltos.add(g.getNoById(ares.getOrigem()));
+                    nosSoltos.add(g.getNoById(ares.getDestino()));
                 }
             }
         }
         g.getArestas().clear();
         g.setArestas(novasArestas);
-        // PARTE 4: VISUALIZA O NOVO GRAFO.
-//        g.mostraGrafoDesign(g, "kruskal", null);
         JOptionPane.showMessageDialog(null, "Árvore geradora mínima pelo \n algoritmo de Kruskal");
-        // PARTE 5: SALVA O GRAFO EM XML.
+        // PARTE 3: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
     }//GEN-LAST:event_jBKruskalActionPerformed
 
@@ -391,7 +374,6 @@ public class Algoritmos extends javax.swing.JFrame {
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-dijkstra");
         // PARTE 2: LIMPA A TELA.
-//        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<No> listaNosFechados = new ArrayList<No>();
         List<No> listaNosAbertos = new ArrayList<>();
@@ -472,8 +454,6 @@ public class Algoritmos extends javax.swing.JFrame {
     private void jBPrimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPrimActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-prim");
-        // PARTE 2: LIMPA A TELA.
-//        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<Aresta> t = new ArrayList<Aresta>();                               //T: conjunto de arestas da árvore geradora mínima
         List<Aresta> arestasPossiveis = new ArrayList<Aresta>();                //AP: conjunto de arestas que se tornaram potenciais candidatas a entrarem conjunto T
@@ -627,8 +607,6 @@ public class Algoritmos extends javax.swing.JFrame {
         g.getArestas().clear();
         g.setArestas(t);
 
-        // PARTE 4: VISUALIZA O NOVO GRAFO.
-//        g.mostraGrafoDesign(g, "prim", null);
         JOptionPane.showMessageDialog(null, "Conjunto de arestas da árvore geradora mínima:\n" + T);
         // PARTE 5: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
@@ -665,8 +643,6 @@ public class Algoritmos extends javax.swing.JFrame {
     private void jButtonProfundidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProfundidadeActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-profundidade");
-        // PARTE 2: LIMPA A TELA.
-//            graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         nosVisitados.clear();
         listaAdjacenciaNos.clear();
@@ -684,8 +660,6 @@ public class Algoritmos extends javax.swing.JFrame {
         }
         g.getArestas().clear();
         g.setArestas(arestas);
-        // PARTE 4: VISUALIZA O NOVO GRAFO.
-//            g.mostraGrafoDesign(g, "profundidade", null);
         JOptionPane.showMessageDialog(null, "Foi exibido o resultado do \n algoritmo Busca em Produndidade");
         // PARTE 5: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
@@ -694,8 +668,6 @@ public class Algoritmos extends javax.swing.JFrame {
     private void jButtonMalgrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMalgrangeActionPerformed
         // PARTE 1: PEGA OS DADOS DO GRAFO ABERTO E CRIA UM NOVO GRAFO IDÊNTICO PARA SER MANIPULADO.
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-malgrange");
-        // PARTE 2: LIMPA A TELA.
-//        graph.removeCells(graphComponent.getCells(new Rectangle(0, 0, graphComponent.getWidth(), graphComponent.getHeight())));
         // PARTE 3: APLICA O ALGORITMO PARA ESCOLHER AS ARESTAS.
         List<String> ftd = new ArrayList<String>();
         List<String> fti = new ArrayList<String>();
@@ -772,10 +744,6 @@ public class Algoritmos extends javax.swing.JFrame {
         }
         imprimir += ")";
 
-        //listaNos.remove(new No((String) cell.getValue()));
-        //cell = null;
-        // PARTE 4: VISUALIZA O NOVO GRAFO.
-//        g.mostraGrafoDesign(g, "malgrange", null);
         JOptionPane.showMessageDialog(null, "Vértices Fortemente Conexos:\n" + imprimir);
         // PARTE 5: SALVA O GRAFO EM XML.
         g.salvaGrafo(g);
@@ -833,15 +801,6 @@ public class Algoritmos extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -849,12 +808,6 @@ public class Algoritmos extends javax.swing.JFrame {
                 new Algoritmos().setVisible(true);
             }
         });
-//    
-//        ViewHome frame = new ViewHome();
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(400, 320);
-//        frame.setVisible(true);
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

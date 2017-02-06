@@ -1,0 +1,8 @@
+<graph id="teste-dijkstra" edgedefault="unidirected">
+  <node id="a"/>
+  <node id="b"/>
+  <node id="c"/>
+  <edge source="a" target="b" value="0"/>
+  <edge source="b" target="c" value="0"/>
+  <edge source="c" target="a" value="0"/>
+</graph>

@@ -5,7 +5,6 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
@@ -16,12 +15,12 @@ import static java.lang.Integer.parseInt;
 
 public class TelaMain extends javax.swing.JFrame {
 
-    List<No> listaNos = new ArrayList<No>();
-    List<Aresta> listaArestas = new ArrayList<Aresta>();
+    public static List<No> listaNos = new ArrayList<No>();
+    public static List<Aresta> listaArestas = new ArrayList<Aresta>();
     List<Object> listaNosCombo = new ArrayList<>();
-    String nomeAresta;
-    String origemAresta;
-    String destinoAresta;
+    public static String nomeAresta;
+    public static String origemAresta;
+    public static String destinoAresta;
     int valorAresta;
     public Grafo grafo = new Grafo();
 

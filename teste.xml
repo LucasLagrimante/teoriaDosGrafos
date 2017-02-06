@@ -1,0 +1,5 @@
+<graph id="teste" edgedefault="undirected">
+  <node id="n1"/>
+  <node id="n2"/>
+  <edge source="n1" target="n2" name="a1" value="0"/>
+</graph>

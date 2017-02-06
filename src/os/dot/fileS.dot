@@ -1,6 +1,5 @@
 digraph G {
-     a -> b -> c;
-     b -> d [label="0.2",color=red,penwidth=3.0 ];
-     d -> a;
-d -> a;
- }
+a->b[label=0];
+b->c[label=0];
+c->a[label=0];
+}

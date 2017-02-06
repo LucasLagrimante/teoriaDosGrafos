@@ -6,7 +6,6 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-//import static grafosxml.Algoritmos.graph;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -197,56 +196,6 @@ public class Grafo {
         }
     }
 
-//    public void mostraGrafoDesign(Grafo grafo, String nome, int[][]matriz){
-//        graph.getModel().beginUpdate();
-//        try {
-//            mxStylesheet stylesheet = Algoritmos.getGraph().getStylesheet();
-//            Hashtable<String, Object> style = new Hashtable();
-//            style.put(mxConstants.STYLE_SHAPE, "ellipse");
-//            style.put(mxConstants.STYLE_OPACITY, 50);
-//            style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
-//            style.put(mxConstants.STYLE_FILLCOLOR, Color.LIGHT_GRAY);
-//            stylesheet.putCellStyle("ROUNDED", style);
-//            String nomeNo = "";
-//            int p1 = 10;
-//            int p2 = 20;
-//            int i = 2;
-//
-//            for (No vertice : grafo.getNos()) {
-//                nomeNo = vertice.getId();
-//                mxCell v1 = (mxCell) Algoritmos.getGraph().insertVertex(parent, null, nomeNo, p1, p2, 50, 50, "ROUNDED");
-//                v1.setValue(nomeNo);
-//                Algoritmos.getM().put(nomeNo, v1);
-//                i++;
-//                if(nome.equals("topologica")){
-//                    p1 += 100;
-//                }
-//                else{
-//                    if (i % 2 == 0) {
-//                        p1 += 60;
-//                        p2 = 20;
-//                    } else {
-//                        p1 += 60;
-//                        p2 = 150;
-//                    }
-//                }
-//            }
-//            for (Aresta aresta : grafo.getArestas()) {
-//                Object parent1 = Algoritmos.getGraph().getDefaultParent();
-//                Object v1 = Algoritmos.getM().get(aresta.getOrigem());
-//                Object v2 = Algoritmos.getM().get(aresta.getDestino());
-//                if(matriz != null){
-//                    int origem = grafo.getNos().indexOf(new No(aresta.getOrigem()));
-//                    int destino = grafo.getNos().indexOf(new No(aresta.getDestino()));
-//                    Algoritmos.getGraph().insertEdge(parent1, null, aresta.getNomeAresta()+": "+matriz[destino][origem]+"/"+aresta.getValorAresta(), v1, v2);
-//                }else{
-//                    Algoritmos.getGraph().insertEdge(parent1, null, aresta.getNomeAresta()+": "+aresta.getValorAresta(), v1, v2);
-//                }
-//            }
-//        } finally {
-//            graph.getModel().endUpdate();
-//        }
-//    }
     public String getConjuntoVertices() {
         String vertices = "V={";
         for (No ver : nos) {
