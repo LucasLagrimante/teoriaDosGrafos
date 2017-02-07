@@ -1,0 +1,6 @@
+<graph id="graf-profundidade" edgedefault="undirected">
+  <node id="n1"/>
+  <node id="n2"/>
+  <node id="n3"/>
+  <node id="n4"/>
+</graph>

@@ -1,5 +1,12 @@
 package grafosxml;
-
+/**
+ *
+ * Integrantes do grupo:
+ * Victor Domingos Duque
+ * Lucas Lagrimante Martinho
+ * Ramon de Souza Almeida
+ * Kaio Cesar B. Costa
+ */
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
