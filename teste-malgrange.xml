@@ -1,9 +1,8 @@
-<graph id="teste-malgrange" edgedefault="undirected">
-  <node id="n1"/>
-  <node id="n2"/>
-  <node id="n3"/>
-  <edge source="n1" target="n2" name="a1" value="0"/>
-  <edge source="n1" target="n1" name="e" value="0"/>
-  <edge source="n1" target="n3" name="asd" value="5"/>
-  <edge source="n1" target="n1" name="wer" value="22"/>
+<graph id="teste-malgrange" edgedefault="unidirected">
+  <node id="a"/>
+  <node id="b"/>
+  <node id="c"/>
+  <edge source="a" target="b" value="0"/>
+  <edge source="b" target="c" value="0"/>
+  <edge source="c" target="a" value="0"/>
 </graph>
