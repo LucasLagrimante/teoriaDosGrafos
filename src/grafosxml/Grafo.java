@@ -54,83 +54,6 @@ public class Grafo {
         return arestas.size();
     }
 
-    public void geraMatriz() {
-        int Qtdenos = nos.size();
-        matriz = new int[Qtdenos][Qtdenos];
-        for (int i = 0; i < Qtdenos; i++) {
-            for (int j = 0; j < Qtdenos; j++) {
-                matriz[i][j] = 0;
-            }
-        }
-        for (Aresta are : arestas) {
-            int posO = nos.indexOf(new No(are.getOrigem()));
-            int posD = nos.indexOf(new No(are.getDestino()));
-            matriz[posO][posD] = 1;
-            if (tipo.equals("undirected")) {
-                matriz[posD][posO] = 1;
-            }
-        }
-    }
-
-    public int[][] getMatrizComValue() {
-        int Qtdenos = nos.size();
-        matrizValue = new int[Qtdenos][Qtdenos];
-        for (int i = 0; i < Qtdenos; i++) {
-            for (int j = 0; j < Qtdenos; j++) {
-                matrizValue[i][j] = 0;
-            }
-        }
-        for (Aresta are : arestas) {
-            int posO = nos.indexOf(new No(are.getOrigem()));
-            int posD = nos.indexOf(new No(are.getDestino()));
-            matrizValue[posO][posD] = are.getValorAresta();
-        }
-        return matrizValue;
-    }
-
-    public void geraMatrizIncidencia() {
-        int Qtarestas = arestas.size();
-        int Qtdenos = nos.size();
-        matrizI = new int[Qtarestas][Qtdenos];
-        for (int i = 0; i < Qtarestas; i++) {
-            for (int j = 0; j < Qtdenos; j++) {
-                matrizI[i][j] = 0;
-            }
-        }
-        for (Aresta are : arestas) {
-            for (No no : nos) {
-                int posA = arestas.indexOf(are);
-                int posV = nos.indexOf(no);
-
-                if (tipo.equals("directed")) {
-                    if (nos.indexOf(new No(are.getDestino())) == posV) {
-                        matrizI[posA][posV] = 1;
-                    }
-
-                    if (nos.indexOf(new No(are.getOrigem())) == posV) {
-                        matrizI[posA][posV] = -1;
-                    }
-                }
-                if (tipo.equals("undirected")) {
-                    if (nos.indexOf(new No(are.getDestino())) == posV || nos.indexOf(new No(are.getOrigem())) == posV) {
-                        matrizI[posA][posV] = 1;
-                    }
-                }
-            }
-        }
-    }
-
-    public No getNoById(String id) {
-        No a = null;
-        for (No no : nos) {
-            if (no.getId().equals(id)) {
-                a = no;
-                break;
-            }
-        }
-        return a;
-    }
-
     public String getId() {
         return id;
     }
@@ -167,6 +90,35 @@ public class Grafo {
         return nos.size();
     }
 
+    public void geraMatriz() {
+        int Qtdenos = nos.size();
+        matriz = new int[Qtdenos][Qtdenos];
+        for (int i = 0; i < Qtdenos; i++) {
+            for (int j = 0; j < Qtdenos; j++) {
+                matriz[i][j] = 0;
+            }
+        }
+        for (Aresta are : arestas) {
+            int posO = nos.indexOf(new No(are.getOrigem()));
+            int posD = nos.indexOf(new No(are.getDestino()));
+            matriz[posO][posD] = 1;
+            if (tipo.equals("undirected")) {
+                matriz[posD][posO] = 1;
+            }
+        }
+    }
+
+    public No getNoById(String id) {
+        No a = null;
+        for (No no : nos) {
+            if (no.getId().equals(id)) {
+                a = no;
+                break;
+            }
+        }
+        return a;
+    }
+
     public Grafo copiaGrafo(Grafo grafo, String nome) {
         List<No> listaNos2 = new ArrayList<No>();
         List<Aresta> listaArestas2 = new ArrayList<Aresta>();
@@ -196,52 +148,6 @@ public class Grafo {
         }
     }
 
-    public String getConjuntoVertices() {
-        String vertices = "V={";
-        for (No ver : nos) {
-            String id = ver.getId();
-            vertices += id + ", ";
-        }
-        return vertices + "}";
-    }
-
-    public String getConjuntoArestas() {
-        String conj = "A={";
-        for (Aresta are : arestas) {
-            String origem = are.getOrigem();
-            String destino = are.getDestino();
-            String nome = are.getNomeAresta();
-            conj += nome + "(" + origem + "," + destino + "), ";
-        }
-        return conj + "}";
-    }
-
-    public String getIncidenciaArestas(Grafo g) {
-        String incidentes = "\n";
-        for (Aresta are : arestas) {
-            String origem = are.getOrigem();
-            String destino = are.getDestino();
-            String nome = are.getNomeAresta();
-            incidentes += "Aresta: " + nome + " Incidentes: " + origem + " e " + destino + "\n";
-        }
-        return incidentes;
-    }
-
-    public String getMensagemGrau(Grafo g, String s) {
-        String estring = "\n";
-        for (int i = 0; i < g.getNos().size(); i++) {
-            if (s == "Vertice") {
-                estring += "Grau(" + g.getNos().get(i).getId() + "): " + g.getGrauVertice(g.getNos().get(i)) + "; \n";
-            }
-            if (s == "Emissao") {
-                estring += "Grau(" + g.getNos().get(i).getId() + "): " + g.getGrauEmissao(g.getNos().get(i)) + "; \n";
-            }
-            if (s == "Recepcao") {
-                estring += "Grau(" + g.getNos().get(i).getId() + "): " + g.getGrauRecepcao(g.getNos().get(i)) + "; \n";
-            }
-        }
-        return estring;
-    }
 
     public int getGrauEmissao(No no) {
         int grau = 0;
@@ -274,180 +180,6 @@ public class Grafo {
             }
         }
         return grau;
-    }
-
-    public String getArestasAdjacentes() {
-        String arestasAd = "";
-        String subArestAd = "";
-        for (No vertice : nos) {
-            int i = 0;
-            for (Aresta ares : arestas) {
-                if (vertice.getId().equals(ares.getOrigem()) || vertice.getId().equals(ares.getDestino())) {
-                    subArestAd += ares.getNomeAresta() + ", ";
-                    i++;
-                }
-            }
-            if (i > 1) {
-                arestasAd += "\n Pelo vértice " + vertice.getId() + ": " + subArestAd;
-                subArestAd = "";
-            }
-        }
-        return arestasAd;
-    }
-
-    public String getVerticesAdjacentes() {
-        String verticesAd = "\n";
-        for (Aresta are : arestas) {
-            String origem = are.getOrigem();
-            String destino = are.getDestino();
-            verticesAd += origem + " e " + destino + "\n";
-        }
-        return verticesAd;
-    }
-
-    public String getArestasIndependentes() {
-        String arestasIndependentes = "\n";
-        for (int i = 0; i < arestas.size(); i++) {
-            arestasIndependentes += "\n" + arestas.get(i).getNomeAresta() + " independente de: ";
-            int no1 = -1;
-            for (int j = 0; j < nos.size(); j++) {
-                if (matrizI[i][j] == 1 || matrizI[i][j] == -1) {
-                    no1 = j;
-                    break;
-                }
-            }
-            int no2 = -1;
-            for (int k = 0; k < nos.size(); k++) {
-                if ((matrizI[i][k] == 1 || matrizI[i][k] == -1) && no1 != k) {
-                    no2 = k;
-                    break;
-                }
-            }
-
-            for (int l = 0; l < arestas.size(); l++) {
-                if (matrizI[l][no1] == 0 && matrizI[l][no2] == 0) {
-                    arestasIndependentes += arestas.get(l).getNomeAresta() + ", ";
-                }
-            }
-        }
-        if (arestasIndependentes == "\n") {
-            arestasIndependentes = "Não há arestas independentes !!";
-        }
-        return arestasIndependentes;
-    }
-
-    public String getVerticesIndependentes() {
-        String verticesIndependentes = "\n";
-        for (int i = 0; i < nos.size(); i++) {
-            verticesIndependentes += "\n" + nos.get(i).getId() + " independente de: ";
-            for (int j = 0; j < nos.size(); j++) {
-                if (matriz[i][j] == 0 && i != j) {
-                    verticesIndependentes += nos.get(j).getId() + ", ";
-                }
-            }
-        }
-        if (verticesIndependentes == "\n") {
-            verticesIndependentes = "Não há vértices independentes !!";
-        }
-        return verticesIndependentes;
-    }
-
-    public String getVerticesIsolados(Grafo g) {
-        String estring = "\n";
-        for (int i = 0; i < g.getNos().size(); i++) {
-            if (g.getGrauVertice(g.getNos().get(i)) == 0) {
-                estring += "Vértice (" + g.getNos().get(i).getId() + ");\n";
-            }
-        }
-        if (estring == "\n") {
-            estring = "Não há vértices isolados !!";
-        }
-        return estring;
-    }
-
-    public String getVerticesTerminais(Grafo g) {
-        String estring = "\n";
-        for (int i = 0; i < g.getNos().size(); i++) {
-            if (g.getGrauVertice(g.getNos().get(i)) == 1) {
-                estring += "Vértice (" + g.getNos().get(i).getId() + ");\n";
-            }
-        }
-        if (estring == "\n") {
-            estring = "Não há vértices terminais !!";
-        }
-        return estring;
-    }
-
-    public String getVerticesFontes(Grafo g) {
-        String estring = "\n";
-        for (int i = 0; i < g.getNos().size(); i++) {
-            if (g.getGrauRecepcao(g.getNos().get(i)) == 0 && g.getGrauEmissao(g.getNos().get(i)) != 0) {
-                estring += "Vértice (" + g.getNos().get(i).getId() + ");\n";
-            }
-        }
-        if (estring == "\n") {
-            estring = "Não há vértices fontes!";
-        }
-        return estring;
-    }
-
-    public String getVerticesSumidouros(Grafo g) {
-        String estring = "\n";
-        for (int i = 0; i < g.getNos().size(); i++) {
-            if (g.getGrauRecepcao(g.getNos().get(i)) != 0 && g.getGrauEmissao(g.getNos().get(i)) == 0) {
-                estring += "Vértice (" + g.getNos().get(i).getId() + ");\n";
-            }
-        }
-        if (estring == "\n") {
-            estring = "Não há vértices sumidouros!";
-        }
-        return estring;
-    }
-
-    public int getQtdVerticesFontes(Grafo g) {
-        int qtd = 0;
-        for (int i = 0; i < g.getNos().size(); i++) {
-            if (g.getGrauRecepcao(g.getNos().get(i)) == 0 && g.getGrauEmissao(g.getNos().get(i)) != 0) {
-                qtd++;
-            }
-        }
-        return qtd;
-    }
-
-    public int getQtdVerticesSumidouros(Grafo g) {
-        int qtd = 0;
-        for (int i = 0; i < g.getNos().size(); i++) {
-            if (g.getGrauRecepcao(g.getNos().get(i)) != 0 && g.getGrauEmissao(g.getNos().get(i)) == 0) {
-                qtd++;
-            }
-        }
-        return qtd;
-    }
-
-    public int getPosicaoFonte(Grafo g) {
-        int pos = 0;
-        for (int i = 0; i < g.getNos().size(); i++) {
-            int recepcao = g.getGrauRecepcao(g.getNos().get(i));
-            int emissao = g.getGrauEmissao(g.getNos().get(i));
-            if (recepcao == 0 && emissao > 0) {
-                pos = i;
-                break;
-            }
-        }
-        return pos;
-    }
-
-    public int getPosicaoSumidouro(Grafo g) {
-        int pos = 0;
-        for (int i = 0; i < g.getNos().size(); i++) {
-            int recepcao = g.getGrauRecepcao(g.getNos().get(i));
-            int emissao = g.getGrauEmissao(g.getNos().get(i));
-            if (recepcao > 0 && emissao == 0) {
-                pos = i;
-                break;
-            }
-        }
-        return pos;
     }
 
     public int[][] getMatriz() {
