@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import static java.lang.Integer.parseInt;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class TelaMain extends javax.swing.JFrame {
 
@@ -473,7 +474,8 @@ public class TelaMain extends javax.swing.JFrame {
         xstream.processAnnotations(Grafo.class);
 
         JFileChooser fileChooser = new JFileChooser();
-
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Filtro .xml", "xml"));
+        fileChooser.setAcceptAllFileFilterUsed(false);
         fileChooser.showOpenDialog(this);
 
         File xmlFileLer = new File(fileChooser.getSelectedFile().getName());
