@@ -388,12 +388,12 @@ public class TelaMain extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBPropriedades)
                         .addGap(0, 22, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(158, 158, 158))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,19 +450,19 @@ public class TelaMain extends javax.swing.JFrame {
                 System.out.println("Erro ao Gravar Arquivo");
             }
             DefaultTableModel linhaN = (DefaultTableModel) jtbNos.getModel();
-            while (linhaN.getRowCount() != 0) {
-                listaNos.remove(0);
-                linhaN.removeRow(0);
-            }
+//            while (linhaN.getRowCount() != 0) {
+//                listaNos.remove(0);
+//                linhaN.removeRow(0);
+//            }
             DefaultTableModel linhaA = (DefaultTableModel) jtbArestas.getModel();
-            while (linhaA.getRowCount() != 0) {
-                listaArestas.remove(0);
-                linhaA.removeRow(0);
-            }
+//            while (linhaA.getRowCount() != 0) {
+//                listaArestas.remove(0);
+//                linhaA.removeRow(0);
+//            }
 
             GraphSession.setGrafo(g);
 
-            jtNomeGrafo.setText("");
+//            jtNomeGrafo.setText("");
             JOptionPane.showMessageDialog(null, "Dados Salvos com Sucesso");
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
@@ -552,21 +552,21 @@ public class TelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCriarNosActionPerformed
 
     private void jbCriarArestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCriarArestaActionPerformed
-        nomeAresta = jtNome.getText();
-        if (jtValor.getText().equals("")) {
-            valorAresta = 0;
+        if (!(jtValor.getText().matches("^[0-9]*[.]{0,1}[0-9]*$")) || jtValor.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo Valor vazio ou não numérico!");
         } else {
+            nomeAresta = jtNome.getText();
             valorAresta = Integer.parseInt(jtValor.getText());
+            origemAresta = (String) jComboBox1.getSelectedItem();
+            destinoAresta = (String) jComboBox2.getSelectedItem();
+            DefaultTableModel linha = (DefaultTableModel) jtbArestas.getModel();
+            listaArestas.add(new Aresta(nomeAresta, valorAresta, origemAresta, destinoAresta));
+            linha.addRow(new String[]{nomeAresta, Integer.toString(valorAresta), origemAresta, destinoAresta});
+            jtNome.setText("");
+            jComboBox1.setSelectedIndex(0);
+            jComboBox2.setSelectedIndex(0);
+            jtValor.setText("");
         }
-        origemAresta = (String) jComboBox1.getSelectedItem();
-        destinoAresta = (String) jComboBox2.getSelectedItem();
-        DefaultTableModel linha = (DefaultTableModel) jtbArestas.getModel();
-        listaArestas.add(new Aresta(nomeAresta, valorAresta, origemAresta, destinoAresta));
-        linha.addRow(new String[]{nomeAresta, Integer.toString(valorAresta), origemAresta, destinoAresta});
-        jtNome.setText("");
-        jComboBox1.setSelectedIndex(0);
-        jComboBox2.setSelectedIndex(0);
-        jtValor.setText("");
     }//GEN-LAST:event_jbCriarArestaActionPerformed
 
     private void jbRemoverVerticeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRemoverVerticeActionPerformed
@@ -623,13 +623,13 @@ public class TelaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jBPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPropriedadesActionPerformed
-        
-        JOptionPane.showMessageDialog(null,"A ordem do grafo é: " + grafo.getNos().size());
-        
+
+        JOptionPane.showMessageDialog(null, "A ordem do grafo é: " + grafo.getNos().size());
+
         int grau = 0, grau2 = 0, i = 0;
-        
+
         if (grafo.getTipo().equals("unidirected")) {
-            
+
             for (i = 0; i <= grafo.getNos().size() - 1; i++) {
                 String vertice1 = grafo.getNos().get(i).getId();
                 for (int j = 0; j <= grafo.getArestas().size() - 1; j++) {
@@ -637,13 +637,13 @@ public class TelaMain extends javax.swing.JFrame {
                         grau++;
                     }
                 }
-                
+
                 JOptionPane.showMessageDialog(null, "vertice: "
-                                              + grafo.getNos().get(i).getId()
-                                              + " " + grau, "Grau do Vertice", 0);
+                        + grafo.getNos().get(i).getId()
+                        + " " + grau, "Grau do Vertice", 0);
                 grau = 0;
             }
-            
+
         }
         if (grafo.getTipo().equals("directed")) {
             for (i = 0; i <= grafo.getNos().size() - 1; i++) {
@@ -656,10 +656,10 @@ public class TelaMain extends javax.swing.JFrame {
                         grau2++;
                     }
                 }
-                JOptionPane.showMessageDialog(null,"\n vertice: " + grafo.getNos().get(i).getId() + " Grau de Emissão " + grau
-                                              + "\n vertice: " + grafo.getNos().get(i).getId() + " Grau de Recepção " + grau2);
+                JOptionPane.showMessageDialog(null, "\n vertice: " + grafo.getNos().get(i).getId() + " Grau de Emissão " + grau
+                        + "\n vertice: " + grafo.getNos().get(i).getId() + " Grau de Recepção " + grau2);
                 grau = 0;
-                
+
                 grau2 = 0;
             }
 

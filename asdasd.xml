@@ -1,0 +1,9 @@
+<graph id="asdasd" edgedefault="undirected">
+  <node id="n1"/>
+  <node id="n2"/>
+  <node id="n3"/>
+  <node id="n4"/>
+  <edge source="n1" target="n2" name="asdas" value="23"/>
+  <edge source="n1" target="n1" name="" value="5"/>
+  <edge source="n3" target="n4" name="asd" value="4"/>
+</graph>

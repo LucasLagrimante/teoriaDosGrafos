@@ -1,5 +1,5 @@
-digraph G {
-a->b[label=0];
-b->c[label=0];
-c->a[label=0];
+graph G {
+n1--n2[label=23];
+n1--n1[label=5];
+n3--n4[label=4];
 }
