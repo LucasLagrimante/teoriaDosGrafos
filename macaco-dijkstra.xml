@@ -1,0 +1,10 @@
+<graph id="macaco-dijkstra" edgedefault="directed">
+  <node id="n1"/>
+  <node id="n2"/>
+  <node id="n3"/>
+  <node id="n4"/>
+  <edge source="n1" target="n1" name="a" value="4"/>
+  <edge source="n1" target="n1" name="b" value="4"/>
+  <edge source="n2" target="n3" name="asd" value="1"/>
+  <edge source="n1" target="n1" name="" value="0"/>
+</graph>

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.HashSet;
+import javax.swing.JFrame;
 
 public class Algoritmos extends javax.swing.JFrame {
 
@@ -25,9 +26,10 @@ public class Algoritmos extends javax.swing.JFrame {
 
     public Algoritmos() {
         initComponents();
-        setLocationRelativeTo(null); 
+        setLocationRelativeTo(null);
         this.grafo = GraphSession.getGrafo();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -372,12 +374,25 @@ public class Algoritmos extends javax.swing.JFrame {
         List<No> listaNosFechados = new ArrayList<No>();
         List<No> listaNosAbertos = new ArrayList<>();
         int qtNos = listaNos.size();
+        int h = 0;
 
         int[][] matrizD = new int[qtNos][qtNos];
 
         listaNosAbertos.addAll(listaNos);
 
-        String verticeRaiz = JOptionPane.showInputDialog("Digite o vértice raiz:");
+        String[] nosCombo = new String[qtNos];
+        while (h < qtNos) {
+            nosCombo[h] = (String) listaNos.get(h).getId();
+            h = h + 1;
+        }
+        JFrame frame = new JFrame("Vértice Raiz");
+        String verticeRaiz = (String) JOptionPane.showInputDialog(frame,
+                "Ecolha o vértice raiz:",
+                "Vértice Raiz",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                nosCombo,
+                nosCombo[0]);
 
         int[] tabelaD = new int[listaNosAbertos.size() - 1];
 
@@ -437,7 +452,6 @@ public class Algoritmos extends javax.swing.JFrame {
             p++;
         }
 
-
         JOptionPane.showMessageDialog(null, "Caminho Minímo:\n" + imprime);
         g.salvaGrafo(g);
     }//GEN-LAST:event_jBDijkstraActionPerformed
@@ -446,18 +460,18 @@ public class Algoritmos extends javax.swing.JFrame {
         // Clona o grafo aberto para ser manipulado
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-prim");
         //t grupo de arestas da árvore geradora mínima
-        List<Aresta> t = new ArrayList<Aresta>();                             
-        List<Aresta> arestasPossiveis = new ArrayList<Aresta>();                
-        List<Aresta> arestasOriginais = new ArrayList<Aresta>(listaArestas); 
+        List<Aresta> t = new ArrayList<Aresta>();
+        List<Aresta> arestasPossiveis = new ArrayList<Aresta>();
+        List<Aresta> arestasOriginais = new ArrayList<Aresta>(listaArestas);
         //variavel v - grupo de nos do grafo original sem os nos que já estão no grupo b
-        List<No> v = new ArrayList<No>(listaNos); 
+        List<No> v = new ArrayList<No>(listaNos);
         //variavel b - grupo de nos da árvore geradora mínima
-        List<No> b = new ArrayList<No>();                                       
+        List<No> b = new ArrayList<No>();
         b.add(listaNos.get(0));
         v.remove(v.get(0));
         while (b.size() <= listaNos.size()) {
             //procura as arestas do último no add ao grupo b
-            for (Aresta are : arestasOriginais) {   
+            for (Aresta are : arestasOriginais) {
                 if (are.getOrigem().equals(b.get(b.size() - 1).getId()) || are.getDestino().equals(b.get(b.size() - 1).getId())) {
                     if (t.isEmpty()) {
                         arestasPossiveis.add(are);
@@ -490,8 +504,8 @@ public class Algoritmos extends javax.swing.JFrame {
             boolean bo = false;
             boolean bd = false;
             //exclui do grupo AP e AO, as arestas que possuem ambos os nos, que estao fechando circuito
-            while (bw == true) {                      
-                bw = false;                       
+            while (bw == true) {
+                bw = false;
                 for (Aresta aresPos : arestasPossiveis) {
                     String ao = aresPos.getOrigem();
                     String ad = aresPos.getDestino();
@@ -546,7 +560,7 @@ public class Algoritmos extends javax.swing.JFrame {
                 }
                 for (Aresta aresPos : arestasPossiveis) {
                     //apos adicionar é removido do grupo ap e ao
-                    if (aresPos.getValorAresta() == valorMenor) {           
+                    if (aresPos.getValorAresta() == valorMenor) {
                         t.add(new Aresta(aresPos.getNomeAresta(), aresPos.getValorAresta(), aresPos.getOrigem(), aresPos.getDestino()));
                         for (Aresta a : arestasPossiveis) {
                             if (aresPos.getNomeAresta() == a.getNomeAresta() && aresPos.getValorAresta() == a.getValorAresta() && aresPos.getOrigem() == a.getOrigem() && aresPos.getDestino() == a.getDestino()) {
@@ -565,8 +579,8 @@ public class Algoritmos extends javax.swing.JFrame {
                 }
             }
 
-            if (b.size() < listaNos.size()) {                     
-                String ao = t.get(t.size() - 1).getOrigem();      
+            if (b.size() < listaNos.size()) {
+                String ao = t.get(t.size() - 1).getOrigem();
                 String ad = t.get(t.size() - 1).getDestino();
                 //busca o nó, da ultima aresta adicionada ao grupo t do grupo v e adiciona ao grupo b 
                 for (No nov : v) {
@@ -595,7 +609,7 @@ public class Algoritmos extends javax.swing.JFrame {
                     }
                 }
             } else {
-                break;  
+                break;
             }
         }
         String T = "{";
@@ -663,7 +677,7 @@ public class Algoritmos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonProfundidadeActionPerformed
 
     private void jButtonMalgrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMalgrangeActionPerformed
-       
+
         Grafo g = grafo.copiaGrafo(grafo, grafo.getId() + "-malgrange");
         List<String> ftd = new ArrayList<String>();
         List<String> fti = new ArrayList<String>();
