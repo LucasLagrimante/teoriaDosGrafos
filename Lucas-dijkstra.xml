@@ -1,0 +1,8 @@
+<graph id="Lucas-dijkstra" edgedefault="directed">
+  <node id="n1"/>
+  <node id="n2"/>
+  <node id="n3"/>
+  <edge source="n1" target="n1" name="a" value="2"/>
+  <edge source="n1" target="n1" name="b" value="3"/>
+  <edge source="n3" target="n2" name="c" value="5"/>
+</graph>
