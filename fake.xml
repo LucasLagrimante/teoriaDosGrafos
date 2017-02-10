@@ -51,4 +51,5 @@
   <node id="n50"/>
   <edge source="n1" target="n2" name="ala" value="4"/>
   <edge source="n2" target="n4" name="sdfsdf" value="56"/>
+  <edge source="n4" target="n50" name="a" value="0"/>
 </graph>

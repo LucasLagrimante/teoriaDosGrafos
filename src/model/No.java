@@ -1,4 +1,4 @@
-package grafosxml;
+package model;
 /**
  *
  * Integrantes do grupo:

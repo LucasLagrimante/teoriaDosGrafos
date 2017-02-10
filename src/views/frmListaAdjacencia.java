@@ -3,40 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafosxml;
+package views;
+
+import model.Grafo;
+import Storage.GraphSession;
+import java.util.ArrayList;
 
 /**
  *
  * @author lukin
  */
-public class frmMatrizIncidencia extends javax.swing.JFrame {
+public class frmListaAdjacencia extends javax.swing.JFrame {
 
     /**
      * Creates new form frmMatrizIncidencia
      */
     Grafo grafo = new Grafo();
 
-    public frmMatrizIncidencia() {
+    public frmListaAdjacencia() {
         initComponents();
         this.grafo = GraphSession.getGrafo();
 
-        int indice = 0;
-        Grafo g = grafo;
-        int[][] v = grafo.matrizIncidencia(g);
-        for (int i = 0; i <= (g.getArestas().size() - 1); i++) {
-            if (indice == 0) {
-                jtaMatrizIncidencia.append("     ");
-                indice = 1;
-                jtaMatrizIncidencia.append("  " + g.getArestas().get(i).getNomeAresta());
-            } else {
-                jtaMatrizIncidencia.append("  " + g.getArestas().get(i).getNomeAresta());
-            }
-        }
-        for (int j = 0; j <= (g.getVertices().size() - 1); j++) {
-            jtaMatrizIncidencia.append("\n");
-            jtaMatrizIncidencia.append("  " + g.getVertices().get(j).getId());
-            for (int i = 0; i <= (g.getArestas().size() - 1); i++) {
-                jtaMatrizIncidencia.append("  " + v[j][i]);
+        ArrayList<ArrayList> listaAdjacencia = grafo.listaAdjacencia(grafo);
+        for (int i = 0; i < listaAdjacencia.size(); i++) {
+            ArrayList<String> lista = listaAdjacencia.get(i);
+            jtaListaAdjacencia.append("\n");
+            for (int j = 0; j < lista.size(); j++) {
+                if (grafo.getTipo().equals("undirected")) {
+                    jtaListaAdjacencia.append(lista.get(j) + "-");
+                } else {
+                    jtaListaAdjacencia.append(lista.get(j) + "->");
+                }
+                if (j == (lista.size() - 1)) {
+                    jtaListaAdjacencia.append("null");
+                }
             }
         }
 
@@ -52,14 +52,14 @@ public class frmMatrizIncidencia extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtaMatrizIncidencia = new javax.swing.JTextArea();
+        jtaListaAdjacencia = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jtaMatrizIncidencia.setEditable(false);
-        jtaMatrizIncidencia.setColumns(20);
-        jtaMatrizIncidencia.setRows(5);
-        jScrollPane1.setViewportView(jtaMatrizIncidencia);
+        jtaListaAdjacencia.setEditable(false);
+        jtaListaAdjacencia.setColumns(20);
+        jtaListaAdjacencia.setRows(5);
+        jScrollPane1.setViewportView(jtaListaAdjacencia);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,14 +67,14 @@ public class frmMatrizIncidencia extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -99,21 +99,26 @@ public class frmMatrizIncidencia extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMatrizIncidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmListaAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMatrizIncidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmListaAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMatrizIncidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmListaAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMatrizIncidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmListaAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Grafo grafo = null;
                 new frmMatrizIncidencia().setVisible(true);
             }
         });
@@ -121,6 +126,6 @@ public class frmMatrizIncidencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jtaMatrizIncidencia;
+    private javax.swing.JTextArea jtaListaAdjacencia;
     // End of variables declaration//GEN-END:variables
 }

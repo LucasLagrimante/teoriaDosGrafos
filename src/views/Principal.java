@@ -1,4 +1,4 @@
-package grafosxml;
+package views;
 
 public class Principal extends javax.swing.JFrame {
 

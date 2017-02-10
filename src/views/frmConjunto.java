@@ -3,41 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafosxml;
+package views;
 
-import java.util.ArrayList;
+import model.Aresta;
+import model.Grafo;
+import Storage.GraphSession;
+import model.No;
 
 /**
  *
  * @author lukin
  */
-public class frmListaAdjacencia extends javax.swing.JFrame {
+public class frmConjunto extends javax.swing.JFrame {
 
     /**
      * Creates new form frmMatrizIncidencia
      */
     Grafo grafo = new Grafo();
 
-    public frmListaAdjacencia() {
+    public frmConjunto() {
         initComponents();
         this.grafo = GraphSession.getGrafo();
-
-        ArrayList<ArrayList> listaAdjacencia = grafo.listaAdjacencia(grafo);
-        for (int i = 0; i < listaAdjacencia.size(); i++) {
-            ArrayList<String> lista = listaAdjacencia.get(i);
-            jtaListaAdjacencia.append("\n");
-            for (int j = 0; j < lista.size(); j++) {
-                if (grafo.getTipo().equals("undirected")) {
-                    jtaListaAdjacencia.append(lista.get(j) + "-");
-                } else {
-                    jtaListaAdjacencia.append(lista.get(j) + "->");
-                }
-                if (j == (lista.size() - 1)) {
-                    jtaListaAdjacencia.append("null");
-                }
-            }
+        for (No v : grafo.getVertices()) {
+            jtaConjunto.append("\nVertices: " + v.getId());
         }
 
+        for (Aresta a : grafo.getArestas()) {
+            jtaConjunto.append("\nAresta: ->" + a.getNomeAresta());
+            jtaConjunto.append(" Vertices: " + a.getOrigem() + "  " + a.getDestino());
+        }
     }
 
     /**
@@ -50,14 +44,14 @@ public class frmListaAdjacencia extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtaListaAdjacencia = new javax.swing.JTextArea();
+        jtaConjunto = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jtaListaAdjacencia.setEditable(false);
-        jtaListaAdjacencia.setColumns(20);
-        jtaListaAdjacencia.setRows(5);
-        jScrollPane1.setViewportView(jtaListaAdjacencia);
+        jtaConjunto.setEditable(false);
+        jtaConjunto.setColumns(20);
+        jtaConjunto.setRows(5);
+        jScrollPane1.setViewportView(jtaConjunto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,13 +91,13 @@ public class frmListaAdjacencia extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmListaAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConjunto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmListaAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConjunto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmListaAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConjunto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmListaAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmConjunto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -124,6 +118,6 @@ public class frmListaAdjacencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jtaListaAdjacencia;
+    private javax.swing.JTextArea jtaConjunto;
     // End of variables declaration//GEN-END:variables
 }

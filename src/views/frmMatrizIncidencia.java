@@ -3,42 +3,46 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafosxml;
+package views;
+
+import model.Grafo;
+import Storage.GraphSession;
 
 /**
  *
  * @author lukin
  */
-public class frmMatrizAdjacencia extends javax.swing.JFrame {
+public class frmMatrizIncidencia extends javax.swing.JFrame {
 
     /**
      * Creates new form frmMatrizIncidencia
      */
     Grafo grafo = new Grafo();
 
-    public frmMatrizAdjacencia() {
+    public frmMatrizIncidencia() {
         initComponents();
         this.grafo = GraphSession.getGrafo();
 
         int indice = 0;
         Grafo g = grafo;
-        int[][] v = g.matrizAdjacencia(g);
-        for (int i = 0; i <= (g.getVertices().size() - 1); i++) {
+        int[][] v = grafo.matrizIncidencia(g);
+        for (int i = 0; i <= (g.getArestas().size() - 1); i++) {
             if (indice == 0) {
-                jtaMatrizAdjacencia.append("Vertices/vertices\n    ");
+                jtaMatrizIncidencia.append("     ");
                 indice = 1;
-                jtaMatrizAdjacencia.append("  " + g.getVertices().get(i).getId());
+                jtaMatrizIncidencia.append("  " + g.getArestas().get(i).getNomeAresta());
             } else {
-                jtaMatrizAdjacencia.append("  " + g.getVertices().get(i).getId());
+                jtaMatrizIncidencia.append("  " + g.getArestas().get(i).getNomeAresta());
             }
         }
         for (int j = 0; j <= (g.getVertices().size() - 1); j++) {
-            jtaMatrizAdjacencia.append("\n");
-            jtaMatrizAdjacencia.append("  " + g.getVertices().get(j).getId());
-            for (int i = 0; i <= (g.getVertices().size() - 1); i++) {
-                jtaMatrizAdjacencia.append("  " + v[j][i]);
+            jtaMatrizIncidencia.append("\n");
+            jtaMatrizIncidencia.append("  " + g.getVertices().get(j).getId());
+            for (int i = 0; i <= (g.getArestas().size() - 1); i++) {
+                jtaMatrizIncidencia.append("  " + v[j][i]);
             }
         }
+
     }
 
     /**
@@ -51,14 +55,14 @@ public class frmMatrizAdjacencia extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtaMatrizAdjacencia = new javax.swing.JTextArea();
+        jtaMatrizIncidencia = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jtaMatrizAdjacencia.setEditable(false);
-        jtaMatrizAdjacencia.setColumns(20);
-        jtaMatrizAdjacencia.setRows(5);
-        jScrollPane1.setViewportView(jtaMatrizAdjacencia);
+        jtaMatrizIncidencia.setEditable(false);
+        jtaMatrizIncidencia.setColumns(20);
+        jtaMatrizIncidencia.setRows(5);
+        jScrollPane1.setViewportView(jtaMatrizIncidencia);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,14 +70,14 @@ public class frmMatrizAdjacencia extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -98,16 +102,14 @@ public class frmMatrizAdjacencia extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMatrizAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMatrizIncidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMatrizAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMatrizIncidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMatrizAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMatrizIncidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMatrizAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMatrizIncidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -122,6 +124,6 @@ public class frmMatrizAdjacencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jtaMatrizAdjacencia;
+    private javax.swing.JTextArea jtaMatrizIncidencia;
     // End of variables declaration//GEN-END:variables
 }

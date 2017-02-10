@@ -3,29 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafosxml;
+package views;
+
+import model.Grafo;
+import Storage.GraphSession;
 
 /**
  *
  * @author lukin
  */
-public class frmConjunto extends javax.swing.JFrame {
+public class frmMatrizAdjacencia extends javax.swing.JFrame {
 
     /**
      * Creates new form frmMatrizIncidencia
      */
     Grafo grafo = new Grafo();
 
-    public frmConjunto() {
+    public frmMatrizAdjacencia() {
         initComponents();
         this.grafo = GraphSession.getGrafo();
-        for (No v : grafo.getVertices()) {
-            jtaConjunto.append("\nVertices: " + v.getId());
-        }
 
-        for (Aresta a : grafo.getArestas()) {
-            jtaConjunto.append("\nAresta: ->" + a.getNomeAresta());
-            jtaConjunto.append(" Vertices: " + a.getOrigem() + "  " + a.getDestino());
+        int indice = 0;
+        Grafo g = grafo;
+        int[][] v = g.matrizAdjacencia(g);
+        for (int i = 0; i <= (g.getVertices().size() - 1); i++) {
+            if (indice == 0) {
+                jtaMatrizAdjacencia.append("Vertices/vertices\n    ");
+                indice = 1;
+                jtaMatrizAdjacencia.append("  " + g.getVertices().get(i).getId());
+            } else {
+                jtaMatrizAdjacencia.append("  " + g.getVertices().get(i).getId());
+            }
+        }
+        for (int j = 0; j <= (g.getVertices().size() - 1); j++) {
+            jtaMatrizAdjacencia.append("\n");
+            jtaMatrizAdjacencia.append("  " + g.getVertices().get(j).getId());
+            for (int i = 0; i <= (g.getVertices().size() - 1); i++) {
+                jtaMatrizAdjacencia.append("  " + v[j][i]);
+            }
         }
     }
 
@@ -39,14 +54,14 @@ public class frmConjunto extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtaConjunto = new javax.swing.JTextArea();
+        jtaMatrizAdjacencia = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jtaConjunto.setEditable(false);
-        jtaConjunto.setColumns(20);
-        jtaConjunto.setRows(5);
-        jScrollPane1.setViewportView(jtaConjunto);
+        jtaMatrizAdjacencia.setEditable(false);
+        jtaMatrizAdjacencia.setColumns(20);
+        jtaMatrizAdjacencia.setRows(5);
+        jScrollPane1.setViewportView(jtaMatrizAdjacencia);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,18 +101,14 @@ public class frmConjunto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmConjunto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMatrizAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmConjunto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMatrizAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmConjunto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMatrizAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmConjunto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMatrizAdjacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -106,6 +117,7 @@ public class frmConjunto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                Grafo grafo = null;
                 new frmMatrizIncidencia().setVisible(true);
             }
         });
@@ -113,6 +125,6 @@ public class frmConjunto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jtaConjunto;
+    private javax.swing.JTextArea jtaMatrizAdjacencia;
     // End of variables declaration//GEN-END:variables
 }

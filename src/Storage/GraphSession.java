@@ -1,4 +1,7 @@
-package grafosxml;
+package Storage;
+
+import model.Grafo;
+
 /**
  *
  * Integrantes do grupo:

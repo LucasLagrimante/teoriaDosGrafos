@@ -3,14 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafosxml;
+package views;
 
+import model.Aresta;
+import model.Grafo;
+import Storage.GraphSession;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import model.No;
 
 /**
  *
@@ -100,13 +105,19 @@ public class ExibirGrafo extends javax.swing.JFrame {
     public void montaGrafo() {
         try {
             Process p;
-            File arquivo = new File("src\\os\\dot\\fileS.dot");
+            File arquivo = new File("src\\fileDot\\fileS.dot");
             List<Aresta> listaAresta = grafo.getArestas();
+            List<No> listaNos = grafo.getNos();
+
             String digraph_text = "";
             if (grafo.getTipo().equals("undirected")) {
                 digraph_text = "graph G {";
             } else {
                 digraph_text = "digraph G {";
+            }
+            for (int i = 0; i < listaNos.size(); i++) {
+                digraph_text += listaNos.get(i).getId();
+                digraph_text += "\n";
             }
             for (int i = 0; i < listaAresta.size(); i++) {
                 digraph_text += "\n";
@@ -127,14 +138,14 @@ public class ExibirGrafo extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao Criar Arquivo: " + ex.getMessage());
                 System.out.println("Erro ao Criar Arquivo: " + ex.getMessage());
             }
-            String commandLine = "dot -Tpng " + arquivo.getCanonicalPath() + " -o src\\os\\img\\fileS.png";
+            String commandLine = "dot -Tpng " + arquivo.getCanonicalPath() + " -o src\\image\\fileS.png";
             System.out.println(commandLine);
 
             p = Runtime.getRuntime().exec(commandLine);
             while (p.isAlive()) {
             }
 
-            File arqImg = new File("src\\os\\img\\fileS.png");
+            File arqImg = new File("src\\image\\fileS.png");
             ImageIcon image = new ImageIcon(arqImg.getCanonicalPath());
             image.getImage().flush();
             jLabel1.setIcon(image);

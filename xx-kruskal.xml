@@ -1,0 +1,13 @@
+<graph id="xx-kruskal" edgedefault="directed">
+  <node id="n1"/>
+  <node id="n2"/>
+  <node id="n3"/>
+  <node id="n4"/>
+  <node id="n5"/>
+  <node id="n6"/>
+  <node id="n7"/>
+  <node id="n8"/>
+  <node id="n9"/>
+  <node id="n10"/>
+  <edge source="n1" target="n2" name="a" value="0"/>
+</graph>
